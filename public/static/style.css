@@ -1300,10 +1300,10 @@ footer {
   align-items: center;
 }
 
-/* Shared badge wrapper — 96px, SVG viewBox 192×192 (scale = 0.5) */
+/* Shared badge wrapper — 68px, SVG viewBox 192×192 (scale ≈ 0.354) */
 .award-badge {
-  width: 96px;
-  height: 96px;
+  width: 68px;
+  height: 68px;
   cursor: default;
   flex-shrink: 0;
   transition: transform 0.4s var(--ease-out-expo), filter 0.4s var(--ease-out-expo);
