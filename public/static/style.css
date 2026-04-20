@@ -1675,6 +1675,42 @@ footer {
   section { padding: 4.5rem 0; }
 }
 
+/* Typed.js cursor */
+.typed-cursor {
+  color: var(--cyan);
+  font-weight: 300;
+  animation: blink 0.8s infinite;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* Text gradient for highlighted text */
+.text-gradient-cyan {
+  background: linear-gradient(135deg, var(--cyan), var(--tech-blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* GSAP animation utilities */
+.gsap-fade-up {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* Motion hover lifts */
+.motion-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.motion-lift:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 217, 255, 0.15);
+}
+
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
@@ -1683,4 +1719,5 @@ footer {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+  .typed-cursor { display: none; }
 }

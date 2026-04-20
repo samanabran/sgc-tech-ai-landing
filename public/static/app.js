@@ -7,12 +7,43 @@
    - Cursor glow (desktop)
    - Mobile nav toggle
    - Circuit animated paths
+   - Hero animations (Typed.js, GSAP, Motion)
    ====================================================================== */
 
 (function () {
   'use strict';
 
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // =====================================================================
+  // TYPED.JS — Hero headline typewriter
+  // =====================================================================
+  function initTyped() {
+    const headlineElement = document.querySelector('.hero h1 .highlight');
+    if (!headlineElement || typeof Typed === 'undefined' || prefersReducedMotion) return;
+
+    const typedSpan = document.createElement('span');
+    typedSpan.className = 'highlight text-gradient-cyan typed-text';
+    headlineElement.parentNode.replaceChild(typedSpan, headlineElement);
+
+    new Typed('.typed-text', {
+      strings: ['14-day', 'production-ready', 'enterprise-grade', 'measurable ROI'],
+      typeSpeed: 50,
+      backSpeed: 30,
+      backDelay: 2000,
+      startDelay: 800,
+      loop: true,
+      showCursor: true,
+      cursorChar: '|',
+      autoInsertCss: false,
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initTyped);
+  } else {
+    initTyped();
+  }
 
   // ---- Nav scroll state ----
   const nav = document.querySelector('.nav');

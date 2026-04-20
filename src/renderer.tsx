@@ -19,8 +19,10 @@ export const renderer = jsxRenderer(({ children }) => {
       </head>
       <body>
         {children}
+        <script src="https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.js" defer></script>
         {/* particles.js — vanilla library powering the hero background */}
         <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js" defer></script>
+        {/* Main interaction layer - initializes after all libraries load */}
         <script src="/static/app.js" defer></script>
       </body>
     </html>
