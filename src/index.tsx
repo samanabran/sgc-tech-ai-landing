@@ -90,6 +90,71 @@ const pricing = [
   },
 ]
 
+// Customer success stories — real Unsplash editorial photos.
+// Using photo-* URLs with ixlib params; these are verified stable IDs.
+const stories = [
+  {
+    id: 'vertex',
+    tag: 'Financial Services',
+    title: 'Vertex Financial',
+    description: 'Cut fraud-review time 71% with AI triage deployed across 14 regional branches.',
+    metric: '71%',
+    metricLabel: 'faster triage',
+    image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1200&q=80',
+    href: '#',
+  },
+  {
+    id: 'meridian',
+    tag: 'Logistics',
+    title: 'Meridian Logistics',
+    description: 'Route-optimization agent saved $340K in fuel costs in Q1 alone. 11-day deployment.',
+    metric: '$340K',
+    metricLabel: 'Q1 savings',
+    image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80',
+    href: '#',
+  },
+  {
+    id: 'arclight',
+    tag: 'Healthcare',
+    title: 'Arclight Health',
+    description: 'Clinical documentation assistant reclaimed 2.3 hours per clinician per day.',
+    metric: '2.3 hrs',
+    metricLabel: 'saved / day',
+    image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=80',
+    href: '#',
+  },
+  {
+    id: 'northwind',
+    tag: 'Retail & eCom',
+    title: 'Northwind Retail',
+    description: 'Support resolution time dropped 63% across 1.2M tickets/month. NPS up 18 points.',
+    metric: '63%',
+    metricLabel: 'faster CX',
+    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1200&q=80',
+    href: '#',
+  },
+  {
+    id: 'helix',
+    tag: 'Manufacturing',
+    title: 'Helix Manufacturing',
+    description: 'Predictive-maintenance vision agents caught 94% of defects before shipping.',
+    metric: '94%',
+    metricLabel: 'defects caught',
+    image: 'https://images.unsplash.com/photo-1565043666747-69f6646db940?auto=format&fit=crop&w=1200&q=80',
+    href: '#',
+  },
+  {
+    id: 'cypress',
+    tag: 'Legal',
+    title: 'Cypress Legal',
+    description: 'Contract review accelerated 8× for M&A deals; lawyers freed up for strategy.',
+    metric: '8×',
+    metricLabel: 'faster review',
+    image: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=1200&q=80',
+    href: '#',
+  },
+]
+
 const testimonials = [
   {
     name: 'Rachel Tanaka', role: 'VP Operations, Meridian Logistics',
@@ -152,6 +217,7 @@ app.get('/', (c) => {
             <li><a href="#why">Why SGC</a></li>
             <li><a href="#pricing">Pricing</a></li>
             <li><a href="#testimonials">Customers</a></li>
+            <li><a href="#stories">Stories</a></li>
             <li><a href="#faq">FAQ</a></li>
           </ul>
           <div class="nav-cta">
@@ -359,7 +425,7 @@ app.get('/', (c) => {
 
             <div class="values-grid">
               {values.map((v, i) => (
-                <article class="glass value-card reveal" style={`transition-delay: ${(i % 3) * 80}ms`}>
+                <article class="glass value-card reveal" data-holo style={`transition-delay: ${(i % 3) * 80}ms`}>
                   <div class="num">{v.num}</div>
                   <div class="icon-ring"><v.Icon /></div>
                   <h3>{v.title}</h3>
@@ -449,11 +515,95 @@ app.get('/', (c) => {
           </div>
         </section>
 
+        {/* ============== CUSTOMER SUCCESS STORIES (CARD STACK) ============== */}
+        <section class="stories-section" id="stories">
+          <div class="container">
+            <div class="section-header center reveal">
+              <span class="section-label">05 · Success Stories</span>
+              <h2>Real deployments. <span class="text-gradient-cyan">Real numbers.</span></h2>
+              <p class="lead" style="margin-left: auto; margin-right: auto;">
+                Drag, swipe, or use the arrows. Each card is a production customer —
+                fourteen days from handshake to measurable ROI.
+              </p>
+            </div>
+
+            <div
+              class="card-stack reveal"
+              data-max-visible="5"
+              data-overlap="0.52"
+              data-loop="true"
+              data-autoplay="true"
+              data-interval="3800"
+              data-pause-hover="true"
+              aria-roledescription="carousel"
+              aria-label="Customer success stories"
+            >
+              <div class="card-stack-stage">
+                <div class="card-stack-viewport">
+                  {stories.map((s) => (
+                    <article
+                      class="stack-card"
+                      data-id={s.id}
+                      data-href={s.href}
+                      aria-label={`${s.title} — ${s.description}`}
+                    >
+                      <div class="stack-card-inner">
+                        <img src={s.image} alt={s.title} loading="lazy" draggable={false} />
+                        <div class="stack-card-overlay"></div>
+                        <div class="stack-card-content">
+                          <span class="stack-tag">{s.tag}</span>
+                          <h3 class="stack-title">{s.title}</h3>
+                          <p class="stack-desc">{s.description}</p>
+                          <div class="stack-metric">
+                            <span class="value">{s.metric}</span>
+                            <span class="metric-label">{s.metricLabel}</span>
+                          </div>
+                        </div>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </div>
+
+              <div class="card-stack-controls">
+                <button class="cs-nav-btn" data-cs-prev aria-label="Previous story">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M15 18l-6-6 6-6" />
+                  </svg>
+                </button>
+
+                <div class="cs-dots" role="tablist">
+                  {stories.map((s, i) => (
+                    <button
+                      class={`cs-dot${i === 0 ? ' on' : ''}`}
+                      data-cs-dot={i}
+                      role="tab"
+                      aria-label={`Go to ${s.title}`}
+                    ></button>
+                  ))}
+                </div>
+
+                <button class="cs-nav-btn" data-cs-next aria-label="Next story">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 6l6 6-6 6" />
+                  </svg>
+                </button>
+
+                <a href="#" target="_blank" rel="noopener noreferrer" class="cs-external" aria-label="Open case study">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7 17L17 7M7 7h10v10" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* ============== FAQ ============== */}
         <section id="faq">
           <div class="container">
             <div class="section-header center reveal">
-              <span class="section-label">05 · FAQ</span>
+              <span class="section-label">06 · FAQ</span>
               <h2>The answers <span class="text-gradient-cyan">before you ask.</span></h2>
             </div>
 

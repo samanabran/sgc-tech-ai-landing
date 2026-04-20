@@ -143,4 +143,275 @@
       }
     });
   });
+
+  // =====================================================================
+  // HOLOGRAPHIC TILT — mouse-tracked 3D rotation on [data-holo] elements
+  // Mirrors the React HolographicCard: tracks x/y, computes rotateX/Y,
+  // exposes --x, --y, --rx, --ry for the CSS shimmer layer.
+  // =====================================================================
+  const holoCards = document.querySelectorAll('[data-holo]');
+  if (holoCards.length && !prefersReducedMotion) {
+    holoCards.forEach((card) => {
+      // Ensure the sheen layer exists
+      if (!card.querySelector('.holo-sheen')) {
+        const sheen = document.createElement('div');
+        sheen.className = 'holo-sheen';
+        card.appendChild(sheen);
+      }
+
+      let raf = null;
+      const onMove = (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const cx = rect.width / 2;
+        const cy = rect.height / 2;
+        // Match the original's feel: divide by 10 for gentle tilt
+        const rotateX = ((y - cy) / rect.height) * 14;   // -7..+7 deg
+        const rotateY = ((cx - x) / rect.width) * 14;    // -7..+7 deg
+
+        if (raf) cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(() => {
+          card.style.setProperty('--x', x + 'px');
+          card.style.setProperty('--y', y + 'px');
+          card.style.setProperty('--rx', rotateX + 'deg');
+          card.style.setProperty('--ry', rotateY + 'deg');
+        });
+      };
+
+      const onEnter = () => card.classList.add('holo-active');
+      const onLeave = () => {
+        card.classList.remove('holo-active');
+        if (raf) cancelAnimationFrame(raf);
+        card.style.setProperty('--rx', '0deg');
+        card.style.setProperty('--ry', '0deg');
+        card.style.setProperty('--x', '50%');
+        card.style.setProperty('--y', '50%');
+      };
+
+      card.addEventListener('mouseenter', onEnter);
+      card.addEventListener('mousemove', onMove);
+      card.addEventListener('mouseleave', onLeave);
+    });
+  }
+
+  // =====================================================================
+  // CARD STACK — 3D fanned carousel
+  // Ported from the React + Framer Motion version. Supports:
+  //   • fan geometry (stepDeg, overlap, depth)
+  //   • active-card drag/swipe (pointer events) with velocity-based decision
+  //   • autoplay w/ pauseOnHover
+  //   • keyboard ← → navigation
+  //   • click-to-focus, dot navigation, prev/next buttons
+  // =====================================================================
+  function initCardStack(root) {
+    const stage = root.querySelector('.card-stack-stage');
+    const viewport = root.querySelector('.card-stack-viewport');
+    if (!stage || !viewport) return;
+
+    const cards = Array.from(viewport.querySelectorAll('.stack-card'));
+    const dots  = Array.from(root.querySelectorAll('.cs-dot'));
+    const btnPrev = root.querySelector('[data-cs-prev]');
+    const btnNext = root.querySelector('[data-cs-next]');
+    const externalLink = root.querySelector('.cs-external');
+    const len = cards.length;
+    if (!len) return;
+
+    const opts = {
+      maxVisible: parseInt(root.dataset.maxVisible || '7', 10),
+      overlap:    parseFloat(root.dataset.overlap || '0.48'),
+      loop:       root.dataset.loop !== 'false',
+      autoplay:   root.dataset.autoplay === 'true',
+      intervalMs: parseInt(root.dataset.interval || '3200', 10),
+      pauseOnHover: root.dataset.pauseHover !== 'false',
+    };
+
+    const cssRead = (name, fallback) => {
+      const v = parseFloat(getComputedStyle(root).getPropertyValue(name));
+      return isNaN(v) ? fallback : v;
+    };
+    const cardWidth   = cssRead('--cs-width', 520);
+    const cardHeight  = cssRead('--cs-height', 340);
+    const spreadDeg   = cssRead('--cs-spread', 48);
+    const depthPx     = cssRead('--cs-depth', 130);
+    const activeScale = cssRead('--cs-active-scale', 1.04);
+    const inactiveScale = cssRead('--cs-inactive-scale', 0.94);
+    const activeLift  = cssRead('--cs-active-lift', 22);
+    const tiltX       = cssRead('--cs-tilt-x', 10);
+
+    const maxOff = Math.max(1, Math.floor(opts.maxVisible / 2));
+    const spacing = Math.max(10, Math.round(cardWidth * (1 - opts.overlap)));
+    const stepDeg = spreadDeg / maxOff;
+
+    let active = 0;
+    let hovering = false;
+    let autoTimer = null;
+
+    const wrap = (n) => ((n % len) + len) % len;
+
+    const signedOffset = (i) => {
+      const raw = i - active;
+      if (!opts.loop || len <= 1) return raw;
+      const alt = raw > 0 ? raw - len : raw + len;
+      return Math.abs(alt) < Math.abs(raw) ? alt : raw;
+    };
+
+    const render = () => {
+      cards.forEach((card, i) => {
+        const off = signedOffset(i);
+        const abs = Math.abs(off);
+        const visible = abs <= maxOff;
+
+        if (!visible) {
+          card.style.opacity = '0';
+          card.style.pointerEvents = 'none';
+          card.style.transform = `translate3d(0, 0, ${-maxOff * depthPx - 100}px) scale(0.8)`;
+          card.classList.remove('is-active');
+          return;
+        }
+
+        card.style.opacity = '1';
+        card.style.pointerEvents = 'auto';
+
+        const isActive = off === 0;
+        const x = off * spacing;
+        const y = abs * 8 - (isActive ? activeLift : 0);
+        const z = -abs * depthPx;
+        const rotZ = off * stepDeg;
+        const rotX = isActive ? 0 : tiltX;
+        const scale = isActive ? activeScale : inactiveScale;
+        const zIndex = 100 - abs;
+
+        card.style.zIndex = String(zIndex);
+        card.style.transform =
+          `translate3d(${x}px, ${y}px, ${z}px) ` +
+          `rotateX(${rotX}deg) rotateZ(${rotZ}deg) scale(${scale})`;
+        card.classList.toggle('is-active', isActive);
+      });
+
+      dots.forEach((d, i) => d.classList.toggle('on', i === active));
+
+      if (externalLink) {
+        const href = cards[active].dataset.href;
+        if (href) externalLink.setAttribute('href', href);
+        externalLink.style.display = href ? '' : 'none';
+      }
+
+      // Update prev/next disabled state when not looping
+      if (btnPrev) btnPrev.disabled = !opts.loop && active === 0;
+      if (btnNext) btnNext.disabled = !opts.loop && active === len - 1;
+    };
+
+    const go = (to) => {
+      const clamped = opts.loop ? wrap(to) : Math.max(0, Math.min(len - 1, to));
+      if (clamped === active) return;
+      active = clamped;
+      render();
+    };
+
+    const prev = () => go(active - 1);
+    const next = () => go(active + 1);
+
+    // ---- Drag / swipe on active card ----
+    let dragStartX = 0;
+    let dragStartTime = 0;
+    let dragging = false;
+    let dragCard = null;
+
+    viewport.addEventListener('pointerdown', (e) => {
+      const card = e.target.closest('.stack-card.is-active');
+      if (!card) return;
+      dragging = true;
+      dragCard = card;
+      dragStartX = e.clientX;
+      dragStartTime = performance.now();
+      card.classList.add('is-dragging');
+      card.setPointerCapture(e.pointerId);
+    });
+
+    viewport.addEventListener('pointermove', (e) => {
+      if (!dragging || !dragCard) return;
+      const dx = e.clientX - dragStartX;
+      // elastic drag — apply a small translateX on the active card
+      dragCard.style.transform = dragCard.style.transform.replace(
+        /translate3d\([^)]+\)/,
+        `translate3d(${dx}px, ${-activeLift}px, 0px)`
+      );
+    });
+
+    const endDrag = (e) => {
+      if (!dragging || !dragCard) return;
+      const dx = e.clientX - dragStartX;
+      const dt = performance.now() - dragStartTime;
+      const velocity = dx / Math.max(dt, 1); // px/ms
+      const threshold = Math.min(140, cardWidth * 0.22);
+
+      dragCard.classList.remove('is-dragging');
+      dragCard = null;
+      dragging = false;
+
+      if (dx > threshold || velocity > 0.65) prev();
+      else if (dx < -threshold || velocity < -0.65) next();
+      else render(); // snap back
+    };
+
+    viewport.addEventListener('pointerup', endDrag);
+    viewport.addEventListener('pointercancel', endDrag);
+
+    // ---- Click non-active card to focus it ----
+    cards.forEach((card, i) => {
+      card.addEventListener('click', (e) => {
+        // ignore click if it was actually the end of a drag
+        if (Math.abs(e.clientX - dragStartX) > 5 && dragStartTime) return;
+        if (i !== active) go(i);
+      });
+    });
+
+    // ---- Dots ----
+    dots.forEach((d, i) => d.addEventListener('click', () => go(i)));
+
+    // ---- Prev/Next buttons ----
+    if (btnPrev) btnPrev.addEventListener('click', prev);
+    if (btnNext) btnNext.addEventListener('click', next);
+
+    // ---- Keyboard ----
+    stage.tabIndex = 0;
+    stage.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft')  { e.preventDefault(); prev(); }
+      if (e.key === 'ArrowRight') { e.preventDefault(); next(); }
+    });
+
+    // ---- Hover pause + autoplay ----
+    root.addEventListener('mouseenter', () => { hovering = true; });
+    root.addEventListener('mouseleave', () => { hovering = false; });
+
+    const startAuto = () => {
+      if (!opts.autoplay || prefersReducedMotion) return;
+      stopAuto();
+      autoTimer = window.setInterval(() => {
+        if (opts.pauseOnHover && hovering) return;
+        next();
+      }, Math.max(1500, opts.intervalMs));
+    };
+    const stopAuto = () => {
+      if (autoTimer) { window.clearInterval(autoTimer); autoTimer = null; }
+    };
+
+    // Initial paint
+    render();
+    startAuto();
+
+    // Repaint on resize (spacing depends on computed CSS vars that can shift at breakpoints)
+    let resizeTimer = null;
+    window.addEventListener('resize', () => {
+      if (resizeTimer) clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        // Re-read CSS vars via recalc
+        location.hash === location.hash; // no-op
+        render();
+      }, 120);
+    });
+  }
+
+  document.querySelectorAll('.card-stack').forEach(initCardStack);
 })();
