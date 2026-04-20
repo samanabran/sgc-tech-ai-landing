@@ -268,20 +268,22 @@ app.get('/', (c) => {
                   <span>AI-Powered · Real Cost Savings · Real Results</span>
                 </div>
 
-                <h1 class="reveal reveal-delay-1">
-                  Cut Costs.<br />
-                  Optimize Operations.<br />
-                  Ship AI in <span class="highlight text-gradient-cyan">30 Days.</span>
-                </h1>
+                {/* Pain-point narrative frame */}
+                <div class="hero-pain reveal reveal-delay-1">
+                  <p class="pain-top">Your business deserves better than this.</p>
 
-                <p class="hero-lead reveal reveal-delay-2">
-                  SGC TECH AI deploys intelligent agents, automated workflows, and
-                  smart integrations that eliminate operational waste and cut costs
-                  by up to 63% — across every industry shaping tomorrow's economy.
-                  Fixed scope, fixed price, live in production within 30 days.
-                </p>
+                  <div class="pain-stage" aria-live="polite" aria-atomic="true">
+                    <span class="pain-arrow" aria-hidden="true">→</span>
+                    <p class="pain-text" id="painText">Chasing approvals on WhatsApp.</p>
+                  </div>
 
-                <div class="hero-ctas reveal reveal-delay-3">
+                  <h1 class="pain-bottom">
+                    SGC Tech AI fixes it.<br />
+                    <span class="text-gradient-cyan">Fixed price. Fixed timeline.</span>
+                  </h1>
+                </div>
+
+                <div class="hero-ctas reveal reveal-delay-2">
                   <a href="#pricing" class="btn btn-primary btn-lg" data-magnetic>
                     Calculate your ROI <IconArrow />
                   </a>

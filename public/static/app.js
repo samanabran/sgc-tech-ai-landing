@@ -45,6 +45,46 @@
     initTyped();
   }
 
+  // =====================================================================
+  // PAIN POINT ROTATOR — cycles through business pain points in hero
+  // =====================================================================
+  ;(function () {
+    const el = document.getElementById('painText');
+    if (!el) return;
+
+    const lines = [
+      'Chasing approvals on WhatsApp.',
+      'Commissions calculated on spreadsheets.',
+      'No visibility on who\'s actually performing.',
+      'Deals falling through broken pipelines.',
+      'Paying for software nobody actually uses.',
+      'Finance closing the month manually. Again.',
+    ];
+
+    let idx = 0;
+
+    if (prefersReducedMotion) {
+      // Cycle slowly without animation
+      setInterval(() => {
+        idx = (idx + 1) % lines.length;
+        el.textContent = lines[idx];
+      }, 3000);
+      return;
+    }
+
+    setInterval(() => {
+      el.classList.add('pain-exit');
+      setTimeout(() => {
+        idx = (idx + 1) % lines.length;
+        el.textContent = lines[idx];
+        el.classList.remove('pain-exit');
+        void el.offsetWidth; // force reflow so animation restarts
+        el.classList.add('pain-enter');
+        setTimeout(() => el.classList.remove('pain-enter'), 500);
+      }, 320);
+    }, 2800);
+  })();
+
   // ---- Nav scroll state ----
   const nav = document.querySelector('.nav');
   if (nav) {

@@ -484,6 +484,73 @@ section {
   border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
+/* ----- Hero Pain-Point Narrative Frame ----- */
+.hero-pain {
+  margin: 0 0 2.5rem;
+}
+
+.pain-top {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.82rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  margin-bottom: 1.1rem;
+}
+
+.pain-stage {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.875rem;
+  padding: 1.1rem 1.4rem;
+  background: rgba(255, 100, 50, 0.055);
+  border-left: 3px solid rgba(255, 110, 60, 0.55);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  margin-bottom: 1.5rem;
+  min-height: 4.5rem;
+  align-items: center;
+}
+
+.pain-arrow {
+  color: rgba(255, 120, 60, 0.65);
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.pain-text {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(1.25rem, 2.4vw, 1.9rem);
+  font-weight: 600;
+  color: var(--white);
+  line-height: 1.25;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.pain-text.pain-exit {
+  opacity: 0;
+  transform: translateY(-7px);
+  transition: opacity 0.32s var(--ease-in-out-quart), transform 0.32s var(--ease-in-out-quart);
+}
+
+@keyframes painEnter {
+  from { opacity: 0; transform: translateY(9px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.pain-text.pain-enter {
+  animation: painEnter 0.45s var(--ease-out-expo) forwards;
+}
+
+.pain-bottom {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+}
+
 /* ----- Hero Trust Badges (awards + compliance) ----- */
 .hero-badges {
   display: flex;
