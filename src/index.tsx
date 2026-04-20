@@ -265,24 +265,25 @@ app.get('/', (c) => {
               <div>
                 <div class="hero-badge reveal">
                   <span class="dot"></span>
-                  <span>Production AI · Deployed in 14 Days</span>
+                  <span>AI-Powered · Real Cost Savings · Real Results</span>
                 </div>
 
                 <h1 class="reveal reveal-delay-1">
-                  Enterprise AI,<br />
-                  without the <span class="highlight text-gradient-cyan">18-month</span><br />
-                  consulting project.
+                  Cut Costs.<br />
+                  Optimize Operations.<br />
+                  Ship AI in <span class="highlight text-gradient-cyan">14 Days.</span>
                 </h1>
 
                 <p class="hero-lead reveal reveal-delay-2">
-                  SGC TECH AI ships production-grade agents, integrations, and
-                  workflows for regulated businesses — fixed scope, fixed price,
-                  fourteen business days. Then we measure the ROI, together.
+                  SGC TECH AI deploys intelligent agents, automated workflows, and
+                  smart integrations that eliminate operational waste and cut costs
+                  by up to 63% — across every industry shaping tomorrow's economy.
+                  Fixed scope, fixed price, live in fourteen business days.
                 </p>
 
                 <div class="hero-ctas reveal reveal-delay-3">
                   <a href="#pricing" class="btn btn-primary btn-lg" data-magnetic>
-                    Start 14-day trial <IconArrow />
+                    Calculate your ROI <IconArrow />
                   </a>
                   <a href="#why" class="btn btn-ghost btn-lg">
                     See how it works
@@ -297,12 +298,12 @@ app.get('/', (c) => {
                     <div class="stat-label">Day deployment</div>
                   </div>
                   <div>
-                    <div class="stat-value"><span data-count="200" data-suffix="+">0</span></div>
-                    <div class="stat-label">Integrations</div>
+                    <div class="stat-value"><span data-count="63" data-suffix="%">0</span></div>
+                    <div class="stat-label">Avg cost reduction</div>
                   </div>
                   <div>
-                    <div class="stat-value"><span data-count="99.99" data-suffix="%">0</span></div>
-                    <div class="stat-label">Uptime SLA</div>
+                    <div class="stat-value"><span data-count="200" data-suffix="+">0</span></div>
+                    <div class="stat-label">Integrations</div>
                   </div>
                 </div>
               </div>
@@ -324,7 +325,7 @@ app.get('/', (c) => {
         <section class="trust-bar">
           <div class="container" style="margin-bottom: 1.5rem;">
             <p style="text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gray-500);">
-              Powering AI teams at <span style="color: var(--cyan);">500+ companies</span> worldwide
+              Cutting costs and optimizing operations at <span style="color: var(--cyan);">500+ companies</span> worldwide
             </p>
           </div>
           <div class="marquee">
