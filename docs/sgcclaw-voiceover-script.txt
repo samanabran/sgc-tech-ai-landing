@@ -1,0 +1,36 @@
+SGC TECH AI — sgcclaw Promo Video
+60-Second Voiceover Script
+Generated: 2026-04-21
+
+===== ACT 1: THE PAIN (0:00 – 0:12) =====
+[Tone: low, slightly tired, empathetic]
+
+"Sound familiar? Most businesses are still running on human limits."
+
+===== ACT 2: THE SHIFT (0:12 – 0:22) =====
+[Tone: confident, measured, a breath of relief]
+
+"Meet sgcclaw — an AI-powered centralized brain that never sleeps,
+never calls in sick, and never asks for a raise."
+
+===== ACT 3: CAPABILITY CASCADE (0:22 – 0:50) =====
+[Tone: building momentum, crisp, authoritative]
+
+"Predict outcomes before you act."               [0:22–0:27]
+"Plugs into your entire software stack."         [0:27–0:32]
+"Reports in seconds, not days."                  [0:32–0:37]
+"Captures leads, answers questions, books appointments."  [0:37–0:42]
+"Over a thousand real-world workflows — running around the clock."  [0:42–0:47]
+"Fixed price. Compounding returns. No drama."    [0:47–0:50]
+
+===== ACT 4: THE MANIFESTO (0:50 – 1:00) =====
+[Tone: quiet, direct, final]
+
+"Contact us. Tell us your use case. We've got you."
+
+===== RECORDING NOTES =====
+Total runtime: ~55 seconds of speech across 60s video
+Recommend 3-second pause before Act 4 begins (pure music moment at 0:47-0:50)
+ElevenLabs recommended voice: "Adam" (authoritative male) or "Rachel" (professional female)
+Export as MP3 or WAV, 44.1kHz stereo
+Save as: public/assets/sgcclaw-voiceover.mp3
