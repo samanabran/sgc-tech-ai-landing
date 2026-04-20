@@ -46,44 +46,45 @@
   }
 
   // =====================================================================
-  // PAIN POINT ROTATOR — cycles through business pain points in hero
+  // PAIN POINT ROTATOR — Typed.js typewriter on the hero pain stage
   // =====================================================================
-  ;(function () {
+  function initPainTyped() {
     const el = document.getElementById('painText');
-    if (!el) return;
+    if (!el || typeof Typed === 'undefined') return;
 
-    const lines = [
-      'Chasing approvals on WhatsApp.',
-      'Commissions calculated on spreadsheets.',
-      'No visibility on who\'s actually performing.',
-      'Deals falling through broken pipelines.',
-      'Paying for software nobody actually uses.',
-      'Finance closing the month manually. Again.',
-    ];
+    el.textContent = ''; // let Typed.js own the content
 
-    let idx = 0;
+    new Typed('#painText', {
+      strings: [
+        'Chasing approvals on WhatsApp.',
+        'Commissions calculated on spreadsheets.',
+        'No visibility on who\'s actually performing.',
+        'Deals falling through broken pipelines.',
+        'Paying for software nobody actually uses.',
+        'Finance closing the month manually.^600 Again.',
+      ],
+      typeSpeed: 42,
+      backSpeed: 20,
+      backDelay: 1800,
+      startDelay: 500,
+      loop: true,
+      showCursor: true,
+      cursorChar: '|',
+      autoInsertCss: false,
+      preStringTyped: () => {
+        if (el.parentElement) el.parentElement.classList.add('pain-typing');
+      },
+      onStringTyped: () => {
+        if (el.parentElement) el.parentElement.classList.remove('pain-typing');
+      },
+    });
+  }
 
-    if (prefersReducedMotion) {
-      // Cycle slowly without animation
-      setInterval(() => {
-        idx = (idx + 1) % lines.length;
-        el.textContent = lines[idx];
-      }, 3000);
-      return;
-    }
-
-    setInterval(() => {
-      el.classList.add('pain-exit');
-      setTimeout(() => {
-        idx = (idx + 1) % lines.length;
-        el.textContent = lines[idx];
-        el.classList.remove('pain-exit');
-        void el.offsetWidth; // force reflow so animation restarts
-        el.classList.add('pain-enter');
-        setTimeout(() => el.classList.remove('pain-enter'), 500);
-      }, 320);
-    }, 2800);
-  })();
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initPainTyped);
+  } else {
+    initPainTyped();
+  }
 
   // ---- Nav scroll state ----
   const nav = document.querySelector('.nav');

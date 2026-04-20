@@ -270,7 +270,7 @@ app.get('/', (c) => {
 
                 {/* Pain-point narrative frame */}
                 <div class="hero-pain reveal reveal-delay-1">
-                  <p class="pain-top">Your business deserves better than this.</p>
+                  <p class="pain-top">Your business deserves <em>better than this.</em></p>
 
                   <div class="pain-stage" aria-live="polite" aria-atomic="true">
                     <span class="pain-arrow" aria-hidden="true">→</span>
