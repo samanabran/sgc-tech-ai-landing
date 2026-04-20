@@ -28,7 +28,7 @@ const industries = [
 ]
 
 const values = [
-  { num: '01', title: '14-Day Deployment', text: 'From kick-off to production in two weeks. No six-month pilots. Fixed scope, fixed price.', Icon: IconSpeed },
+  { num: '01', title: 'Rapid Deployment', text: 'From kick-off to live production in under 30 days. No six-month pilots, no endless scoping. Fixed scope, fixed price.', Icon: IconSpeed },
   { num: '02', title: 'SOC 2 & GDPR Ready', text: 'Enterprise-grade security baked in. Role-based access, audit trails, data residency controls.',  Icon: IconShield },
   { num: '03', title: '200+ Integrations',  text: 'Salesforce, HubSpot, Snowflake, SAP, Slack, Teams, and your homegrown stack — all on day one.', Icon: IconIntegration },
   { num: '04', title: 'Bring Your Own Model', text: 'OpenAI, Anthropic, Gemini, Mistral, or private models. We stay vendor-neutral, forever.',    Icon: IconCpu },
@@ -43,7 +43,7 @@ const pricing = [
     period: '/month',
     desc: 'For teams validating their first AI workflow in production.',
     featured: false,
-    cta: 'Start 14-day trial',
+    cta: 'Start free pilot',
     features: [
       { text: 'Up to 3 AI agents in production', on: true },
       { text: '10,000 tasks / month',            on: true },
@@ -180,7 +180,7 @@ const testimonials = [
   {
     name: 'Rachel Tanaka', role: 'VP Operations, Meridian Logistics',
     avatar: 'RT',
-    quote: 'We deployed in 11 days — not 14. The route-optimization agent saved us $340k in the first quarter. Our ops team calls it the hardest-working employee they\'ve ever hired.',
+    quote: 'We were live in under three weeks. The route-optimization agent saved us $340k in the first quarter. Our ops team calls it the hardest-working employee they\'ve ever hired.',
   },
   {
     name: 'Daniel Okonkwo', role: 'CTO, Vertex Financial Group',
@@ -196,8 +196,8 @@ const testimonials = [
 
 const faqs = [
   {
-    q: 'What does "14-day deployment" actually mean?',
-    a: 'From the signed order form to a live, production workflow handling real traffic — fourteen business days. We scope narrowly, implement surgically, and deliver measurable outcomes. Deployments extending beyond 14 days receive a 25% service credit.',
+    q: 'How fast can we realistically go live?',
+    a: 'Most clients are in full production within 30 days of kick-off. We scope narrowly, staff experienced engineers, and iterate fast. Simpler workflows land sooner — complex, multi-system deployments sit at the upper end. Either way, you\'re live in weeks, not quarters.',
   },
   {
     q: 'Which LLM providers do you support?',
@@ -217,7 +217,7 @@ const faqs = [
   },
   {
     q: 'Can we start with a pilot before the full deployment?',
-    a: 'Yes. Our 14-day trial on the Starter plan is a full production pilot — not a sandbox demo. You get real agents, real integrations, and real outcomes with no long-term commitment.',
+    a: 'Yes. Our Starter pilot is a full production deployment — not a sandbox demo. You get real agents, real integrations, and real outcomes. No long-term commitment required.',
   },
 ]
 
@@ -271,14 +271,14 @@ app.get('/', (c) => {
                 <h1 class="reveal reveal-delay-1">
                   Cut Costs.<br />
                   Optimize Operations.<br />
-                  Ship AI in <span class="highlight text-gradient-cyan">14 Days.</span>
+                  Ship AI in <span class="highlight text-gradient-cyan">30 Days.</span>
                 </h1>
 
                 <p class="hero-lead reveal reveal-delay-2">
                   SGC TECH AI deploys intelligent agents, automated workflows, and
                   smart integrations that eliminate operational waste and cut costs
                   by up to 63% — across every industry shaping tomorrow's economy.
-                  Fixed scope, fixed price, live in fourteen business days.
+                  Fixed scope, fixed price, live in production within 30 days.
                 </p>
 
                 <div class="hero-ctas reveal reveal-delay-3">
@@ -294,7 +294,7 @@ app.get('/', (c) => {
 
                 <div class="hero-stats reveal reveal-delay-4">
                   <div>
-                    <div class="stat-value"><span data-count="14" data-suffix="">0</span></div>
+                    <div class="stat-value"><span data-count="30" data-suffix="">0</span></div>
                     <div class="stat-label">Day deployment</div>
                   </div>
                   <div>
@@ -603,14 +603,14 @@ app.get('/', (c) => {
                 <div>
                   <span class="section-label">Ready when you are</span>
                   <h2>Fourteen days from now,<br />your AI is <span class="text-gradient-cyan">already shipping value.</span></h2>
-                  <p class="lead">Book a 30-minute scoping call. We'll walk through your highest-leverage workflow and show you exactly what week one through fourteen looks like.</p>
+                  <p class="lead">Book a 30-minute scoping call. We'll walk through your highest-leverage workflow and map out exactly what your first 30 days look like — week by week.</p>
                 </div>
                 <div class="cta-buttons">
                   <a href="#" class="btn btn-primary" data-magnetic>
                     Book a 30-min call <IconArrow />
                   </a>
                   <a href="#pricing" class="btn btn-ghost">
-                    Start 14-day trial
+                    Start free pilot
                   </a>
                   <p class="cta-note">No credit card · Cancel anytime</p>
                 </div>
@@ -629,7 +629,7 @@ app.get('/', (c) => {
                 <img src="/static/sgc-tech-logo.png" alt="SGC TECH AI" style="width: 44px; height: 44px;" />
                 <span>SGC <span style="color: var(--cyan)">TECH</span></span>
               </a>
-              <p>Production AI for regulated enterprises. Fixed scope, fixed price, fourteen business days — from handshake to live traffic.</p>
+              <p>Production AI for regulated enterprises. Fixed scope, fixed price, live within 30 days — from handshake to real business impact.</p>
             </div>
 
             <div class="footer-col">

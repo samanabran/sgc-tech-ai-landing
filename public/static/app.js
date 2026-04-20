@@ -27,7 +27,7 @@
     headlineElement.parentNode.replaceChild(typedSpan, headlineElement);
 
     new Typed('.typed-text', {
-      strings: ['14 Days.', 'One Sprint.', 'Record Time.', '2 Weeks.'],
+      strings: ['30 Days.', 'Weeks.', 'One Month.', 'Record Time.'],
       typeSpeed: 50,
       backSpeed: 30,
       backDelay: 2000,

@@ -7,11 +7,11 @@ export const renderer = jsxRenderer(({ children }) => {
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="theme-color" content="#0b0e27" />
-        <meta name="description" content="SGC TECH AI — Enterprise AI deployment in 14 days. Production-ready AI agents, integrations, and workflows for modern businesses." />
-        <meta property="og:title" content="SGC TECH AI — Enterprise AI in 14 Days" />
-        <meta property="og:description" content="Ship production-grade AI for your business in 14 days or less. Built for B2B enterprise." />
+        <meta name="description" content="SGC TECH AI — Enterprise AI that cuts costs by up to 63%. Production-ready AI agents, integrations, and workflows for modern businesses. Deployed in 30 days." />
+        <meta property="og:title" content="SGC TECH AI — Cut Costs. Optimize Operations. Ship AI in 30 Days." />
+        <meta property="og:description" content="Deploy production-grade AI that reduces operational costs by up to 63%. Built for B2B enterprise. Live in 30 days." />
         <meta property="og:type" content="website" />
-        <title>SGC TECH AI — Enterprise AI, Deployed in 14 Days</title>
+        <title>SGC TECH AI — AI-Powered Cost Savings, Deployed in 30 Days</title>
         <link rel="icon" type="image/png" href="/static/sgc-tech-logo.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
