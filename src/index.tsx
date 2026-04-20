@@ -154,7 +154,7 @@ app.get('/', (c) => {
             <li><a href="#faq">FAQ</a></li>
           </ul>
           <div class="nav-cta">
-            <a href="#contact" class="btn btn-ghost" style="padding: 0.55rem 1.1rem;">Sign in</a>
+            <a href="https://scholarixglobal.com/web/login" class="btn btn-ghost" style="padding: 0.55rem 1.1rem;" target="_blank" rel="noopener noreferrer">Sign in</a>
             <a href="#pricing" class="btn btn-primary" style="padding: 0.55rem 1.1rem;" data-magnetic>
               Book Demo <IconArrow />
             </a>
