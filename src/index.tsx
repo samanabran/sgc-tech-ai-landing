@@ -7,6 +7,7 @@ import {
   IconSpeed, IconShield, IconIntegration, IconCpu, IconChart, IconHeadset,
   IconTwitter, IconLinkedin, IconGithub, IconYoutube,
 } from './components/Icons'
+import { BadgeG2, BadgeSoc, BadgeIso, BadgeGdpr, BadgeHipaa, BadgeGartner } from './components/Badges'
 import { CircuitBg } from './components/CircuitBg'
 
 const app = new Hono()
@@ -199,6 +200,58 @@ app.get('/', (c) => {
                   </a>
                 </div>
 
+                <div class="hero-badges reveal reveal-delay-4">
+                  <span class="hero-badges-label">Awards &amp; Compliance</span>
+
+                  <div class="trust-badge" title="G2 Leader — Spring 2025">
+                    <span class="badge-icon"><BadgeG2 /></span>
+                    <span class="badge-text">
+                      <span class="badge-title">G2 Leader</span>
+                      <span class="badge-sub">Spring 2025</span>
+                    </span>
+                  </div>
+
+                  <div class="trust-badge" title="SOC 2 Type II Certified">
+                    <span class="badge-icon"><BadgeSoc /></span>
+                    <span class="badge-text">
+                      <span class="badge-title">SOC 2</span>
+                      <span class="badge-sub">Type II</span>
+                    </span>
+                  </div>
+
+                  <div class="trust-badge" title="ISO/IEC 27001:2022 Certified">
+                    <span class="badge-icon"><BadgeIso /></span>
+                    <span class="badge-text">
+                      <span class="badge-title">ISO 27001</span>
+                      <span class="badge-sub">Certified</span>
+                    </span>
+                  </div>
+
+                  <div class="trust-badge" title="GDPR &amp; CCPA Compliant">
+                    <span class="badge-icon"><BadgeGdpr /></span>
+                    <span class="badge-text">
+                      <span class="badge-title">GDPR</span>
+                      <span class="badge-sub">Compliant</span>
+                    </span>
+                  </div>
+
+                  <div class="trust-badge" title="HIPAA-ready for healthcare deployments">
+                    <span class="badge-icon"><BadgeHipaa /></span>
+                    <span class="badge-text">
+                      <span class="badge-title">HIPAA</span>
+                      <span class="badge-sub">Ready</span>
+                    </span>
+                  </div>
+
+                  <div class="trust-badge" title="Gartner Cool Vendor 2024">
+                    <span class="badge-icon"><BadgeGartner /></span>
+                    <span class="badge-text">
+                      <span class="badge-title">Gartner</span>
+                      <span class="badge-sub">Cool Vendor '24</span>
+                    </span>
+                  </div>
+                </div>
+
                 <div class="hero-stats reveal reveal-delay-4">
                   <div>
                     <div class="stat-value"><span data-count="14" data-suffix="">0</span></div>
@@ -229,20 +282,45 @@ app.get('/', (c) => {
         </section>
 
         {/* ============== TRUST BAR ============== */}
-        <section class="trust-bar" style="padding: 2.5rem 0;">
+        <section class="trust-bar">
+          <div class="container" style="margin-bottom: 1.5rem;">
+            <p style="text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gray-500);">
+              Powering AI teams at <span style="color: var(--cyan);">500+ companies</span> worldwide
+            </p>
+          </div>
           <div class="marquee">
-            {[
-              'Meridian Logistics', 'Vertex Financial', 'Northwind Retail',
-              'Arclight Health', 'Cypress Legal', 'Helix Manufacturing',
-              'Solstice Education', 'Orion Realty', 'Meridian Logistics',
-              'Vertex Financial', 'Northwind Retail', 'Arclight Health',
-              'Cypress Legal', 'Helix Manufacturing', 'Solstice Education', 'Orion Realty',
-            ].map((name) => (
-              <span class="marquee-item">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10" /><path d="M8 12l3 3 5-6" stroke-linecap="round" stroke-linejoin="round" /></svg>
-                {name}
-              </span>
-            ))}
+            {(() => {
+              // Real brand logos via Simple Icons CDN — all verified to return 200.
+              // CSS filter converts the SVG to white for dark-theme display.
+              const brands = [
+                { name: 'Google Cloud', slug: 'google' },
+                { name: 'SAP',          slug: 'sap' },
+                { name: 'Cisco',        slug: 'cisco' },
+                { name: 'Snowflake',    slug: 'snowflake' },
+                { name: 'Databricks',   slug: 'databricks' },
+                { name: 'Cloudflare',   slug: 'cloudflare' },
+                { name: 'Atlassian',    slug: 'atlassian' },
+                { name: 'HubSpot',      slug: 'hubspot' },
+                { name: 'Shopify',      slug: 'shopify' },
+                { name: 'Stripe',       slug: 'stripe' },
+                { name: 'NVIDIA',       slug: 'nvidia' },
+                { name: 'MongoDB',      slug: 'mongodb' },
+              ]
+              // Duplicate the array for a seamless loop
+              const loop = [...brands, ...brands]
+              return loop.map((b) => (
+                <span class="marquee-item">
+                  <img
+                    src={`https://cdn.simpleicons.org/${b.slug}`}
+                    alt={b.name}
+                    loading="lazy"
+                    width="32"
+                    height="32"
+                  />
+                  {b.name}
+                </span>
+              ))
+            })()}
           </div>
         </section>
 
