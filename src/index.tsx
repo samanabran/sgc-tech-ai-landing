@@ -367,17 +367,17 @@ app.get('/', (c) => {
         </section>
 
         {/* ============== INDUSTRIES ============== */}
-        <section id="industries">
+        <section id="industries" class="section-ambient" style="--sg-color: rgba(0,217,255,0.06)">
           <div class="container">
-            <div class="section-header reveal">
+            <div class="section-header reveal-blur">
               <span class="section-label">01 · Industries</span>
               <h2>Built for the industries <span class="text-gradient-cyan">most allergic</span> to AI hype.</h2>
               <p class="lead">We specialize in compliance-heavy, revenue-critical workflows where "move fast and break things" is a career-ending strategy.</p>
             </div>
 
-            <div class="industries-grid">
+            <div class="industries-grid stagger-children">
               {industries.map((ind, i) => (
-                <article class={`glass industry-card ${i % 2 === 0 ? 'reveal-left' : 'reveal-right'}`} style={`transition-delay: ${(i % 4) * 70}ms`}>
+                <article class="glass industry-card">
                   <span class="index">{String(i + 1).padStart(2, '0')}</span>
                   <div class="icon"><ind.Icon /></div>
                   <div>
@@ -391,39 +391,41 @@ app.get('/', (c) => {
         </section>
 
         {/* ============== WHY SGC TECH ============== */}
-        <section id="why">
+        <section id="why" class="section-ambient" style="--sg-color: rgba(0,71,255,0.07)">
           <div class="container">
-            <div class="section-header reveal">
-              <span class="section-label">02 · Why SGC TECH AI</span>
-              <h2>Six reasons our customers <br /><span class="text-gradient-cyan">don't renew</span> — they expand.</h2>
-              <p class="lead">Average net-revenue retention sits at 143%. That's not a marketing number. That's what happens when the product actually works.</p>
-            </div>
+            <div class="section-glass">
+              <div class="section-header reveal-blur">
+                <span class="section-label">02 · Why SGC TECH AI</span>
+                <h2>Six reasons our customers <br /><span class="text-gradient-cyan">don't renew</span> — they expand.</h2>
+                <p class="lead">Average net-revenue retention sits at 143%. That's not a marketing number. That's what happens when the product actually works.</p>
+              </div>
 
-            <div class="values-grid">
-              {values.map((v, i) => (
-                <article class="glass value-card reveal-scale" data-holo style={`transition-delay: ${(i % 3) * 80}ms`}>
-                  <div class="num">{v.num}</div>
-                  <div class="icon-ring"><v.Icon /></div>
-                  <h3>{v.title}</h3>
-                  <p>{v.text}</p>
-                </article>
-              ))}
+              <div class="values-grid stagger-children">
+                {values.map((v, i) => (
+                  <article class="glass value-card" data-holo>
+                    <div class="num">{v.num}</div>
+                    <div class="icon-ring"><v.Icon /></div>
+                    <h3>{v.title}</h3>
+                    <p>{v.text}</p>
+                  </article>
+                ))}
+              </div>
             </div>
           </div>
         </section>
 
         {/* ============== PRICING ============== */}
-        <section id="pricing">
+        <section id="pricing" class="section-ambient" style="--sg-color: rgba(0,217,255,0.05)">
           <div class="container">
-            <div class="section-header center reveal">
+            <div class="section-header center reveal-blur">
               <span class="section-label">03 · Pricing</span>
               <h2>Fixed-price tiers.<br /><span class="text-gradient-cyan">No "contact us" games</span> for the first two.</h2>
               <p class="lead" style="margin-left: auto; margin-right: auto;">Transparent pricing because enterprise software shouldn't feel like buying a used car.</p>
             </div>
 
-            <div class="pricing-grid">
+            <div class="pricing-grid stagger-children">
               {pricing.map((p, i) => (
-                <article class={`glass pricing-card reveal-scale ${p.featured ? 'featured' : ''}`} style={`transition-delay: ${i * 90}ms`}>
+                <article class={`glass pricing-card ${p.featured ? 'featured' : ''}`}>
                   {p.featured && <span class="pricing-tag">Most Popular</span>}
                   <div class="pricing-tier">{p.tier}</div>
 
@@ -462,31 +464,33 @@ app.get('/', (c) => {
         </section>
 
         {/* ============== TESTIMONIALS ============== */}
-        <section id="testimonials">
+        <section id="testimonials" class="section-ambient" style="--sg-color: rgba(0,71,255,0.06)">
           <div class="container">
-            <div class="section-header reveal">
-              <span class="section-label">04 · Customers</span>
-              <h2>What the people <span class="text-gradient-cyan">actually writing checks</span> say.</h2>
-              <p class="lead">Verified quotes from active customers. LinkedIn-checkable. Case studies available under NDA.</p>
-            </div>
+            <div class="section-glass">
+              <div class="section-header reveal-blur">
+                <span class="section-label">04 · Customers</span>
+                <h2>What the people <span class="text-gradient-cyan">actually writing checks</span> say.</h2>
+                <p class="lead">Verified quotes from active customers. LinkedIn-checkable. Case studies available under NDA.</p>
+              </div>
 
-            <div class="testimonials-grid">
-              {testimonials.map((t, i) => (
-                <article class={`glass testimonial-card ${i === 1 ? 'reveal' : i === 0 ? 'reveal-left' : 'reveal-right'}`} style={`transition-delay: ${i * 100}ms`}>
-                  <div class="quote-mark">"</div>
-                  <div class="stars" aria-label="5 out of 5 stars">
-                    {[...Array(5)].map(() => <IconStar />)}
-                  </div>
-                  <p class="quote">{t.quote}</p>
-                  <div class="testimonial-author">
-                    <div class="avatar">{t.avatar}</div>
-                    <div class="author-info">
-                      <div class="name">{t.name}</div>
-                      <div class="role">{t.role}</div>
+              <div class="testimonials-grid stagger-children">
+                {testimonials.map((t, i) => (
+                  <article class="glass testimonial-card">
+                    <div class="quote-mark">"</div>
+                    <div class="stars" aria-label="5 out of 5 stars">
+                      {[...Array(5)].map(() => <IconStar />)}
                     </div>
-                  </div>
-                </article>
-              ))}
+                    <p class="quote">{t.quote}</p>
+                    <div class="testimonial-author">
+                      <div class="avatar">{t.avatar}</div>
+                      <div class="author-info">
+                        <div class="name">{t.name}</div>
+                        <div class="role">{t.role}</div>
+                      </div>
+                    </div>
+                  </article>
+                ))}
+              </div>
             </div>
           </div>
         </section>
@@ -494,7 +498,7 @@ app.get('/', (c) => {
         {/* ============== CUSTOMER SUCCESS STORIES (CARD STACK) ============== */}
         <section class="stories-section" id="stories">
           <div class="container">
-            <div class="section-header center reveal">
+            <div class="section-header center reveal-blur">
               <span class="section-label">05 · Industry Solutions</span>
               <h2>One platform. <span class="text-gradient-cyan">Eight verticals.</span></h2>
               <p class="lead" style="margin-left: auto; margin-right: auto;">
@@ -576,14 +580,14 @@ app.get('/', (c) => {
         </section>
 
         {/* ============== FAQ ============== */}
-        <section id="faq">
+        <section id="faq" class="section-ambient" style="--sg-color: rgba(0,217,255,0.04)">
           <div class="container">
-            <div class="section-header center reveal">
+            <div class="section-header center reveal-blur">
               <span class="section-label">06 · FAQ</span>
               <h2>The answers <span class="text-gradient-cyan">before you ask.</span></h2>
             </div>
 
-            <div class="faq-wrap">
+            <div class="faq-wrap section-glass">
               {faqs.map((f, i) => (
                 <details class="glass faq-item reveal" style={`transition-delay: ${i * 50}ms`}>
                   <summary class="faq-summary">
@@ -600,7 +604,7 @@ app.get('/', (c) => {
         {/* ============== FINAL CTA ============== */}
         <section class="cta-section" id="contact">
           <div class="container">
-            <div class="cta-card reveal">
+            <div class="cta-card section-glass reveal-blur">
               <div class="cta-grid">
                 <div>
                   <span class="section-label">Ready when you are</span>

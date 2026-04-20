@@ -92,8 +92,8 @@
     window.addEventListener('scroll', onScroll, { passive: true });
   }
 
-  // ---- Scroll reveal (handles .reveal, .reveal-left, .reveal-right, .reveal-scale) ----
-  const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+  // ---- Scroll reveal (.reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-blur) ----
+  const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-blur');
   if (revealEls.length) {
     const io = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -104,6 +104,29 @@
       });
     }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
     revealEls.forEach((el) => io.observe(el));
+  }
+
+  // ---- Stagger grid children ----
+  const staggerParents = document.querySelectorAll('.stagger-children');
+  if (staggerParents.length) {
+    const staggerIO = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        Array.from(entry.target.children).forEach((child, i) => {
+          setTimeout(() => child.classList.add('in'), i * 80);
+        });
+        staggerIO.unobserve(entry.target);
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    staggerParents.forEach((p) => staggerIO.observe(p));
+  }
+
+  // ---- Parallax — hero visual drifts up at 12% scroll speed ----
+  const heroVisual = document.querySelector('.hero-visual');
+  if (heroVisual && !prefersReducedMotion) {
+    window.addEventListener('scroll', () => {
+      heroVisual.style.setProperty('--parallax-y', `${window.scrollY * 0.12}px`);
+    }, { passive: true });
   }
 
   // ---- Glass card spotlight ----
