@@ -223,7 +223,7 @@
               "height": 70
             },
             "from": 87,
-            "duration": 63,
+            "duration": 96,
             "opacity": 1,
             "props": {
               "text": "Not just a prediction engine.",
@@ -263,7 +263,7 @@
               "height": 70
             },
             "from": 138,
-            "duration": 90,
+            "duration": 114,
             "opacity": 1,
             "props": {
               "text": "A centralized brain for your entire business.",
@@ -459,7 +459,7 @@
               "height": 100
             },
             "from": 370,
-            "duration": 83,
+            "duration": 114,
             "opacity": 1,
             "props": {
               "text": "Your competitors aren't waiting. Neither should you.",
@@ -1075,7 +1075,7 @@
               "height": 150
             },
             "from": 1016,
-            "duration": 55,
+            "duration": 84,
             "opacity": 1,
             "props": {
               "text": "Trigger Intelligent\nWorkflows",
@@ -1431,7 +1431,7 @@
               "height": 100
             },
             "from": 1630,
-            "duration": 62,
+            "duration": 84,
             "opacity": 1,
             "props": {
               "text": "It leads the transformation.",
@@ -1533,7 +1533,7 @@
               "height": 100
             },
             "from": 1715,
-            "duration": 64,
+            "duration": 84,
             "opacity": 1,
             "props": {
               "text": "Ready to move early?",
@@ -1573,7 +1573,7 @@
               "height": 80
             },
             "from": 1766,
-            "duration": 79,
+            "duration": 114,
             "opacity": 1,
             "props": {
               "text": "Contact us for your specific use case.",
@@ -1613,7 +1613,7 @@
               "height": 100
             },
             "from": 1834,
-            "duration": 54,
+            "duration": 84,
             "opacity": 1,
             "props": {
               "text": "The future isn't coming —",
@@ -1653,7 +1653,7 @@
               "height": 100
             },
             "from": 1875,
-            "duration": 39,
+            "duration": 72,
             "opacity": 1,
             "props": {
               "text": "you're building it.",
