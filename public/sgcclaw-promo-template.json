@@ -1,7 +1,8 @@
 {
-  "name": "SGC TECH AI — sgcclaw 60s Promo",
-  "description": "60-second cinematic marketing video for sgcclaw AI platform",
-  "version": "1.0.0",
+  "name": "SGC TECH AI — sgcclaw Promo v4 (VO-rebuilt)",
+  "description": "Video rebuilt entirely from Whisper transcript of actual voiceover. Every text element timed to actual speech.",
+  "version": "4.0.0",
+  "inputs": [],
   "output": {
     "type": "video",
     "width": 1920,
@@ -9,7 +10,6 @@
     "fps": 30,
     "duration": 70
   },
-  "inputs": [],
   "composition": {
     "scenes": [
       {
@@ -47,45 +47,28 @@
             }
           },
           {
-            "id": "circuit-h1",
+            "id": "cl1",
             "type": "shape",
             "position": {
               "x": 0,
-              "y": 200
+              "y": 180
             },
             "size": {
               "width": 1920,
               "height": 1
             },
-            "opacity": 0.08,
+            "opacity": 0.07,
             "props": {
               "shape": "rectangle",
               "fill": "#00d9ff"
             }
           },
           {
-            "id": "circuit-h2",
+            "id": "cl2",
             "type": "shape",
             "position": {
               "x": 0,
-              "y": 600
-            },
-            "size": {
-              "width": 1920,
-              "height": 1
-            },
-            "opacity": 0.06,
-            "props": {
-              "shape": "rectangle",
-              "fill": "#00d9ff"
-            }
-          },
-          {
-            "id": "circuit-h3",
-            "type": "shape",
-            "position": {
-              "x": 0,
-              "y": 880
+              "y": 540
             },
             "size": {
               "width": 1920,
@@ -98,75 +81,254 @@
             }
           },
           {
-            "id": "circuit-v1",
+            "id": "cl3",
             "type": "shape",
             "position": {
-              "x": 320,
+              "x": 0,
+              "y": 900
+            },
+            "size": {
+              "width": 1920,
+              "height": 1
+            },
+            "opacity": 0.05,
+            "props": {
+              "shape": "rectangle",
+              "fill": "#00d9ff"
+            }
+          },
+          {
+            "id": "cv1",
+            "type": "shape",
+            "position": {
+              "x": 300,
               "y": 0
             },
             "size": {
               "width": 1,
               "height": 1080
             },
-            "opacity": 0.05,
+            "opacity": 0.04,
             "props": {
               "shape": "rectangle",
               "fill": "#00d9ff"
             }
           },
           {
-            "id": "circuit-v2",
+            "id": "cv2",
             "type": "shape",
             "position": {
-              "x": 1600,
+              "x": 1620,
               "y": 0
             },
             "size": {
               "width": 1,
               "height": 1080
             },
-            "opacity": 0.05,
+            "opacity": 0.04,
             "props": {
               "shape": "rectangle",
               "fill": "#00d9ff"
             }
           },
           {
-            "id": "circuit-node1",
-            "type": "shape",
+            "id": "s1-meet",
+            "type": "text",
             "position": {
-              "x": 316,
-              "y": 196
+              "x": 360,
+              "y": 340
             },
             "size": {
-              "width": 8,
-              "height": 8
+              "width": 1200,
+              "height": 180
             },
-            "opacity": 0.25,
+            "from": 0,
+            "duration": 72,
+            "opacity": 1,
             "props": {
-              "shape": "ellipse",
-              "fill": "#00d9ff"
-            }
+              "text": "MEET",
+              "fontSize": 96,
+              "fontWeight": "700",
+              "color": "#00d9ff",
+              "textAlign": "center",
+              "fontFamily": "Inter, system-ui, sans-serif",
+              "letterSpacing": 16
+            },
+            "animations": [
+              {
+                "type": "entrance",
+                "effect": "fadeIn",
+                "delay": 0,
+                "duration": 20,
+                "easing": "easeOutCubic"
+              },
+              {
+                "type": "exit",
+                "effect": "fadeOut",
+                "delay": 0,
+                "duration": 20,
+                "easing": "easeInCubic"
+              }
+            ]
           },
           {
-            "id": "circuit-node2",
-            "type": "shape",
+            "id": "s1-sgcclaw",
+            "type": "text",
             "position": {
-              "x": 1596,
-              "y": 596
+              "x": 60,
+              "y": 480
             },
             "size": {
-              "width": 8,
-              "height": 8
+              "width": 1800,
+              "height": 180
             },
-            "opacity": 0.2,
+            "from": 2,
+            "duration": 220,
+            "opacity": 1,
             "props": {
-              "shape": "ellipse",
-              "fill": "#00d9ff"
-            }
+              "text": "SGC CLAW",
+              "fontSize": 128,
+              "fontWeight": "700",
+              "color": "#ffffff",
+              "textAlign": "center",
+              "fontFamily": "Inter, system-ui, sans-serif",
+              "letterSpacing": 10
+            },
+            "animations": [
+              {
+                "type": "entrance",
+                "effect": "fadeIn",
+                "delay": 0,
+                "duration": 20,
+                "easing": "easeOutCubic"
+              },
+              {
+                "type": "exit",
+                "effect": "fadeOut",
+                "delay": 0,
+                "duration": 20,
+                "easing": "easeInCubic"
+              }
+            ]
           },
           {
-            "id": "act1-pain1",
+            "id": "s1-tag1",
+            "type": "text",
+            "position": {
+              "x": 160,
+              "y": 670
+            },
+            "size": {
+              "width": 1600,
+              "height": 70
+            },
+            "from": 87,
+            "duration": 63,
+            "opacity": 1,
+            "props": {
+              "text": "Not just a prediction engine.",
+              "fontSize": 32,
+              "fontWeight": "300",
+              "color": "#a0c4d8",
+              "textAlign": "center",
+              "fontFamily": "Inter, system-ui, sans-serif",
+              "letterSpacing": 0.5
+            },
+            "animations": [
+              {
+                "type": "entrance",
+                "effect": "fadeIn",
+                "delay": 0,
+                "duration": 20,
+                "easing": "easeOutCubic"
+              },
+              {
+                "type": "exit",
+                "effect": "fadeOut",
+                "delay": 0,
+                "duration": 20,
+                "easing": "easeInCubic"
+              }
+            ]
+          },
+          {
+            "id": "s1-tag2",
+            "type": "text",
+            "position": {
+              "x": 160,
+              "y": 670
+            },
+            "size": {
+              "width": 1600,
+              "height": 70
+            },
+            "from": 138,
+            "duration": 90,
+            "opacity": 1,
+            "props": {
+              "text": "A centralized brain for your entire business.",
+              "fontSize": 32,
+              "fontWeight": "300",
+              "color": "#a0c4d8",
+              "textAlign": "center",
+              "fontFamily": "Inter, system-ui, sans-serif",
+              "letterSpacing": 0.5
+            },
+            "animations": [
+              {
+                "type": "entrance",
+                "effect": "fadeIn",
+                "delay": 0,
+                "duration": 20,
+                "easing": "easeOutCubic"
+              },
+              {
+                "type": "exit",
+                "effect": "fadeOut",
+                "delay": 0,
+                "duration": 20,
+                "easing": "easeInCubic"
+              }
+            ]
+          },
+          {
+            "id": "s2-line",
+            "type": "shape",
+            "position": {
+              "x": 160,
+              "y": 476
+            },
+            "size": {
+              "width": 560,
+              "height": 2
+            },
+            "from": 238,
+            "duration": 137,
+            "opacity": 0.8,
+            "props": {
+              "shape": "rectangle",
+              "fill": "#dc2626",
+              "borderRadius": 0
+            },
+            "animations": [
+              {
+                "type": "entrance",
+                "effect": "fadeIn",
+                "delay": 0,
+                "duration": 20,
+                "easing": "easeOutCubic"
+              },
+              {
+                "type": "exit",
+                "effect": "fadeOut",
+                "delay": 0,
+                "duration": 20,
+                "easing": "easeInCubic"
+              }
+            ]
+          },
+          {
+            "id": "s2-p1",
             "type": "text",
             "position": {
               "x": 160,
@@ -176,71 +338,117 @@
               "width": 1600,
               "height": 100
             },
-            "from": 0,
-            "duration": 420,
+            "from": 232,
+            "duration": 55,
+            "opacity": 1,
             "props": {
-              "text": "Leads going cold at 2am.",
-              "fontSize": 52,
+              "text": "Scattered data.",
+              "fontSize": 60,
               "fontWeight": "300",
               "color": "#e0e0e0",
               "textAlign": "left",
               "fontFamily": "Inter, system-ui, sans-serif",
-              "letterSpacing": 1
+              "letterSpacing": 0.5
             },
             "animations": [
               {
                 "type": "entrance",
                 "effect": "fadeIn",
                 "delay": 0,
-                "duration": 30,
+                "duration": 20,
                 "easing": "easeOutCubic"
               },
               {
                 "type": "exit",
                 "effect": "fadeOut",
                 "delay": 0,
-                "duration": 30,
+                "duration": 20,
                 "easing": "easeInCubic"
               }
             ]
           },
           {
-            "id": "act1-pain1-underline",
-            "type": "shape",
+            "id": "s2-p2",
+            "type": "text",
             "position": {
               "x": 160,
-              "y": 460
+              "y": 480
             },
             "size": {
-              "width": 340,
-              "height": 2
+              "width": 1600,
+              "height": 100
             },
-            "from": 30,
-            "duration": 390,
-            "opacity": 0.9,
+            "from": 273,
+            "duration": 58,
+            "opacity": 1,
             "props": {
-              "shape": "rectangle",
-              "fill": "#dc2626"
+              "text": "Slow decisions.",
+              "fontSize": 60,
+              "fontWeight": "300",
+              "color": "#e0e0e0",
+              "textAlign": "left",
+              "fontFamily": "Inter, system-ui, sans-serif",
+              "letterSpacing": 0.5
             },
             "animations": [
               {
                 "type": "entrance",
-                "effect": "scaleIn",
+                "effect": "fadeIn",
                 "delay": 0,
-                "duration": 30,
+                "duration": 20,
                 "easing": "easeOutCubic"
               },
               {
                 "type": "exit",
                 "effect": "fadeOut",
                 "delay": 0,
-                "duration": 30,
+                "duration": 20,
                 "easing": "easeInCubic"
               }
             ]
           },
           {
-            "id": "act1-pain2",
+            "id": "s2-p3",
+            "type": "text",
+            "position": {
+              "x": 160,
+              "y": 600
+            },
+            "size": {
+              "width": 1600,
+              "height": 100
+            },
+            "from": 316,
+            "duration": 68,
+            "opacity": 1,
+            "props": {
+              "text": "Manual workflows.",
+              "fontSize": 60,
+              "fontWeight": "300",
+              "color": "#f87171",
+              "textAlign": "left",
+              "fontFamily": "Inter, system-ui, sans-serif",
+              "letterSpacing": 0.5
+            },
+            "animations": [
+              {
+                "type": "entrance",
+                "effect": "fadeIn",
+                "delay": 0,
+                "duration": 20,
+                "easing": "easeOutCubic"
+              },
+              {
+                "type": "exit",
+                "effect": "fadeOut",
+                "delay": 0,
+                "duration": 20,
+                "easing": "easeInCubic"
+              }
+            ]
+          },
+          {
+            "id": "s2-p4",
             "type": "text",
             "position": {
               "x": 160,
@@ -250,127 +458,402 @@
               "width": 1600,
               "height": 100
             },
-            "from": 105,
-            "duration": 315,
+            "from": 370,
+            "duration": 83,
+            "opacity": 1,
             "props": {
-              "text": "Reports that take 3 days to pull.",
-              "fontSize": 52,
+              "text": "Your competitors aren't waiting. Neither should you.",
+              "fontSize": 44,
               "fontWeight": "300",
               "color": "#e0e0e0",
-              "textAlign": "left",
+              "textAlign": "center",
               "fontFamily": "Inter, system-ui, sans-serif",
-              "letterSpacing": 1
+              "letterSpacing": 0.5
             },
             "animations": [
               {
                 "type": "entrance",
                 "effect": "fadeIn",
                 "delay": 0,
-                "duration": 30,
+                "duration": 20,
                 "easing": "easeOutCubic"
               },
               {
                 "type": "exit",
                 "effect": "fadeOut",
                 "delay": 0,
-                "duration": 30,
+                "duration": 20,
                 "easing": "easeInCubic"
               }
             ]
           },
           {
-            "id": "act1-pain2-underline",
-            "type": "shape",
+            "id": "s3-head",
+            "type": "text",
             "position": {
               "x": 160,
-              "y": 590
+              "y": 300
             },
             "size": {
-              "width": 120,
-              "height": 2
+              "width": 1600,
+              "height": 160
             },
-            "from": 135,
-            "duration": 285,
-            "opacity": 0.9,
+            "from": 470,
+            "duration": 106,
+            "opacity": 1,
             "props": {
-              "shape": "rectangle",
-              "fill": "#dc2626"
+              "text": "SGC Claw connects across\nall your software systems.",
+              "fontSize": 46,
+              "fontWeight": "600",
+              "color": "#00d9ff",
+              "textAlign": "center",
+              "fontFamily": "Inter, system-ui, sans-serif",
+              "letterSpacing": 0.5
             },
             "animations": [
               {
                 "type": "entrance",
-                "effect": "scaleIn",
+                "effect": "fadeIn",
                 "delay": 0,
-                "duration": 30,
+                "duration": 20,
                 "easing": "easeOutCubic"
               },
               {
                 "type": "exit",
                 "effect": "fadeOut",
                 "delay": 0,
-                "duration": 30,
+                "duration": 20,
                 "easing": "easeInCubic"
               }
             ]
           },
           {
-            "id": "act1-pain3",
+            "id": "s3-rt",
             "type": "text",
             "position": {
               "x": 160,
-              "y": 620
+              "y": 500
+            },
+            "size": {
+              "width": 1600,
+              "height": 80
+            },
+            "from": 563,
+            "duration": 61,
+            "opacity": 1,
+            "props": {
+              "text": "In real time.",
+              "fontSize": 56,
+              "fontWeight": "300",
+              "color": "#ffffff",
+              "textAlign": "center",
+              "fontFamily": "Inter, system-ui, sans-serif",
+              "letterSpacing": 0.5
+            },
+            "animations": [
+              {
+                "type": "entrance",
+                "effect": "fadeIn",
+                "delay": 0,
+                "duration": 20,
+                "easing": "easeOutCubic"
+              },
+              {
+                "type": "exit",
+                "effect": "fadeOut",
+                "delay": 0,
+                "duration": 20,
+                "easing": "easeInCubic"
+              }
+            ]
+          },
+          {
+            "id": "s3-c1bg",
+            "type": "shape",
+            "position": {
+              "x": 160,
+              "y": 340
+            },
+            "size": {
+              "width": 460,
+              "height": 260
+            },
+            "from": 615,
+            "duration": 198,
+            "opacity": 0.12,
+            "props": {
+              "shape": "rectangle",
+              "fill": "#00d9ff",
+              "borderRadius": 14
+            },
+            "animations": [
+              {
+                "type": "entrance",
+                "effect": "fadeIn",
+                "delay": 0,
+                "duration": 20,
+                "easing": "easeOutCubic"
+              },
+              {
+                "type": "exit",
+                "effect": "fadeOut",
+                "delay": 0,
+                "duration": 20,
+                "easing": "easeInCubic"
+              }
+            ]
+          },
+          {
+            "id": "s3-c1",
+            "type": "text",
+            "position": {
+              "x": 180,
+              "y": 430
+            },
+            "size": {
+              "width": 420,
+              "height": 80
+            },
+            "from": 621,
+            "duration": 195,
+            "opacity": 1,
+            "props": {
+              "text": "Financial Data",
+              "fontSize": 28,
+              "fontWeight": "600",
+              "color": "#ffffff",
+              "textAlign": "center",
+              "fontFamily": "Inter, system-ui, sans-serif",
+              "letterSpacing": 0.5
+            },
+            "animations": [
+              {
+                "type": "entrance",
+                "effect": "fadeIn",
+                "delay": 0,
+                "duration": 20,
+                "easing": "easeOutCubic"
+              },
+              {
+                "type": "exit",
+                "effect": "fadeOut",
+                "delay": 0,
+                "duration": 20,
+                "easing": "easeInCubic"
+              }
+            ]
+          },
+          {
+            "id": "s3-c2bg",
+            "type": "shape",
+            "position": {
+              "x": 730,
+              "y": 340
+            },
+            "size": {
+              "width": 460,
+              "height": 260
+            },
+            "from": 645,
+            "duration": 168,
+            "opacity": 0.12,
+            "props": {
+              "shape": "rectangle",
+              "fill": "#00d9ff",
+              "borderRadius": 14
+            },
+            "animations": [
+              {
+                "type": "entrance",
+                "effect": "fadeIn",
+                "delay": 0,
+                "duration": 20,
+                "easing": "easeOutCubic"
+              },
+              {
+                "type": "exit",
+                "effect": "fadeOut",
+                "delay": 0,
+                "duration": 20,
+                "easing": "easeInCubic"
+              }
+            ]
+          },
+          {
+            "id": "s3-c2",
+            "type": "text",
+            "position": {
+              "x": 750,
+              "y": 430
+            },
+            "size": {
+              "width": 420,
+              "height": 80
+            },
+            "from": 651,
+            "duration": 165,
+            "opacity": 1,
+            "props": {
+              "text": "Customer Insights",
+              "fontSize": 28,
+              "fontWeight": "600",
+              "color": "#ffffff",
+              "textAlign": "center",
+              "fontFamily": "Inter, system-ui, sans-serif",
+              "letterSpacing": 0.5
+            },
+            "animations": [
+              {
+                "type": "entrance",
+                "effect": "fadeIn",
+                "delay": 0,
+                "duration": 20,
+                "easing": "easeOutCubic"
+              },
+              {
+                "type": "exit",
+                "effect": "fadeOut",
+                "delay": 0,
+                "duration": 20,
+                "easing": "easeInCubic"
+              }
+            ]
+          },
+          {
+            "id": "s3-c3bg",
+            "type": "shape",
+            "position": {
+              "x": 1300,
+              "y": 340
+            },
+            "size": {
+              "width": 460,
+              "height": 260
+            },
+            "from": 705,
+            "duration": 108,
+            "opacity": 0.12,
+            "props": {
+              "shape": "rectangle",
+              "fill": "#00d9ff",
+              "borderRadius": 14
+            },
+            "animations": [
+              {
+                "type": "entrance",
+                "effect": "fadeIn",
+                "delay": 0,
+                "duration": 20,
+                "easing": "easeOutCubic"
+              },
+              {
+                "type": "exit",
+                "effect": "fadeOut",
+                "delay": 0,
+                "duration": 20,
+                "easing": "easeInCubic"
+              }
+            ]
+          },
+          {
+            "id": "s3-c3",
+            "type": "text",
+            "position": {
+              "x": 1320,
+              "y": 430
+            },
+            "size": {
+              "width": 420,
+              "height": 80
+            },
+            "from": 701,
+            "duration": 115,
+            "opacity": 1,
+            "props": {
+              "text": "Operational Metrics",
+              "fontSize": 28,
+              "fontWeight": "600",
+              "color": "#ffffff",
+              "textAlign": "center",
+              "fontFamily": "Inter, system-ui, sans-serif",
+              "letterSpacing": 0.5
+            },
+            "animations": [
+              {
+                "type": "entrance",
+                "effect": "fadeIn",
+                "delay": 0,
+                "duration": 20,
+                "easing": "easeOutCubic"
+              },
+              {
+                "type": "exit",
+                "effect": "fadeOut",
+                "delay": 0,
+                "duration": 20,
+                "easing": "easeInCubic"
+              }
+            ]
+          },
+          {
+            "id": "s3-apa",
+            "type": "text",
+            "position": {
+              "x": 160,
+              "y": 720
+            },
+            "size": {
+              "width": 1600,
+              "height": 80
+            },
+            "from": 749,
+            "duration": 76,
+            "opacity": 1,
+            "props": {
+              "text": "Analyzed. Predicted. Actionable.",
+              "fontSize": 44,
+              "fontWeight": "300",
+              "color": "#00d9ff",
+              "textAlign": "center",
+              "fontFamily": "Inter, system-ui, sans-serif",
+              "letterSpacing": 0.5
+            },
+            "animations": [
+              {
+                "type": "entrance",
+                "effect": "fadeIn",
+                "delay": 0,
+                "duration": 20,
+                "easing": "easeOutCubic"
+              },
+              {
+                "type": "exit",
+                "effect": "fadeOut",
+                "delay": 0,
+                "duration": 20,
+                "easing": "easeInCubic"
+              }
+            ]
+          },
+          {
+            "id": "s4-head",
+            "type": "text",
+            "position": {
+              "x": 160,
+              "y": 280
             },
             "size": {
               "width": 1600,
               "height": 100
             },
-            "from": 285,
-            "duration": 135,
+            "from": 829,
+            "duration": 86,
+            "opacity": 1,
             "props": {
-              "text": "Your team: burned out. Your pipeline: leaking.",
-              "fontSize": 52,
-              "fontWeight": "300",
-              "color": "#f87171",
-              "textAlign": "left",
-              "fontFamily": "Inter, system-ui, sans-serif",
-              "letterSpacing": 1
-            },
-            "animations": [
-              {
-                "type": "entrance",
-                "effect": "fadeIn",
-                "delay": 0,
-                "duration": 30,
-                "easing": "easeOutCubic"
-              },
-              {
-                "type": "exit",
-                "effect": "fadeOut",
-                "delay": 0,
-                "duration": 30,
-                "easing": "easeInCubic"
-              }
-            ]
-          },
-          {
-            "id": "act1-vo-text",
-            "type": "text",
-            "position": {
-              "x": 480,
-              "y": 900
-            },
-            "size": {
-              "width": 960,
-              "height": 60
-            },
-            "from": 330,
-            "duration": 90,
-            "opacity": 0.5,
-            "props": {
-              "text": "Sound familiar? Most businesses are still running on human limits.",
-              "fontSize": 22,
-              "fontWeight": "300",
-              "color": "#aaaaaa",
+              "text": "In seconds, not days.",
+              "fontSize": 68,
+              "fontWeight": "700",
+              "color": "#ffffff",
               "textAlign": "center",
               "fontFamily": "Inter, system-ui, sans-serif",
               "letterSpacing": 0.5
@@ -380,185 +863,265 @@
                 "type": "entrance",
                 "effect": "fadeIn",
                 "delay": 0,
-                "duration": 30,
+                "duration": 20,
                 "easing": "easeOutCubic"
               },
               {
                 "type": "exit",
                 "effect": "fadeOut",
                 "delay": 0,
-                "duration": 30,
+                "duration": 20,
                 "easing": "easeInCubic"
               }
             ]
           },
           {
-            "id": "act2-flash",
+            "id": "s4-b1",
             "type": "shape",
             "position": {
-              "x": 0,
-              "y": 0
+              "x": 160,
+              "y": 420
             },
             "size": {
-              "width": 1920,
-              "height": 1080
+              "width": 460,
+              "height": 220
             },
-            "from": 450,
-            "duration": 15,
-            "opacity": 0.7,
+            "from": 907,
+            "duration": 158,
+            "opacity": 0.12,
             "props": {
               "shape": "rectangle",
-              "fill": "#00d9ff"
+              "fill": "#00d9ff",
+              "borderRadius": 14
             },
             "animations": [
               {
                 "type": "entrance",
                 "effect": "fadeIn",
                 "delay": 0,
-                "duration": 30,
+                "duration": 20,
                 "easing": "easeOutCubic"
               },
               {
                 "type": "exit",
                 "effect": "fadeOut",
                 "delay": 0,
-                "duration": 30,
+                "duration": 20,
                 "easing": "easeInCubic"
               }
             ]
           },
           {
-            "id": "act2-logo-text",
+            "id": "s4-t1",
             "type": "text",
             "position": {
-              "x": 360,
-              "y": 380
+              "x": 180,
+              "y": 450
             },
             "size": {
-              "width": 1200,
-              "height": 140
+              "width": 420,
+              "height": 150
             },
-            "from": 465,
-            "duration": 360,
+            "from": 901,
+            "duration": 170,
+            "opacity": 1,
             "props": {
-              "text": "SGC TECH AI",
-              "fontSize": 112,
-              "fontWeight": "700",
-              "color": "#00d9ff",
-              "textAlign": "center",
-              "fontFamily": "Inter, system-ui, sans-serif",
-              "letterSpacing": 8
-            },
-            "animations": [
-              {
-                "type": "entrance",
-                "effect": "slideInUp",
-                "delay": 0,
-                "duration": 30,
-                "easing": "easeOutCubic"
-              },
-              {
-                "type": "exit",
-                "effect": "fadeOut",
-                "delay": 0,
-                "duration": 30,
-                "easing": "easeInCubic"
-              }
-            ]
-          },
-          {
-            "id": "act2-meet-line",
-            "type": "shape",
-            "position": {
-              "x": 760,
-              "y": 535
-            },
-            "size": {
-              "width": 400,
-              "height": 2
-            },
-            "from": 480,
-            "duration": 345,
-            "opacity": 0.6,
-            "props": {
-              "shape": "rectangle",
-              "fill": "#00d9ff"
-            },
-            "animations": [
-              {
-                "type": "entrance",
-                "effect": "scaleIn",
-                "delay": 0,
-                "duration": 30,
-                "easing": "easeOutCubic"
-              },
-              {
-                "type": "exit",
-                "effect": "fadeOut",
-                "delay": 0,
-                "duration": 30,
-                "easing": "easeInCubic"
-              }
-            ]
-          },
-          {
-            "id": "act2-sgcclaw",
-            "type": "text",
-            "position": {
-              "x": 360,
-              "y": 550
-            },
-            "size": {
-              "width": 1200,
-              "height": 90
-            },
-            "from": 495,
-            "duration": 330,
-            "props": {
-              "text": "sgcclaw",
-              "fontSize": 72,
-              "fontWeight": "300",
+              "text": "Generate Leads\nAutomatically",
+              "fontSize": 28,
+              "fontWeight": "600",
               "color": "#ffffff",
               "textAlign": "center",
               "fontFamily": "Inter, system-ui, sans-serif",
-              "letterSpacing": 12
+              "letterSpacing": 0.5
             },
             "animations": [
               {
                 "type": "entrance",
                 "effect": "fadeIn",
                 "delay": 0,
-                "duration": 30,
+                "duration": 20,
                 "easing": "easeOutCubic"
               },
               {
                 "type": "exit",
                 "effect": "fadeOut",
                 "delay": 0,
-                "duration": 30,
+                "duration": 20,
                 "easing": "easeInCubic"
               }
             ]
           },
           {
-            "id": "act2-tagline",
+            "id": "s4-b2",
+            "type": "shape",
+            "position": {
+              "x": 730,
+              "y": 420
+            },
+            "size": {
+              "width": 460,
+              "height": 220
+            },
+            "from": 988,
+            "duration": 77,
+            "opacity": 0.12,
+            "props": {
+              "shape": "rectangle",
+              "fill": "#00d9ff",
+              "borderRadius": 14
+            },
+            "animations": [
+              {
+                "type": "entrance",
+                "effect": "fadeIn",
+                "delay": 0,
+                "duration": 20,
+                "easing": "easeOutCubic"
+              },
+              {
+                "type": "exit",
+                "effect": "fadeOut",
+                "delay": 0,
+                "duration": 20,
+                "easing": "easeInCubic"
+              }
+            ]
+          },
+          {
+            "id": "s4-t2",
+            "type": "text",
+            "position": {
+              "x": 750,
+              "y": 500
+            },
+            "size": {
+              "width": 420,
+              "height": 80
+            },
+            "from": 982,
+            "duration": 89,
+            "opacity": 1,
+            "props": {
+              "text": "Book Appointments",
+              "fontSize": 28,
+              "fontWeight": "600",
+              "color": "#ffffff",
+              "textAlign": "center",
+              "fontFamily": "Inter, system-ui, sans-serif",
+              "letterSpacing": 0.5
+            },
+            "animations": [
+              {
+                "type": "entrance",
+                "effect": "fadeIn",
+                "delay": 0,
+                "duration": 20,
+                "easing": "easeOutCubic"
+              },
+              {
+                "type": "exit",
+                "effect": "fadeOut",
+                "delay": 0,
+                "duration": 20,
+                "easing": "easeInCubic"
+              }
+            ]
+          },
+          {
+            "id": "s4-b3",
+            "type": "shape",
+            "position": {
+              "x": 1300,
+              "y": 420
+            },
+            "size": {
+              "width": 460,
+              "height": 220
+            },
+            "from": 1022,
+            "duration": 43,
+            "opacity": 0.12,
+            "props": {
+              "shape": "rectangle",
+              "fill": "#00d9ff",
+              "borderRadius": 14
+            },
+            "animations": [
+              {
+                "type": "entrance",
+                "effect": "fadeIn",
+                "delay": 0,
+                "duration": 20,
+                "easing": "easeOutCubic"
+              },
+              {
+                "type": "exit",
+                "effect": "fadeOut",
+                "delay": 0,
+                "duration": 20,
+                "easing": "easeInCubic"
+              }
+            ]
+          },
+          {
+            "id": "s4-t3",
+            "type": "text",
+            "position": {
+              "x": 1320,
+              "y": 450
+            },
+            "size": {
+              "width": 420,
+              "height": 150
+            },
+            "from": 1016,
+            "duration": 55,
+            "opacity": 1,
+            "props": {
+              "text": "Trigger Intelligent\nWorkflows",
+              "fontSize": 28,
+              "fontWeight": "600",
+              "color": "#ffffff",
+              "textAlign": "center",
+              "fontFamily": "Inter, system-ui, sans-serif",
+              "letterSpacing": 0.5
+            },
+            "animations": [
+              {
+                "type": "entrance",
+                "effect": "fadeIn",
+                "delay": 0,
+                "duration": 20,
+                "easing": "easeOutCubic"
+              },
+              {
+                "type": "exit",
+                "effect": "fadeOut",
+                "delay": 0,
+                "duration": 20,
+                "easing": "easeInCubic"
+              }
+            ]
+          },
+          {
+            "id": "s5-pred",
             "type": "text",
             "position": {
               "x": 160,
-              "y": 680
+              "y": 320
             },
             "size": {
               "width": 1600,
-              "height": 70
+              "height": 160
             },
-            "from": 510,
-            "duration": 315,
-            "opacity": 0.75,
+            "from": 1096,
+            "duration": 98,
+            "opacity": 1,
             "props": {
-              "text": "An AI-powered centralized brain that never sleeps, never calls in sick, and never asks for a raise.",
-              "fontSize": 26,
+              "text": "Predict market shifts\nbefore they happen.",
+              "fontSize": 52,
               "fontWeight": "300",
-              "color": "#a0c4d8",
+              "color": "#ffffff",
               "textAlign": "center",
               "fontFamily": "Inter, system-ui, sans-serif",
               "letterSpacing": 0.5
@@ -568,1107 +1131,73 @@
                 "type": "entrance",
                 "effect": "fadeIn",
                 "delay": 0,
-                "duration": 30,
+                "duration": 20,
                 "easing": "easeOutCubic"
               },
               {
                 "type": "exit",
                 "effect": "fadeOut",
                 "delay": 0,
-                "duration": 30,
+                "duration": 20,
                 "easing": "easeInCubic"
               }
             ]
           },
           {
-            "id": "act3-card1-bg",
+            "id": "s5-bar",
             "type": "shape",
             "position": {
-              "x": 160,
-              "y": 320
+              "x": 680,
+              "y": 510
             },
             "size": {
-              "width": 760,
-              "height": 440
-            },
-            "from": 810,
-            "duration": 150,
-            "opacity": 0.15,
-            "props": {
-              "shape": "rectangle",
-              "fill": "#00d9ff",
-              "borderRadius": 16
-            },
-            "animations": [
-              {
-                "type": "entrance",
-                "effect": "fadeIn",
-                "delay": 0,
-                "duration": 30,
-                "easing": "easeOutCubic"
-              },
-              {
-                "type": "exit",
-                "effect": "fadeOut",
-                "delay": 0,
-                "duration": 30,
-                "easing": "easeInCubic"
-              }
-            ]
-          },
-          {
-            "id": "act3-card1-num",
-            "type": "text",
-            "position": {
-              "x": 200,
-              "y": 350
-            },
-            "size": {
-              "width": 100,
-              "height": 80
-            },
-            "from": 825,
-            "duration": 135,
-            "props": {
-              "text": "01",
-              "fontSize": 56,
-              "fontWeight": "700",
-              "color": "#00d9ff",
-              "textAlign": "left",
-              "fontFamily": "Inter, system-ui, sans-serif"
-            },
-            "animations": [
-              {
-                "type": "entrance",
-                "effect": "fadeIn",
-                "delay": 0,
-                "duration": 30,
-                "easing": "easeOutCubic"
-              },
-              {
-                "type": "exit",
-                "effect": "fadeOut",
-                "delay": 0,
-                "duration": 30,
-                "easing": "easeInCubic"
-              }
-            ]
-          },
-          {
-            "id": "act3-card1-title",
-            "type": "text",
-            "position": {
-              "x": 200,
-              "y": 440
-            },
-            "size": {
-              "width": 680,
-              "height": 80
-            },
-            "from": 825,
-            "duration": 135,
-            "props": {
-              "text": "Predict & Simulate",
-              "fontSize": 42,
-              "fontWeight": "700",
-              "color": "#ffffff",
-              "textAlign": "left",
-              "fontFamily": "Inter, system-ui, sans-serif"
-            },
-            "animations": [
-              {
-                "type": "entrance",
-                "effect": "fadeIn",
-                "delay": 0,
-                "duration": 30,
-                "easing": "easeOutCubic"
-              },
-              {
-                "type": "exit",
-                "effect": "fadeOut",
-                "delay": 0,
-                "duration": 30,
-                "easing": "easeInCubic"
-              }
-            ]
-          },
-          {
-            "id": "act3-card1-sub",
-            "type": "text",
-            "position": {
-              "x": 200,
-              "y": 530
-            },
-            "size": {
-              "width": 680,
-              "height": 60
-            },
-            "from": 840,
-            "duration": 120,
-            "opacity": 0.7,
-            "props": {
-              "text": "Predict outcomes before you act.",
-              "fontSize": 28,
-              "fontWeight": "300",
-              "color": "#a0c4d8",
-              "textAlign": "left",
-              "fontFamily": "Inter, system-ui, sans-serif"
-            },
-            "animations": [
-              {
-                "type": "entrance",
-                "effect": "fadeIn",
-                "delay": 0,
-                "duration": 30,
-                "easing": "easeOutCubic"
-              },
-              {
-                "type": "exit",
-                "effect": "fadeOut",
-                "delay": 0,
-                "duration": 30,
-                "easing": "easeInCubic"
-              }
-            ]
-          },
-          {
-            "id": "act3-card2-bg",
-            "type": "shape",
-            "position": {
-              "x": 1000,
-              "y": 320
-            },
-            "size": {
-              "width": 760,
-              "height": 440
-            },
-            "from": 885,
-            "duration": 195,
-            "opacity": 0.15,
-            "props": {
-              "shape": "rectangle",
-              "fill": "#00d9ff",
-              "borderRadius": 16
-            },
-            "animations": [
-              {
-                "type": "entrance",
-                "effect": "fadeIn",
-                "delay": 0,
-                "duration": 30,
-                "easing": "easeOutCubic"
-              },
-              {
-                "type": "exit",
-                "effect": "fadeOut",
-                "delay": 0,
-                "duration": 30,
-                "easing": "easeInCubic"
-              }
-            ]
-          },
-          {
-            "id": "act3-card2-num",
-            "type": "text",
-            "position": {
-              "x": 1040,
-              "y": 350
-            },
-            "size": {
-              "width": 100,
-              "height": 80
-            },
-            "from": 900,
-            "duration": 180,
-            "props": {
-              "text": "02",
-              "fontSize": 56,
-              "fontWeight": "700",
-              "color": "#00d9ff",
-              "textAlign": "left",
-              "fontFamily": "Inter, system-ui, sans-serif"
-            },
-            "animations": [
-              {
-                "type": "entrance",
-                "effect": "fadeIn",
-                "delay": 0,
-                "duration": 30,
-                "easing": "easeOutCubic"
-              },
-              {
-                "type": "exit",
-                "effect": "fadeOut",
-                "delay": 0,
-                "duration": 30,
-                "easing": "easeInCubic"
-              }
-            ]
-          },
-          {
-            "id": "act3-card2-title",
-            "type": "text",
-            "position": {
-              "x": 1040,
-              "y": 440
-            },
-            "size": {
-              "width": 680,
-              "height": 80
-            },
-            "from": 900,
-            "duration": 180,
-            "props": {
-              "text": "Connect & Integrate",
-              "fontSize": 42,
-              "fontWeight": "700",
-              "color": "#ffffff",
-              "textAlign": "left",
-              "fontFamily": "Inter, system-ui, sans-serif"
-            },
-            "animations": [
-              {
-                "type": "entrance",
-                "effect": "fadeIn",
-                "delay": 0,
-                "duration": 30,
-                "easing": "easeOutCubic"
-              },
-              {
-                "type": "exit",
-                "effect": "fadeOut",
-                "delay": 0,
-                "duration": 30,
-                "easing": "easeInCubic"
-              }
-            ]
-          },
-          {
-            "id": "act3-card2-sub",
-            "type": "text",
-            "position": {
-              "x": 1040,
-              "y": 530
-            },
-            "size": {
-              "width": 680,
-              "height": 60
-            },
-            "from": 915,
-            "duration": 165,
-            "opacity": 0.7,
-            "props": {
-              "text": "Plugs into your entire software stack.",
-              "fontSize": 28,
-              "fontWeight": "300",
-              "color": "#a0c4d8",
-              "textAlign": "left",
-              "fontFamily": "Inter, system-ui, sans-serif"
-            },
-            "animations": [
-              {
-                "type": "entrance",
-                "effect": "fadeIn",
-                "delay": 0,
-                "duration": 30,
-                "easing": "easeOutCubic"
-              },
-              {
-                "type": "exit",
-                "effect": "fadeOut",
-                "delay": 0,
-                "duration": 30,
-                "easing": "easeInCubic"
-              }
-            ]
-          },
-          {
-            "id": "act3-card3-bg",
-            "type": "shape",
-            "position": {
-              "x": 160,
-              "y": 320
-            },
-            "size": {
-              "width": 760,
-              "height": 440
-            },
-            "from": 960,
-            "duration": 210,
-            "opacity": 0.15,
-            "props": {
-              "shape": "rectangle",
-              "fill": "#00d9ff",
-              "borderRadius": 16
-            },
-            "animations": [
-              {
-                "type": "entrance",
-                "effect": "fadeIn",
-                "delay": 0,
-                "duration": 30,
-                "easing": "easeOutCubic"
-              },
-              {
-                "type": "exit",
-                "effect": "fadeOut",
-                "delay": 0,
-                "duration": 30,
-                "easing": "easeInCubic"
-              }
-            ]
-          },
-          {
-            "id": "act3-card3-num",
-            "type": "text",
-            "position": {
-              "x": 200,
-              "y": 350
-            },
-            "size": {
-              "width": 100,
-              "height": 80
-            },
-            "from": 975,
-            "duration": 195,
-            "props": {
-              "text": "03",
-              "fontSize": 56,
-              "fontWeight": "700",
-              "color": "#00d9ff",
-              "textAlign": "left",
-              "fontFamily": "Inter, system-ui, sans-serif"
-            },
-            "animations": [
-              {
-                "type": "entrance",
-                "effect": "fadeIn",
-                "delay": 0,
-                "duration": 30,
-                "easing": "easeOutCubic"
-              },
-              {
-                "type": "exit",
-                "effect": "fadeOut",
-                "delay": 0,
-                "duration": 30,
-                "easing": "easeInCubic"
-              }
-            ]
-          },
-          {
-            "id": "act3-card3-title",
-            "type": "text",
-            "position": {
-              "x": 200,
-              "y": 440
-            },
-            "size": {
-              "width": 680,
-              "height": 80
-            },
-            "from": 975,
-            "duration": 195,
-            "props": {
-              "text": "Pull & Analyze",
-              "fontSize": 42,
-              "fontWeight": "700",
-              "color": "#ffffff",
-              "textAlign": "left",
-              "fontFamily": "Inter, system-ui, sans-serif"
-            },
-            "animations": [
-              {
-                "type": "entrance",
-                "effect": "fadeIn",
-                "delay": 0,
-                "duration": 30,
-                "easing": "easeOutCubic"
-              },
-              {
-                "type": "exit",
-                "effect": "fadeOut",
-                "delay": 0,
-                "duration": 30,
-                "easing": "easeInCubic"
-              }
-            ]
-          },
-          {
-            "id": "act3-card3-sub",
-            "type": "text",
-            "position": {
-              "x": 200,
-              "y": 530
-            },
-            "size": {
-              "width": 680,
-              "height": 60
-            },
-            "from": 990,
-            "duration": 180,
-            "opacity": 0.7,
-            "props": {
-              "text": "Reports in seconds, not days.",
-              "fontSize": 28,
-              "fontWeight": "300",
-              "color": "#a0c4d8",
-              "textAlign": "left",
-              "fontFamily": "Inter, system-ui, sans-serif"
-            },
-            "animations": [
-              {
-                "type": "entrance",
-                "effect": "fadeIn",
-                "delay": 0,
-                "duration": 30,
-                "easing": "easeOutCubic"
-              },
-              {
-                "type": "exit",
-                "effect": "fadeOut",
-                "delay": 0,
-                "duration": 30,
-                "easing": "easeInCubic"
-              }
-            ]
-          },
-          {
-            "id": "act3-card4-bg",
-            "type": "shape",
-            "position": {
-              "x": 1000,
-              "y": 320
-            },
-            "size": {
-              "width": 760,
-              "height": 440
-            },
-            "from": 1080,
-            "duration": 300,
-            "opacity": 0.15,
-            "props": {
-              "shape": "rectangle",
-              "fill": "#00d9ff",
-              "borderRadius": 16
-            },
-            "animations": [
-              {
-                "type": "entrance",
-                "effect": "fadeIn",
-                "delay": 0,
-                "duration": 30,
-                "easing": "easeOutCubic"
-              },
-              {
-                "type": "exit",
-                "effect": "fadeOut",
-                "delay": 0,
-                "duration": 30,
-                "easing": "easeInCubic"
-              }
-            ]
-          },
-          {
-            "id": "act3-card4-num",
-            "type": "text",
-            "position": {
-              "x": 1040,
-              "y": 350
-            },
-            "size": {
-              "width": 100,
-              "height": 80
-            },
-            "from": 1095,
-            "duration": 285,
-            "props": {
-              "text": "04",
-              "fontSize": 56,
-              "fontWeight": "700",
-              "color": "#00d9ff",
-              "textAlign": "left",
-              "fontFamily": "Inter, system-ui, sans-serif"
-            },
-            "animations": [
-              {
-                "type": "entrance",
-                "effect": "fadeIn",
-                "delay": 0,
-                "duration": 30,
-                "easing": "easeOutCubic"
-              },
-              {
-                "type": "exit",
-                "effect": "fadeOut",
-                "delay": 0,
-                "duration": 30,
-                "easing": "easeInCubic"
-              }
-            ]
-          },
-          {
-            "id": "act3-card4-title",
-            "type": "text",
-            "position": {
-              "x": 1040,
-              "y": 440
-            },
-            "size": {
-              "width": 680,
-              "height": 80
-            },
-            "from": 1095,
-            "duration": 285,
-            "props": {
-              "text": "Generate & Convert",
-              "fontSize": 42,
-              "fontWeight": "700",
-              "color": "#ffffff",
-              "textAlign": "left",
-              "fontFamily": "Inter, system-ui, sans-serif"
-            },
-            "animations": [
-              {
-                "type": "entrance",
-                "effect": "fadeIn",
-                "delay": 0,
-                "duration": 30,
-                "easing": "easeOutCubic"
-              },
-              {
-                "type": "exit",
-                "effect": "fadeOut",
-                "delay": 0,
-                "duration": 30,
-                "easing": "easeInCubic"
-              }
-            ]
-          },
-          {
-            "id": "act3-card4-sub",
-            "type": "text",
-            "position": {
-              "x": 1040,
-              "y": 530
-            },
-            "size": {
-              "width": 680,
-              "height": 60
+              "width": 560,
+              "height": 4
             },
             "from": 1110,
-            "duration": 270,
-            "opacity": 0.7,
-            "props": {
-              "text": "Captures leads, answers questions, books appointments.",
-              "fontSize": 26,
-              "fontWeight": "300",
-              "color": "#a0c4d8",
-              "textAlign": "left",
-              "fontFamily": "Inter, system-ui, sans-serif"
-            },
-            "animations": [
-              {
-                "type": "entrance",
-                "effect": "fadeIn",
-                "delay": 0,
-                "duration": 30,
-                "easing": "easeOutCubic"
-              },
-              {
-                "type": "exit",
-                "effect": "fadeOut",
-                "delay": 0,
-                "duration": 30,
-                "easing": "easeInCubic"
-              }
-            ]
-          },
-          {
-            "id": "act3-card5-bg",
-            "type": "shape",
-            "position": {
-              "x": 160,
-              "y": 320
-            },
-            "size": {
-              "width": 760,
-              "height": 440
-            },
-            "from": 1170,
-            "duration": 330,
-            "opacity": 0.15,
-            "props": {
-              "shape": "rectangle",
-              "fill": "#00d9ff",
-              "borderRadius": 16
-            },
-            "animations": [
-              {
-                "type": "entrance",
-                "effect": "fadeIn",
-                "delay": 0,
-                "duration": 30,
-                "easing": "easeOutCubic"
-              },
-              {
-                "type": "exit",
-                "effect": "fadeOut",
-                "delay": 0,
-                "duration": 30,
-                "easing": "easeInCubic"
-              }
-            ]
-          },
-          {
-            "id": "act3-card5-num",
-            "type": "text",
-            "position": {
-              "x": 200,
-              "y": 350
-            },
-            "size": {
-              "width": 100,
-              "height": 80
-            },
-            "from": 1185,
-            "duration": 315,
-            "props": {
-              "text": "05",
-              "fontSize": 56,
-              "fontWeight": "700",
-              "color": "#00d9ff",
-              "textAlign": "left",
-              "fontFamily": "Inter, system-ui, sans-serif"
-            },
-            "animations": [
-              {
-                "type": "entrance",
-                "effect": "fadeIn",
-                "delay": 0,
-                "duration": 30,
-                "easing": "easeOutCubic"
-              },
-              {
-                "type": "exit",
-                "effect": "fadeOut",
-                "delay": 0,
-                "duration": 30,
-                "easing": "easeInCubic"
-              }
-            ]
-          },
-          {
-            "id": "act3-card5-title",
-            "type": "text",
-            "position": {
-              "x": 200,
-              "y": 440
-            },
-            "size": {
-              "width": 680,
-              "height": 80
-            },
-            "from": 1185,
-            "duration": 315,
-            "props": {
-              "text": "Trigger & Automate",
-              "fontSize": 42,
-              "fontWeight": "700",
-              "color": "#ffffff",
-              "textAlign": "left",
-              "fontFamily": "Inter, system-ui, sans-serif"
-            },
-            "animations": [
-              {
-                "type": "entrance",
-                "effect": "fadeIn",
-                "delay": 0,
-                "duration": 30,
-                "easing": "easeOutCubic"
-              },
-              {
-                "type": "exit",
-                "effect": "fadeOut",
-                "delay": 0,
-                "duration": 30,
-                "easing": "easeInCubic"
-              }
-            ]
-          },
-          {
-            "id": "act3-card5-sub",
-            "type": "text",
-            "position": {
-              "x": 200,
-              "y": 530
-            },
-            "size": {
-              "width": 680,
-              "height": 60
-            },
-            "from": 1200,
-            "duration": 300,
-            "opacity": 0.7,
-            "props": {
-              "text": "1000+ real-world workflows — 24/7, no downtime.",
-              "fontSize": 28,
-              "fontWeight": "300",
-              "color": "#a0c4d8",
-              "textAlign": "left",
-              "fontFamily": "Inter, system-ui, sans-serif"
-            },
-            "animations": [
-              {
-                "type": "entrance",
-                "effect": "fadeIn",
-                "delay": 0,
-                "duration": 30,
-                "easing": "easeOutCubic"
-              },
-              {
-                "type": "exit",
-                "effect": "fadeOut",
-                "delay": 0,
-                "duration": 30,
-                "easing": "easeInCubic"
-              }
-            ]
-          },
-          {
-            "id": "act3-card6-bg",
-            "type": "shape",
-            "position": {
-              "x": 1000,
-              "y": 320
-            },
-            "size": {
-              "width": 760,
-              "height": 440
-            },
-            "from": 1380,
-            "duration": 150,
-            "opacity": 0.15,
+            "duration": 273,
+            "opacity": 0.8,
             "props": {
               "shape": "rectangle",
               "fill": "#dc2626",
-              "borderRadius": 16
+              "borderRadius": 0
             },
             "animations": [
               {
                 "type": "entrance",
                 "effect": "fadeIn",
                 "delay": 0,
-                "duration": 30,
+                "duration": 20,
                 "easing": "easeOutCubic"
               },
               {
                 "type": "exit",
                 "effect": "fadeOut",
                 "delay": 0,
-                "duration": 30,
+                "duration": 20,
                 "easing": "easeInCubic"
               }
             ]
           },
           {
-            "id": "act3-card6-num",
-            "type": "text",
-            "position": {
-              "x": 1040,
-              "y": 350
-            },
-            "size": {
-              "width": 100,
-              "height": 80
-            },
-            "from": 1395,
-            "duration": 135,
-            "props": {
-              "text": "06",
-              "fontSize": 56,
-              "fontWeight": "700",
-              "color": "#dc2626",
-              "textAlign": "left",
-              "fontFamily": "Inter, system-ui, sans-serif"
-            },
-            "animations": [
-              {
-                "type": "entrance",
-                "effect": "fadeIn",
-                "delay": 0,
-                "duration": 30,
-                "easing": "easeOutCubic"
-              },
-              {
-                "type": "exit",
-                "effect": "fadeOut",
-                "delay": 0,
-                "duration": 30,
-                "easing": "easeInCubic"
-              }
-            ]
-          },
-          {
-            "id": "act3-card6-title",
-            "type": "text",
-            "position": {
-              "x": 1040,
-              "y": 440
-            },
-            "size": {
-              "width": 680,
-              "height": 80
-            },
-            "from": 1395,
-            "duration": 135,
-            "props": {
-              "text": "Compound ROI",
-              "fontSize": 42,
-              "fontWeight": "700",
-              "color": "#ffffff",
-              "textAlign": "left",
-              "fontFamily": "Inter, system-ui, sans-serif"
-            },
-            "animations": [
-              {
-                "type": "entrance",
-                "effect": "fadeIn",
-                "delay": 0,
-                "duration": 30,
-                "easing": "easeOutCubic"
-              },
-              {
-                "type": "exit",
-                "effect": "fadeOut",
-                "delay": 0,
-                "duration": 30,
-                "easing": "easeInCubic"
-              }
-            ]
-          },
-          {
-            "id": "act3-card6-sub",
-            "type": "text",
-            "position": {
-              "x": 1040,
-              "y": 530
-            },
-            "size": {
-              "width": 680,
-              "height": 60
-            },
-            "from": 1410,
-            "duration": 120,
-            "opacity": 0.8,
-            "props": {
-              "text": "Fixed price. No drama. Just results.",
-              "fontSize": 28,
-              "fontWeight": "300",
-              "color": "#fca5a5",
-              "textAlign": "left",
-              "fontFamily": "Inter, system-ui, sans-serif"
-            },
-            "animations": [
-              {
-                "type": "entrance",
-                "effect": "fadeIn",
-                "delay": 0,
-                "duration": 30,
-                "easing": "easeOutCubic"
-              },
-              {
-                "type": "exit",
-                "effect": "fadeOut",
-                "delay": 0,
-                "duration": 30,
-                "easing": "easeInCubic"
-              }
-            ]
-          },
-          {
-            "id": "act4-blackout",
-            "type": "shape",
-            "position": {
-              "x": 0,
-              "y": 0
-            },
-            "size": {
-              "width": 1920,
-              "height": 1080
-            },
-            "from": 1500,
-            "duration": 600,
-            "props": {
-              "shape": "rectangle",
-              "fill": "#000000"
-            },
-            "animations": [
-              {
-                "type": "entrance",
-                "effect": "fadeIn",
-                "delay": 0,
-                "duration": 30,
-                "easing": "easeInCubic"
-              }
-            ]
-          },
-          {
-            "id": "act4-ai-coming",
+            "id": "s5-big",
             "type": "text",
             "position": {
               "x": 360,
-              "y": 440
+              "y": 500
             },
             "size": {
               "width": 1200,
-              "height": 120
+              "height": 180
             },
-            "from": 1530,
-            "duration": 180,
+            "from": 1182,
+            "duration": 204,
+            "opacity": 1,
             "props": {
-              "text": "AI is coming.",
-              "fontSize": 80,
-              "fontWeight": "700",
-              "color": "#dc2626",
-              "textAlign": "center",
-              "fontFamily": "Inter, system-ui, sans-serif",
-              "letterSpacing": 2
-            },
-            "animations": [
-              {
-                "type": "entrance",
-                "effect": "fadeIn",
-                "delay": 0,
-                "duration": 30,
-                "easing": "easeOutCubic"
-              },
-              {
-                "type": "exit",
-                "effect": "fadeOut",
-                "delay": 0,
-                "duration": 30,
-                "easing": "easeInCubic"
-              }
-            ]
-          },
-          {
-            "id": "act4-white-flash",
-            "type": "shape",
-            "position": {
-              "x": 0,
-              "y": 0
-            },
-            "size": {
-              "width": 1920,
-              "height": 1080
-            },
-            "from": 1710,
-            "duration": 15,
-            "opacity": 0.95,
-            "props": {
-              "shape": "rectangle",
-              "fill": "#ffffff"
-            },
-            "animations": [
-              {
-                "type": "entrance",
-                "effect": "fadeIn",
-                "delay": 0,
-                "duration": 30,
-                "easing": "linear"
-              },
-              {
-                "type": "exit",
-                "effect": "fadeOut",
-                "delay": 0,
-                "duration": 30,
-                "easing": "linear"
-              }
-            ]
-          },
-          {
-            "id": "act4-dont-follow",
-            "type": "text",
-            "position": {
-              "x": 60,
-              "y": 320
-            },
-            "size": {
-              "width": 1800,
-              "height": 200
-            },
-            "from": 1725,
-            "duration": 330,
-            "props": {
-              "text": "Don't follow.",
+              "text": "1,000+",
               "fontSize": 128,
               "fontWeight": "700",
-              "color": "#ffffff",
-              "textAlign": "center",
-              "fontFamily": "Inter, system-ui, sans-serif",
-              "letterSpacing": -2
-            },
-            "animations": [
-              {
-                "type": "entrance",
-                "effect": "slideInUp",
-                "delay": 0,
-                "duration": 30,
-                "easing": "easeOutCubic"
-              }
-            ]
-          },
-          {
-            "id": "act4-lead",
-            "type": "text",
-            "position": {
-              "x": 60,
-              "y": 520
-            },
-            "size": {
-              "width": 1800,
-              "height": 200
-            },
-            "from": 1755,
-            "duration": 300,
-            "props": {
-              "text": "Lead.",
-              "fontSize": 128,
-              "fontWeight": "700",
-              "color": "#dc2626",
-              "textAlign": "center",
-              "fontFamily": "Inter, system-ui, sans-serif",
-              "letterSpacing": -2
-            },
-            "animations": [
-              {
-                "type": "entrance",
-                "effect": "slideInUp",
-                "delay": 0,
-                "duration": 30,
-                "easing": "easeOutCubic"
-              }
-            ]
-          },
-          {
-            "id": "act4-logo-bottom",
-            "type": "text",
-            "position": {
-              "x": 460,
-              "y": 780
-            },
-            "size": {
-              "width": 1000,
-              "height": 60
-            },
-            "from": 1860,
-            "duration": 210,
-            "props": {
-              "text": "SGC TECH AI  •  sgcclaw",
-              "fontSize": 28,
-              "fontWeight": "600",
-              "color": "#888888",
+              "color": "#00d9ff",
               "textAlign": "center",
               "fontFamily": "Inter, system-ui, sans-serif",
               "letterSpacing": 4
@@ -1678,30 +1207,37 @@
                 "type": "entrance",
                 "effect": "fadeIn",
                 "delay": 0,
-                "duration": 30,
+                "duration": 20,
                 "easing": "easeOutCubic"
+              },
+              {
+                "type": "exit",
+                "effect": "fadeOut",
+                "delay": 0,
+                "duration": 20,
+                "easing": "easeInCubic"
               }
             ]
           },
           {
-            "id": "act4-cta",
+            "id": "s5-sub",
             "type": "text",
             "position": {
-              "x": 460,
-              "y": 860
+              "x": 160,
+              "y": 680
             },
             "size": {
-              "width": 1000,
-              "height": 50
+              "width": 1600,
+              "height": 70
             },
-            "from": 1890,
-            "duration": 180,
-            "opacity": 0.7,
+            "from": 1182,
+            "duration": 204,
+            "opacity": 1,
             "props": {
-              "text": "Contact us. Tell us your use case. We've got you.",
-              "fontSize": 22,
+              "text": "Business capabilities, all working 24/7",
+              "fontSize": 34,
               "fontWeight": "300",
-              "color": "#aaaaaa",
+              "color": "#a0c4d8",
               "textAlign": "center",
               "fontFamily": "Inter, system-ui, sans-serif",
               "letterSpacing": 0.5
@@ -1711,8 +1247,557 @@
                 "type": "entrance",
                 "effect": "fadeIn",
                 "delay": 0,
-                "duration": 30,
+                "duration": 20,
                 "easing": "easeOutCubic"
+              },
+              {
+                "type": "exit",
+                "effect": "fadeOut",
+                "delay": 0,
+                "duration": 20,
+                "easing": "easeInCubic"
+              }
+            ]
+          },
+          {
+            "id": "s6-no",
+            "type": "text",
+            "position": {
+              "x": 160,
+              "y": 400
+            },
+            "size": {
+              "width": 1600,
+              "height": 100
+            },
+            "from": 1311,
+            "duration": 81,
+            "opacity": 1,
+            "props": {
+              "text": "No breaks. No excuses. Just results.",
+              "fontSize": 52,
+              "fontWeight": "300",
+              "color": "#e0e0e0",
+              "textAlign": "center",
+              "fontFamily": "Inter, system-ui, sans-serif",
+              "letterSpacing": 0.5
+            },
+            "animations": [
+              {
+                "type": "entrance",
+                "effect": "fadeIn",
+                "delay": 0,
+                "duration": 20,
+                "easing": "easeOutCubic"
+              },
+              {
+                "type": "exit",
+                "effect": "fadeOut",
+                "delay": 0,
+                "duration": 20,
+                "easing": "easeInCubic"
+              }
+            ]
+          },
+          {
+            "id": "s6-while",
+            "type": "text",
+            "position": {
+              "x": 160,
+              "y": 400
+            },
+            "size": {
+              "width": 1600,
+              "height": 80
+            },
+            "from": 1399,
+            "duration": 68,
+            "opacity": 1,
+            "props": {
+              "text": "While others follow trends,",
+              "fontSize": 50,
+              "fontWeight": "300",
+              "color": "#e0e0e0",
+              "textAlign": "center",
+              "fontFamily": "Inter, system-ui, sans-serif",
+              "letterSpacing": 0.5
+            },
+            "animations": [
+              {
+                "type": "entrance",
+                "effect": "fadeIn",
+                "delay": 0,
+                "duration": 20,
+                "easing": "easeOutCubic"
+              },
+              {
+                "type": "exit",
+                "effect": "fadeOut",
+                "delay": 0,
+                "duration": 20,
+                "easing": "easeInCubic"
+              }
+            ]
+          },
+          {
+            "id": "s6-you",
+            "type": "text",
+            "position": {
+              "x": 160,
+              "y": 510
+            },
+            "size": {
+              "width": 1600,
+              "height": 100
+            },
+            "from": 1453,
+            "duration": 80,
+            "opacity": 1,
+            "props": {
+              "text": "you're building the future.",
+              "fontSize": 60,
+              "fontWeight": "700",
+              "color": "#00d9ff",
+              "textAlign": "center",
+              "fontFamily": "Inter, system-ui, sans-serif",
+              "letterSpacing": 0.5
+            },
+            "animations": [
+              {
+                "type": "entrance",
+                "effect": "fadeIn",
+                "delay": 0,
+                "duration": 20,
+                "easing": "easeOutCubic"
+              },
+              {
+                "type": "exit",
+                "effect": "fadeOut",
+                "delay": 0,
+                "duration": 20,
+                "easing": "easeInCubic"
+              }
+            ]
+          },
+          {
+            "id": "s7-adapt",
+            "type": "text",
+            "position": {
+              "x": 160,
+              "y": 380
+            },
+            "size": {
+              "width": 1600,
+              "height": 100
+            },
+            "from": 1524,
+            "duration": 105,
+            "opacity": 1,
+            "props": {
+              "text": "SGC Claw doesn't just adapt to AI.",
+              "fontSize": 48,
+              "fontWeight": "300",
+              "color": "#ffffff",
+              "textAlign": "center",
+              "fontFamily": "Inter, system-ui, sans-serif",
+              "letterSpacing": 0.5
+            },
+            "animations": [
+              {
+                "type": "entrance",
+                "effect": "fadeIn",
+                "delay": 0,
+                "duration": 20,
+                "easing": "easeOutCubic"
+              },
+              {
+                "type": "exit",
+                "effect": "fadeOut",
+                "delay": 0,
+                "duration": 20,
+                "easing": "easeInCubic"
+              }
+            ]
+          },
+          {
+            "id": "s7-leads",
+            "type": "text",
+            "position": {
+              "x": 160,
+              "y": 500
+            },
+            "size": {
+              "width": 1600,
+              "height": 100
+            },
+            "from": 1630,
+            "duration": 62,
+            "opacity": 1,
+            "props": {
+              "text": "It leads the transformation.",
+              "fontSize": 60,
+              "fontWeight": "700",
+              "color": "#dc2626",
+              "textAlign": "center",
+              "fontFamily": "Inter, system-ui, sans-serif",
+              "letterSpacing": 1
+            },
+            "animations": [
+              {
+                "type": "entrance",
+                "effect": "fadeIn",
+                "delay": 0,
+                "duration": 20,
+                "easing": "easeOutCubic"
+              },
+              {
+                "type": "exit",
+                "effect": "fadeOut",
+                "delay": 0,
+                "duration": 20,
+                "easing": "easeInCubic"
+              }
+            ]
+          },
+          {
+            "id": "s8-flash",
+            "type": "shape",
+            "position": {
+              "x": 0,
+              "y": 0
+            },
+            "size": {
+              "width": 1920,
+              "height": 1080
+            },
+            "from": 1713,
+            "duration": 14,
+            "opacity": 0.9,
+            "props": {
+              "shape": "rectangle",
+              "fill": "#ffffff"
+            },
+            "animations": [
+              {
+                "type": "entrance",
+                "effect": "fadeIn",
+                "delay": 0,
+                "duration": 6,
+                "easing": "linear"
+              },
+              {
+                "type": "exit",
+                "effect": "fadeOut",
+                "delay": 0,
+                "duration": 6,
+                "easing": "linear"
+              }
+            ]
+          },
+          {
+            "id": "s8-bg",
+            "type": "shape",
+            "position": {
+              "x": 0,
+              "y": 0
+            },
+            "size": {
+              "width": 1920,
+              "height": 1080
+            },
+            "from": 1722,
+            "duration": 378,
+            "props": {
+              "shape": "rectangle",
+              "fill": "#000000"
+            },
+            "animations": [
+              {
+                "type": "entrance",
+                "effect": "fadeIn",
+                "delay": 0,
+                "duration": 12,
+                "easing": "easeInCubic"
+              }
+            ]
+          },
+          {
+            "id": "s8-ready",
+            "type": "text",
+            "position": {
+              "x": 160,
+              "y": 350
+            },
+            "size": {
+              "width": 1600,
+              "height": 100
+            },
+            "from": 1715,
+            "duration": 64,
+            "opacity": 1,
+            "props": {
+              "text": "Ready to move early?",
+              "fontSize": 64,
+              "fontWeight": "700",
+              "color": "#ffffff",
+              "textAlign": "center",
+              "fontFamily": "Inter, system-ui, sans-serif",
+              "letterSpacing": 0.5
+            },
+            "animations": [
+              {
+                "type": "entrance",
+                "effect": "fadeIn",
+                "delay": 0,
+                "duration": 20,
+                "easing": "easeOutCubic"
+              },
+              {
+                "type": "exit",
+                "effect": "fadeOut",
+                "delay": 0,
+                "duration": 20,
+                "easing": "easeInCubic"
+              }
+            ]
+          },
+          {
+            "id": "s8-contact",
+            "type": "text",
+            "position": {
+              "x": 160,
+              "y": 440
+            },
+            "size": {
+              "width": 1600,
+              "height": 80
+            },
+            "from": 1766,
+            "duration": 79,
+            "opacity": 1,
+            "props": {
+              "text": "Contact us for your specific use case.",
+              "fontSize": 40,
+              "fontWeight": "300",
+              "color": "#a0c4d8",
+              "textAlign": "center",
+              "fontFamily": "Inter, system-ui, sans-serif",
+              "letterSpacing": 0.5
+            },
+            "animations": [
+              {
+                "type": "entrance",
+                "effect": "fadeIn",
+                "delay": 0,
+                "duration": 20,
+                "easing": "easeOutCubic"
+              },
+              {
+                "type": "exit",
+                "effect": "fadeOut",
+                "delay": 0,
+                "duration": 20,
+                "easing": "easeInCubic"
+              }
+            ]
+          },
+          {
+            "id": "s8-fut1",
+            "type": "text",
+            "position": {
+              "x": 160,
+              "y": 350
+            },
+            "size": {
+              "width": 1600,
+              "height": 100
+            },
+            "from": 1834,
+            "duration": 54,
+            "opacity": 1,
+            "props": {
+              "text": "The future isn't coming —",
+              "fontSize": 60,
+              "fontWeight": "300",
+              "color": "#e0e0e0",
+              "textAlign": "center",
+              "fontFamily": "Inter, system-ui, sans-serif",
+              "letterSpacing": 0.5
+            },
+            "animations": [
+              {
+                "type": "entrance",
+                "effect": "fadeIn",
+                "delay": 0,
+                "duration": 20,
+                "easing": "easeOutCubic"
+              },
+              {
+                "type": "exit",
+                "effect": "fadeOut",
+                "delay": 0,
+                "duration": 20,
+                "easing": "easeInCubic"
+              }
+            ]
+          },
+          {
+            "id": "s8-fut2",
+            "type": "text",
+            "position": {
+              "x": 160,
+              "y": 470
+            },
+            "size": {
+              "width": 1600,
+              "height": 100
+            },
+            "from": 1875,
+            "duration": 39,
+            "opacity": 1,
+            "props": {
+              "text": "you're building it.",
+              "fontSize": 72,
+              "fontWeight": "700",
+              "color": "#dc2626",
+              "textAlign": "center",
+              "fontFamily": "Inter, system-ui, sans-serif",
+              "letterSpacing": 0.5
+            },
+            "animations": [
+              {
+                "type": "entrance",
+                "effect": "fadeIn",
+                "delay": 0,
+                "duration": 20,
+                "easing": "easeOutCubic"
+              },
+              {
+                "type": "exit",
+                "effect": "fadeOut",
+                "delay": 0,
+                "duration": 20,
+                "easing": "easeInCubic"
+              }
+            ]
+          },
+          {
+            "id": "s8-now",
+            "type": "text",
+            "position": {
+              "x": 160,
+              "y": 340
+            },
+            "size": {
+              "width": 1600,
+              "height": 160
+            },
+            "from": 1915,
+            "duration": 101,
+            "opacity": 1,
+            "props": {
+              "text": "Now.",
+              "fontSize": 112,
+              "fontWeight": "700",
+              "color": "#ffffff",
+              "textAlign": "center",
+              "fontFamily": "Inter, system-ui, sans-serif",
+              "letterSpacing": -2
+            },
+            "animations": [
+              {
+                "type": "entrance",
+                "effect": "fadeIn",
+                "delay": 0,
+                "duration": 20,
+                "easing": "easeOutCubic"
+              },
+              {
+                "type": "exit",
+                "effect": "fadeOut",
+                "delay": 0,
+                "duration": 20,
+                "easing": "easeInCubic"
+              }
+            ]
+          },
+          {
+            "id": "s8-brand",
+            "type": "text",
+            "position": {
+              "x": 160,
+              "y": 510
+            },
+            "size": {
+              "width": 1600,
+              "height": 110
+            },
+            "from": 1940,
+            "duration": 139,
+            "opacity": 1,
+            "props": {
+              "text": "SGC Tech AI",
+              "fontSize": 64,
+              "fontWeight": "700",
+              "color": "#00d9ff",
+              "textAlign": "center",
+              "fontFamily": "Inter, system-ui, sans-serif",
+              "letterSpacing": 6
+            },
+            "animations": [
+              {
+                "type": "entrance",
+                "effect": "fadeIn",
+                "delay": 0,
+                "duration": 20,
+                "easing": "easeOutCubic"
+              },
+              {
+                "type": "exit",
+                "effect": "fadeOut",
+                "delay": 0,
+                "duration": 20,
+                "easing": "easeInCubic"
+              }
+            ]
+          },
+          {
+            "id": "s8-intel",
+            "type": "text",
+            "position": {
+              "x": 160,
+              "y": 630
+            },
+            "size": {
+              "width": 1600,
+              "height": 70
+            },
+            "from": 2011,
+            "duration": 68,
+            "opacity": 1,
+            "props": {
+              "text": "Intelligence Centralized.",
+              "fontSize": 32,
+              "fontWeight": "300",
+              "color": "#888888",
+              "textAlign": "center",
+              "fontFamily": "Inter, system-ui, sans-serif",
+              "letterSpacing": 3
+            },
+            "animations": [
+              {
+                "type": "entrance",
+                "effect": "fadeIn",
+                "delay": 0,
+                "duration": 20,
+                "easing": "easeOutCubic"
+              },
+              {
+                "type": "exit",
+                "effect": "fadeOut",
+                "delay": 0,
+                "duration": 20,
+                "easing": "easeInCubic"
               }
             ]
           },
@@ -1730,8 +1815,8 @@
             "from": 0,
             "props": {
               "src": "./assets/background-music.mp3",
-              "volume": 0.35,
-              "fadeIn": 30,
+              "volume": 0.2,
+              "fadeIn": 60,
               "fadeOut": 60,
               "volumeEnvelope": [
                 {
@@ -1740,38 +1825,34 @@
                 },
                 {
                   "frame": 60,
-                  "volume": 0.22
+                  "volume": 0.18
                 },
                 {
                   "frame": 450,
-                  "volume": 0.22
+                  "volume": 0.18
                 },
                 {
-                  "frame": 500,
-                  "volume": 0.3
+                  "frame": 480,
+                  "volume": 0.25
                 },
                 {
                   "frame": 840,
+                  "volume": 0.22
+                },
+                {
+                  "frame": 1200,
                   "volume": 0.3
                 },
                 {
-                  "frame": 1050,
-                  "volume": 0.4
-                },
-                {
                   "frame": 1500,
-                  "volume": 0.45
-                },
-                {
-                  "frame": 1530,
                   "volume": 0.15
                 },
                 {
-                  "frame": 1710,
-                  "volume": 0.55
+                  "frame": 1720,
+                  "volume": 0.5
                 },
                 {
-                  "frame": 1800,
+                  "frame": 1920,
                   "volume": 0.35
                 },
                 {
@@ -1796,7 +1877,7 @@
             "duration": 2085,
             "props": {
               "src": "./assets/sgcclaw-voiceover.mp3",
-              "volume": 1,
+              "volume": 1.1,
               "effects": [
                 {
                   "type": "highpass",

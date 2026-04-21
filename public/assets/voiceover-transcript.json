@@ -1,0 +1,762 @@
+[
+  {
+    "start": 0.0,
+    "end": 2.54,
+    "text": "Meet SGC Claw.",
+    "words": [
+      {
+        "word": "Meet",
+        "start": 0.0,
+        "end": 0.28
+      },
+      {
+        "word": "SGC",
+        "start": 0.28,
+        "end": 2.0
+      },
+      {
+        "word": "Claw.",
+        "start": 2.0,
+        "end": 2.54
+      }
+    ]
+  },
+  {
+    "start": 3.1,
+    "end": 4.38,
+    "text": "Not just a prediction engine,",
+    "words": [
+      {
+        "word": "Not",
+        "start": 3.1,
+        "end": 3.34
+      },
+      {
+        "word": "just",
+        "start": 3.34,
+        "end": 3.56
+      },
+      {
+        "word": "a",
+        "start": 3.56,
+        "end": 3.72
+      },
+      {
+        "word": "prediction",
+        "start": 3.72,
+        "end": 3.98
+      },
+      {
+        "word": "engine,",
+        "start": 3.98,
+        "end": 4.38
+      }
+    ]
+  },
+  {
+    "start": 4.8,
+    "end": 7.38,
+    "text": "a centralized brain for your entire business.",
+    "words": [
+      {
+        "word": "a",
+        "start": 4.8,
+        "end": 4.92
+      },
+      {
+        "word": "centralized",
+        "start": 4.92,
+        "end": 5.34
+      },
+      {
+        "word": "brain",
+        "start": 5.34,
+        "end": 6.02
+      },
+      {
+        "word": "for",
+        "start": 6.02,
+        "end": 6.26
+      },
+      {
+        "word": "your",
+        "start": 6.26,
+        "end": 6.42
+      },
+      {
+        "word": "entire",
+        "start": 6.42,
+        "end": 6.82
+      },
+      {
+        "word": "business.",
+        "start": 6.82,
+        "end": 7.38
+      }
+    ]
+  },
+  {
+    "start": 7.92,
+    "end": 11.76,
+    "text": "Scattered data, slow decisions, manual workflows.",
+    "words": [
+      {
+        "word": "Scattered",
+        "start": 7.92,
+        "end": 8.34
+      },
+      {
+        "word": "data,",
+        "start": 8.34,
+        "end": 8.76
+      },
+      {
+        "word": "slow",
+        "start": 9.3,
+        "end": 9.66
+      },
+      {
+        "word": "decisions,",
+        "start": 9.66,
+        "end": 10.08
+      },
+      {
+        "word": "manual",
+        "start": 10.74,
+        "end": 11.2
+      },
+      {
+        "word": "workflows.",
+        "start": 11.2,
+        "end": 11.76
+      }
+    ]
+  },
+  {
+    "start": 12.54,
+    "end": 14.88,
+    "text": "Your competitors aren't waiting, neither should you.",
+    "words": [
+      {
+        "word": "Your",
+        "start": 12.54,
+        "end": 12.62
+      },
+      {
+        "word": "competitors",
+        "start": 12.62,
+        "end": 13.02
+      },
+      {
+        "word": "aren't",
+        "start": 13.02,
+        "end": 13.5
+      },
+      {
+        "word": "waiting,",
+        "start": 13.5,
+        "end": 13.78
+      },
+      {
+        "word": "neither",
+        "start": 14.24,
+        "end": 14.36
+      },
+      {
+        "word": "should",
+        "start": 14.36,
+        "end": 14.66
+      },
+      {
+        "word": "you.",
+        "start": 14.66,
+        "end": 14.88
+      }
+    ]
+  },
+  {
+    "start": 15.86,
+    "end": 18.98,
+    "text": "SGC Claw connects across all your software systems",
+    "words": [
+      {
+        "word": "SGC",
+        "start": 15.86,
+        "end": 16.48
+      },
+      {
+        "word": "Claw",
+        "start": 16.48,
+        "end": 16.76
+      },
+      {
+        "word": "connects",
+        "start": 16.76,
+        "end": 17.14
+      },
+      {
+        "word": "across",
+        "start": 17.14,
+        "end": 17.52
+      },
+      {
+        "word": "all",
+        "start": 17.52,
+        "end": 17.98
+      },
+      {
+        "word": "your",
+        "start": 17.98,
+        "end": 18.16
+      },
+      {
+        "word": "software",
+        "start": 18.16,
+        "end": 18.52
+      },
+      {
+        "word": "systems",
+        "start": 18.52,
+        "end": 18.98
+      }
+    ]
+  },
+  {
+    "start": 18.98,
+    "end": 22.8,
+    "text": "in real time, financial data, customer insights,",
+    "words": [
+      {
+        "word": "in",
+        "start": 18.98,
+        "end": 19.34
+      },
+      {
+        "word": "real",
+        "start": 19.34,
+        "end": 19.64
+      },
+      {
+        "word": "time,",
+        "start": 19.64,
+        "end": 20.0
+      },
+      {
+        "word": "financial",
+        "start": 20.52,
+        "end": 20.94
+      },
+      {
+        "word": "data,",
+        "start": 20.94,
+        "end": 21.38
+      },
+      {
+        "word": "customer",
+        "start": 21.94,
+        "end": 22.36
+      },
+      {
+        "word": "insights,",
+        "start": 22.36,
+        "end": 22.8
+      }
+    ]
+  },
+  {
+    "start": 23.56,
+    "end": 27.26,
+    "text": "operational metrics, analyzed, predicted, actionable.",
+    "words": [
+      {
+        "word": "operational",
+        "start": 23.56,
+        "end": 24.04
+      },
+      {
+        "word": "metrics,",
+        "start": 24.04,
+        "end": 24.58
+      },
+      {
+        "word": "analyzed,",
+        "start": 25.18,
+        "end": 25.6
+      },
+      {
+        "word": "predicted,",
+        "start": 26.06,
+        "end": 26.3
+      },
+      {
+        "word": "actionable.",
+        "start": 26.84,
+        "end": 27.26
+      }
+    ]
+  },
+  {
+    "start": 28.14,
+    "end": 32.16,
+    "text": "In seconds, not days, generate leads automatically.",
+    "words": [
+      {
+        "word": "In",
+        "start": 27.84,
+        "end": 28.24
+      },
+      {
+        "word": "seconds,",
+        "start": 28.24,
+        "end": 28.7
+      },
+      {
+        "word": "not",
+        "start": 29.1,
+        "end": 29.26
+      },
+      {
+        "word": "days,",
+        "start": 29.26,
+        "end": 29.72
+      },
+      {
+        "word": "generate",
+        "start": 30.24,
+        "end": 30.8
+      },
+      {
+        "word": "leads",
+        "start": 30.8,
+        "end": 31.32
+      },
+      {
+        "word": "automatically.",
+        "start": 31.32,
+        "end": 32.16
+      }
+    ]
+  },
+  {
+    "start": 32.94,
+    "end": 35.66,
+    "text": "Book appointments, trigger intelligent workflows.",
+    "words": [
+      {
+        "word": "Book",
+        "start": 32.94,
+        "end": 33.08
+      },
+      {
+        "word": "appointments,",
+        "start": 33.08,
+        "end": 33.44
+      },
+      {
+        "word": "trigger",
+        "start": 34.06,
+        "end": 34.4
+      },
+      {
+        "word": "intelligent",
+        "start": 34.4,
+        "end": 35.14
+      },
+      {
+        "word": "workflows.",
+        "start": 35.14,
+        "end": 35.66
+      }
+    ]
+  },
+  {
+    "start": 36.74,
+    "end": 39.08,
+    "text": "Predict market shifts before they happen.",
+    "words": [
+      {
+        "word": "Predict",
+        "start": 36.74,
+        "end": 37.42
+      },
+      {
+        "word": "market",
+        "start": 37.42,
+        "end": 37.84
+      },
+      {
+        "word": "shifts",
+        "start": 37.84,
+        "end": 38.2
+      },
+      {
+        "word": "before",
+        "start": 38.2,
+        "end": 38.52
+      },
+      {
+        "word": "they",
+        "start": 38.52,
+        "end": 38.74
+      },
+      {
+        "word": "happen.",
+        "start": 38.74,
+        "end": 39.08
+      }
+    ]
+  },
+  {
+    "start": 39.6,
+    "end": 43.6,
+    "text": "Over 1,000 business capabilities, all working 24-7.",
+    "words": [
+      {
+        "word": "Over",
+        "start": 39.6,
+        "end": 39.84
+      },
+      {
+        "word": "1",
+        "start": 39.84,
+        "end": 40.24
+      },
+      {
+        "word": ",000",
+        "start": 40.24,
+        "end": 40.6
+      },
+      {
+        "word": "business",
+        "start": 40.6,
+        "end": 40.88
+      },
+      {
+        "word": "capabilities,",
+        "start": 40.88,
+        "end": 41.58
+      },
+      {
+        "word": "all",
+        "start": 42.24,
+        "end": 42.46
+      },
+      {
+        "word": "working",
+        "start": 42.46,
+        "end": 42.76
+      },
+      {
+        "word": "24",
+        "start": 42.76,
+        "end": 43.16
+      },
+      {
+        "word": "-7.",
+        "start": 43.16,
+        "end": 43.6
+      }
+    ]
+  },
+  {
+    "start": 43.9,
+    "end": 46.14,
+    "text": "No breaks, no excuses, just results.",
+    "words": [
+      {
+        "word": "No",
+        "start": 43.9,
+        "end": 44.06
+      },
+      {
+        "word": "breaks,",
+        "start": 44.06,
+        "end": 44.36
+      },
+      {
+        "word": "no",
+        "start": 44.64,
+        "end": 44.74
+      },
+      {
+        "word": "excuses,",
+        "start": 44.74,
+        "end": 45.26
+      },
+      {
+        "word": "just",
+        "start": 45.52,
+        "end": 45.66
+      },
+      {
+        "word": "results.",
+        "start": 45.66,
+        "end": 46.14
+      }
+    ]
+  },
+  {
+    "start": 46.82,
+    "end": 49.88,
+    "text": "While others follow trends, you're building the future.",
+    "words": [
+      {
+        "word": "While",
+        "start": 46.82,
+        "end": 47.14
+      },
+      {
+        "word": "others",
+        "start": 47.14,
+        "end": 47.48
+      },
+      {
+        "word": "follow",
+        "start": 47.48,
+        "end": 47.84
+      },
+      {
+        "word": "trends,",
+        "start": 47.84,
+        "end": 48.28
+      },
+      {
+        "word": "you're",
+        "start": 48.64,
+        "end": 48.84
+      },
+      {
+        "word": "building",
+        "start": 48.84,
+        "end": 49.28
+      },
+      {
+        "word": "the",
+        "start": 49.28,
+        "end": 49.54
+      },
+      {
+        "word": "future.",
+        "start": 49.54,
+        "end": 49.88
+      }
+    ]
+  },
+  {
+    "start": 51.0,
+    "end": 54.04,
+    "text": "SGC Claw doesn't just adapt to AI,",
+    "words": [
+      {
+        "word": "SGC",
+        "start": 51.0,
+        "end": 51.8
+      },
+      {
+        "word": "Claw",
+        "start": 51.8,
+        "end": 52.18
+      },
+      {
+        "word": "doesn't",
+        "start": 52.18,
+        "end": 52.8
+      },
+      {
+        "word": "just",
+        "start": 52.8,
+        "end": 52.96
+      },
+      {
+        "word": "adapt",
+        "start": 52.96,
+        "end": 53.44
+      },
+      {
+        "word": "to",
+        "start": 53.44,
+        "end": 53.76
+      },
+      {
+        "word": "AI,",
+        "start": 53.76,
+        "end": 54.04
+      }
+    ]
+  },
+  {
+    "start": 54.52,
+    "end": 55.96,
+    "text": "it leads the transformation.",
+    "words": [
+      {
+        "word": "it",
+        "start": 54.52,
+        "end": 54.68
+      },
+      {
+        "word": "leads",
+        "start": 54.68,
+        "end": 55.18
+      },
+      {
+        "word": "the",
+        "start": 55.18,
+        "end": 55.4
+      },
+      {
+        "word": "transformation.",
+        "start": 55.4,
+        "end": 55.96
+      }
+    ]
+  },
+  {
+    "start": 57.26,
+    "end": 58.36,
+    "text": "Ready to move early?",
+    "words": [
+      {
+        "word": "Ready",
+        "start": 57.26,
+        "end": 57.74
+      },
+      {
+        "word": "to",
+        "start": 57.74,
+        "end": 57.9
+      },
+      {
+        "word": "move",
+        "start": 57.9,
+        "end": 58.04
+      },
+      {
+        "word": "early?",
+        "start": 58.04,
+        "end": 58.36
+      }
+    ]
+  },
+  {
+    "start": 59.06,
+    "end": 60.78,
+    "text": "Contact us for your specific use case.",
+    "words": [
+      {
+        "word": "Contact",
+        "start": 59.06,
+        "end": 59.16
+      },
+      {
+        "word": "us",
+        "start": 59.16,
+        "end": 59.52
+      },
+      {
+        "word": "for",
+        "start": 59.52,
+        "end": 59.72
+      },
+      {
+        "word": "your",
+        "start": 59.72,
+        "end": 59.86
+      },
+      {
+        "word": "specific",
+        "start": 59.86,
+        "end": 60.26
+      },
+      {
+        "word": "use",
+        "start": 60.26,
+        "end": 60.56
+      },
+      {
+        "word": "case.",
+        "start": 60.56,
+        "end": 60.78
+      }
+    ]
+  },
+  {
+    "start": 61.32,
+    "end": 63.46,
+    "text": "The future isn't coming, you're building it.",
+    "words": [
+      {
+        "word": "The",
+        "start": 61.32,
+        "end": 61.48
+      },
+      {
+        "word": "future",
+        "start": 61.48,
+        "end": 61.7
+      },
+      {
+        "word": "isn't",
+        "start": 61.7,
+        "end": 62.08
+      },
+      {
+        "word": "coming,",
+        "start": 62.08,
+        "end": 62.34
+      },
+      {
+        "word": "you're",
+        "start": 62.7,
+        "end": 62.8
+      },
+      {
+        "word": "building",
+        "start": 62.8,
+        "end": 63.18
+      },
+      {
+        "word": "it.",
+        "start": 63.18,
+        "end": 63.46
+      }
+    ]
+  },
+  {
+    "start": 64.02,
+    "end": 69.04,
+    "text": "Now, SGC Tech AI, Intelligence Centralized.",
+    "words": [
+      {
+        "word": "Now,",
+        "start": 64.02,
+        "end": 64.28
+      },
+      {
+        "word": "SGC",
+        "start": 64.88,
+        "end": 66.02
+      },
+      {
+        "word": "Tech",
+        "start": 66.02,
+        "end": 66.3
+      },
+      {
+        "word": "AI,",
+        "start": 66.3,
+        "end": 66.72
+      },
+      {
+        "word": "Intelligence",
+        "start": 67.22,
+        "end": 67.72
+      },
+      {
+        "word": "Centralized.",
+        "start": 67.72,
+        "end": 69.04
+      }
+    ]
+  }
+]
