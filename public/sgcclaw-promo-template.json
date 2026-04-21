@@ -143,7 +143,7 @@
               "height": 180
             },
             "from": 0,
-            "duration": 72,
+            "duration": 94,
             "opacity": 1,
             "props": {
               "text": "MEET",
@@ -339,7 +339,7 @@
               "height": 100
             },
             "from": 232,
-            "duration": 55,
+            "duration": 64,
             "opacity": 1,
             "props": {
               "text": "Scattered data.",
@@ -379,7 +379,7 @@
               "height": 100
             },
             "from": 273,
-            "duration": 58,
+            "duration": 67,
             "opacity": 1,
             "props": {
               "text": "Slow decisions.",
@@ -499,7 +499,7 @@
               "height": 160
             },
             "from": 470,
-            "duration": 106,
+            "duration": 123,
             "opacity": 1,
             "props": {
               "text": "SGC Claw connects across\nall your software systems.",
@@ -539,7 +539,7 @@
               "height": 80
             },
             "from": 563,
-            "duration": 61,
+            "duration": 71,
             "opacity": 1,
             "props": {
               "text": "In real time.",
@@ -767,7 +767,7 @@
               "height": 80
             },
             "from": 701,
-            "duration": 115,
+            "duration": 135,
             "opacity": 1,
             "props": {
               "text": "Operational Metrics",
@@ -847,7 +847,7 @@
               "height": 100
             },
             "from": 829,
-            "duration": 86,
+            "duration": 154,
             "opacity": 1,
             "props": {
               "text": "In seconds, not days.",
@@ -999,7 +999,7 @@
               "height": 80
             },
             "from": 982,
-            "duration": 89,
+            "duration": 106,
             "opacity": 1,
             "props": {
               "text": "Book Appointments",
@@ -1271,7 +1271,7 @@
               "height": 100
             },
             "from": 1311,
-            "duration": 81,
+            "duration": 97,
             "opacity": 1,
             "props": {
               "text": "No breaks. No excuses. Just results.",
@@ -1311,7 +1311,7 @@
               "height": 80
             },
             "from": 1399,
-            "duration": 68,
+            "duration": 78,
             "opacity": 1,
             "props": {
               "text": "While others follow trends,",
@@ -1391,7 +1391,7 @@
               "height": 100
             },
             "from": 1524,
-            "duration": 105,
+            "duration": 121,
             "opacity": 1,
             "props": {
               "text": "SGC Claw doesn't just adapt to AI.",
@@ -1733,7 +1733,7 @@
               "height": 110
             },
             "from": 1940,
-            "duration": 139,
+            "duration": 67,
             "opacity": 1,
             "props": {
               "text": "SGC Tech AI",
@@ -1773,7 +1773,7 @@
               "height": 70
             },
             "from": 2011,
-            "duration": 68,
+            "duration": 78,
             "opacity": 1,
             "props": {
               "text": "Intelligence Centralized.",
