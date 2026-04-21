@@ -7,7 +7,7 @@
     "width": 1920,
     "height": 1080,
     "fps": 30,
-    "duration": 60
+    "duration": 70
   },
   "inputs": [],
   "composition": {
@@ -15,7 +15,7 @@
       {
         "id": "main",
         "startFrame": 0,
-        "endFrame": 1800,
+        "endFrame": 2100,
         "layers": [
           {
             "id": "bg",
@@ -176,8 +176,8 @@
               "width": 1600,
               "height": 100
             },
-            "from": 30,
-            "duration": 300,
+            "from": 0,
+            "duration": 420,
             "props": {
               "text": "Leads going cold at 2am.",
               "fontSize": 52,
@@ -192,14 +192,14 @@
                 "type": "entrance",
                 "effect": "fadeIn",
                 "delay": 0,
-                "duration": 20,
+                "duration": 30,
                 "easing": "easeOutCubic"
               },
               {
                 "type": "exit",
                 "effect": "fadeOut",
                 "delay": 0,
-                "duration": 20,
+                "duration": 30,
                 "easing": "easeInCubic"
               }
             ]
@@ -215,8 +215,8 @@
               "width": 340,
               "height": 2
             },
-            "from": 50,
-            "duration": 280,
+            "from": 30,
+            "duration": 390,
             "opacity": 0.9,
             "props": {
               "shape": "rectangle",
@@ -227,14 +227,14 @@
                 "type": "entrance",
                 "effect": "scaleIn",
                 "delay": 0,
-                "duration": 20,
+                "duration": 30,
                 "easing": "easeOutCubic"
               },
               {
                 "type": "exit",
                 "effect": "fadeOut",
                 "delay": 0,
-                "duration": 20,
+                "duration": 30,
                 "easing": "easeInCubic"
               }
             ]
@@ -250,8 +250,8 @@
               "width": 1600,
               "height": 100
             },
-            "from": 150,
-            "duration": 180,
+            "from": 105,
+            "duration": 315,
             "props": {
               "text": "Reports that take 3 days to pull.",
               "fontSize": 52,
@@ -266,14 +266,14 @@
                 "type": "entrance",
                 "effect": "fadeIn",
                 "delay": 0,
-                "duration": 20,
+                "duration": 30,
                 "easing": "easeOutCubic"
               },
               {
                 "type": "exit",
                 "effect": "fadeOut",
                 "delay": 0,
-                "duration": 20,
+                "duration": 30,
                 "easing": "easeInCubic"
               }
             ]
@@ -289,8 +289,8 @@
               "width": 120,
               "height": 2
             },
-            "from": 170,
-            "duration": 160,
+            "from": 135,
+            "duration": 285,
             "opacity": 0.9,
             "props": {
               "shape": "rectangle",
@@ -301,14 +301,14 @@
                 "type": "entrance",
                 "effect": "scaleIn",
                 "delay": 0,
-                "duration": 20,
+                "duration": 30,
                 "easing": "easeOutCubic"
               },
               {
                 "type": "exit",
                 "effect": "fadeOut",
                 "delay": 0,
-                "duration": 20,
+                "duration": 30,
                 "easing": "easeInCubic"
               }
             ]
@@ -324,8 +324,8 @@
               "width": 1600,
               "height": 100
             },
-            "from": 270,
-            "duration": 105,
+            "from": 285,
+            "duration": 135,
             "props": {
               "text": "Your team: burned out. Your pipeline: leaking.",
               "fontSize": 52,
@@ -340,14 +340,14 @@
                 "type": "entrance",
                 "effect": "fadeIn",
                 "delay": 0,
-                "duration": 20,
+                "duration": 30,
                 "easing": "easeOutCubic"
               },
               {
                 "type": "exit",
                 "effect": "fadeOut",
                 "delay": 0,
-                "duration": 20,
+                "duration": 30,
                 "easing": "easeInCubic"
               }
             ]
@@ -363,8 +363,8 @@
               "width": 960,
               "height": 60
             },
-            "from": 60,
-            "duration": 240,
+            "from": 330,
+            "duration": 90,
             "opacity": 0.5,
             "props": {
               "text": "Sound familiar? Most businesses are still running on human limits.",
@@ -387,7 +387,7 @@
                 "type": "exit",
                 "effect": "fadeOut",
                 "delay": 0,
-                "duration": 20,
+                "duration": 30,
                 "easing": "easeInCubic"
               }
             ]
@@ -403,7 +403,7 @@
               "width": 1920,
               "height": 1080
             },
-            "from": 355,
+            "from": 450,
             "duration": 15,
             "opacity": 0.7,
             "props": {
@@ -415,14 +415,14 @@
                 "type": "entrance",
                 "effect": "fadeIn",
                 "delay": 0,
-                "duration": 5,
+                "duration": 30,
                 "easing": "easeOutCubic"
               },
               {
                 "type": "exit",
                 "effect": "fadeOut",
                 "delay": 0,
-                "duration": 10,
+                "duration": 30,
                 "easing": "easeInCubic"
               }
             ]
@@ -438,8 +438,8 @@
               "width": 1200,
               "height": 140
             },
-            "from": 390,
-            "duration": 240,
+            "from": 465,
+            "duration": 360,
             "props": {
               "text": "SGC TECH AI",
               "fontSize": 112,
@@ -461,7 +461,7 @@
                 "type": "exit",
                 "effect": "fadeOut",
                 "delay": 0,
-                "duration": 20,
+                "duration": 30,
                 "easing": "easeInCubic"
               }
             ]
@@ -477,8 +477,8 @@
               "width": 400,
               "height": 2
             },
-            "from": 420,
-            "duration": 210,
+            "from": 480,
+            "duration": 345,
             "opacity": 0.6,
             "props": {
               "shape": "rectangle",
@@ -489,14 +489,14 @@
                 "type": "entrance",
                 "effect": "scaleIn",
                 "delay": 0,
-                "duration": 20,
+                "duration": 30,
                 "easing": "easeOutCubic"
               },
               {
                 "type": "exit",
                 "effect": "fadeOut",
                 "delay": 0,
-                "duration": 15,
+                "duration": 30,
                 "easing": "easeInCubic"
               }
             ]
@@ -512,8 +512,8 @@
               "width": 1200,
               "height": 90
             },
-            "from": 440,
-            "duration": 190,
+            "from": 495,
+            "duration": 330,
             "props": {
               "text": "sgcclaw",
               "fontSize": 72,
@@ -535,7 +535,7 @@
                 "type": "exit",
                 "effect": "fadeOut",
                 "delay": 0,
-                "duration": 20,
+                "duration": 30,
                 "easing": "easeInCubic"
               }
             ]
@@ -551,8 +551,8 @@
               "width": 1600,
               "height": 70
             },
-            "from": 480,
-            "duration": 180,
+            "from": 510,
+            "duration": 315,
             "opacity": 0.75,
             "props": {
               "text": "An AI-powered centralized brain that never sleeps, never calls in sick, and never asks for a raise.",
@@ -575,7 +575,7 @@
                 "type": "exit",
                 "effect": "fadeOut",
                 "delay": 0,
-                "duration": 20,
+                "duration": 30,
                 "easing": "easeInCubic"
               }
             ]
@@ -591,8 +591,8 @@
               "width": 760,
               "height": 440
             },
-            "from": 645,
-            "duration": 165,
+            "from": 810,
+            "duration": 150,
             "opacity": 0.15,
             "props": {
               "shape": "rectangle",
@@ -604,14 +604,14 @@
                 "type": "entrance",
                 "effect": "fadeIn",
                 "delay": 0,
-                "duration": 20,
+                "duration": 30,
                 "easing": "easeOutCubic"
               },
               {
                 "type": "exit",
                 "effect": "fadeOut",
                 "delay": 0,
-                "duration": 20,
+                "duration": 30,
                 "easing": "easeInCubic"
               }
             ]
@@ -627,8 +627,8 @@
               "width": 100,
               "height": 80
             },
-            "from": 655,
-            "duration": 155,
+            "from": 825,
+            "duration": 135,
             "props": {
               "text": "01",
               "fontSize": 56,
@@ -642,14 +642,14 @@
                 "type": "entrance",
                 "effect": "fadeIn",
                 "delay": 0,
-                "duration": 20,
+                "duration": 30,
                 "easing": "easeOutCubic"
               },
               {
                 "type": "exit",
                 "effect": "fadeOut",
                 "delay": 0,
-                "duration": 20,
+                "duration": 30,
                 "easing": "easeInCubic"
               }
             ]
@@ -665,8 +665,8 @@
               "width": 680,
               "height": 80
             },
-            "from": 655,
-            "duration": 155,
+            "from": 825,
+            "duration": 135,
             "props": {
               "text": "Predict & Simulate",
               "fontSize": 42,
@@ -680,14 +680,14 @@
                 "type": "entrance",
                 "effect": "fadeIn",
                 "delay": 0,
-                "duration": 20,
+                "duration": 30,
                 "easing": "easeOutCubic"
               },
               {
                 "type": "exit",
                 "effect": "fadeOut",
                 "delay": 0,
-                "duration": 20,
+                "duration": 30,
                 "easing": "easeInCubic"
               }
             ]
@@ -703,8 +703,8 @@
               "width": 680,
               "height": 60
             },
-            "from": 665,
-            "duration": 145,
+            "from": 840,
+            "duration": 120,
             "opacity": 0.7,
             "props": {
               "text": "Predict outcomes before you act.",
@@ -719,14 +719,14 @@
                 "type": "entrance",
                 "effect": "fadeIn",
                 "delay": 0,
-                "duration": 20,
+                "duration": 30,
                 "easing": "easeOutCubic"
               },
               {
                 "type": "exit",
                 "effect": "fadeOut",
                 "delay": 0,
-                "duration": 20,
+                "duration": 30,
                 "easing": "easeInCubic"
               }
             ]
@@ -742,8 +742,8 @@
               "width": 760,
               "height": 440
             },
-            "from": 795,
-            "duration": 165,
+            "from": 885,
+            "duration": 195,
             "opacity": 0.15,
             "props": {
               "shape": "rectangle",
@@ -755,14 +755,14 @@
                 "type": "entrance",
                 "effect": "fadeIn",
                 "delay": 0,
-                "duration": 20,
+                "duration": 30,
                 "easing": "easeOutCubic"
               },
               {
                 "type": "exit",
                 "effect": "fadeOut",
                 "delay": 0,
-                "duration": 20,
+                "duration": 30,
                 "easing": "easeInCubic"
               }
             ]
@@ -778,8 +778,8 @@
               "width": 100,
               "height": 80
             },
-            "from": 805,
-            "duration": 155,
+            "from": 900,
+            "duration": 180,
             "props": {
               "text": "02",
               "fontSize": 56,
@@ -793,14 +793,14 @@
                 "type": "entrance",
                 "effect": "fadeIn",
                 "delay": 0,
-                "duration": 20,
+                "duration": 30,
                 "easing": "easeOutCubic"
               },
               {
                 "type": "exit",
                 "effect": "fadeOut",
                 "delay": 0,
-                "duration": 20,
+                "duration": 30,
                 "easing": "easeInCubic"
               }
             ]
@@ -816,8 +816,8 @@
               "width": 680,
               "height": 80
             },
-            "from": 805,
-            "duration": 155,
+            "from": 900,
+            "duration": 180,
             "props": {
               "text": "Connect & Integrate",
               "fontSize": 42,
@@ -830,15 +830,15 @@
               {
                 "type": "entrance",
                 "effect": "fadeIn",
-                "delay": 5,
-                "duration": 20,
+                "delay": 0,
+                "duration": 30,
                 "easing": "easeOutCubic"
               },
               {
                 "type": "exit",
                 "effect": "fadeOut",
                 "delay": 0,
-                "duration": 20,
+                "duration": 30,
                 "easing": "easeInCubic"
               }
             ]
@@ -854,8 +854,8 @@
               "width": 680,
               "height": 60
             },
-            "from": 815,
-            "duration": 145,
+            "from": 915,
+            "duration": 165,
             "opacity": 0.7,
             "props": {
               "text": "Plugs into your entire software stack.",
@@ -870,14 +870,14 @@
                 "type": "entrance",
                 "effect": "fadeIn",
                 "delay": 0,
-                "duration": 20,
+                "duration": 30,
                 "easing": "easeOutCubic"
               },
               {
                 "type": "exit",
                 "effect": "fadeOut",
                 "delay": 0,
-                "duration": 20,
+                "duration": 30,
                 "easing": "easeInCubic"
               }
             ]
@@ -893,8 +893,8 @@
               "width": 760,
               "height": 440
             },
-            "from": 945,
-            "duration": 165,
+            "from": 960,
+            "duration": 210,
             "opacity": 0.15,
             "props": {
               "shape": "rectangle",
@@ -906,14 +906,14 @@
                 "type": "entrance",
                 "effect": "fadeIn",
                 "delay": 0,
-                "duration": 20,
+                "duration": 30,
                 "easing": "easeOutCubic"
               },
               {
                 "type": "exit",
                 "effect": "fadeOut",
                 "delay": 0,
-                "duration": 20,
+                "duration": 30,
                 "easing": "easeInCubic"
               }
             ]
@@ -929,8 +929,8 @@
               "width": 100,
               "height": 80
             },
-            "from": 955,
-            "duration": 155,
+            "from": 975,
+            "duration": 195,
             "props": {
               "text": "03",
               "fontSize": 56,
@@ -944,14 +944,14 @@
                 "type": "entrance",
                 "effect": "fadeIn",
                 "delay": 0,
-                "duration": 20,
+                "duration": 30,
                 "easing": "easeOutCubic"
               },
               {
                 "type": "exit",
                 "effect": "fadeOut",
                 "delay": 0,
-                "duration": 20,
+                "duration": 30,
                 "easing": "easeInCubic"
               }
             ]
@@ -967,8 +967,8 @@
               "width": 680,
               "height": 80
             },
-            "from": 955,
-            "duration": 155,
+            "from": 975,
+            "duration": 195,
             "props": {
               "text": "Pull & Analyze",
               "fontSize": 42,
@@ -981,15 +981,15 @@
               {
                 "type": "entrance",
                 "effect": "fadeIn",
-                "delay": 5,
-                "duration": 20,
+                "delay": 0,
+                "duration": 30,
                 "easing": "easeOutCubic"
               },
               {
                 "type": "exit",
                 "effect": "fadeOut",
                 "delay": 0,
-                "duration": 20,
+                "duration": 30,
                 "easing": "easeInCubic"
               }
             ]
@@ -1005,8 +1005,8 @@
               "width": 680,
               "height": 60
             },
-            "from": 965,
-            "duration": 145,
+            "from": 990,
+            "duration": 180,
             "opacity": 0.7,
             "props": {
               "text": "Reports in seconds, not days.",
@@ -1021,14 +1021,14 @@
                 "type": "entrance",
                 "effect": "fadeIn",
                 "delay": 0,
-                "duration": 20,
+                "duration": 30,
                 "easing": "easeOutCubic"
               },
               {
                 "type": "exit",
                 "effect": "fadeOut",
                 "delay": 0,
-                "duration": 20,
+                "duration": 30,
                 "easing": "easeInCubic"
               }
             ]
@@ -1044,8 +1044,8 @@
               "width": 760,
               "height": 440
             },
-            "from": 1095,
-            "duration": 165,
+            "from": 1080,
+            "duration": 300,
             "opacity": 0.15,
             "props": {
               "shape": "rectangle",
@@ -1057,14 +1057,14 @@
                 "type": "entrance",
                 "effect": "fadeIn",
                 "delay": 0,
-                "duration": 20,
+                "duration": 30,
                 "easing": "easeOutCubic"
               },
               {
                 "type": "exit",
                 "effect": "fadeOut",
                 "delay": 0,
-                "duration": 20,
+                "duration": 30,
                 "easing": "easeInCubic"
               }
             ]
@@ -1080,8 +1080,8 @@
               "width": 100,
               "height": 80
             },
-            "from": 1105,
-            "duration": 155,
+            "from": 1095,
+            "duration": 285,
             "props": {
               "text": "04",
               "fontSize": 56,
@@ -1095,14 +1095,14 @@
                 "type": "entrance",
                 "effect": "fadeIn",
                 "delay": 0,
-                "duration": 20,
+                "duration": 30,
                 "easing": "easeOutCubic"
               },
               {
                 "type": "exit",
                 "effect": "fadeOut",
                 "delay": 0,
-                "duration": 20,
+                "duration": 30,
                 "easing": "easeInCubic"
               }
             ]
@@ -1118,8 +1118,8 @@
               "width": 680,
               "height": 80
             },
-            "from": 1105,
-            "duration": 155,
+            "from": 1095,
+            "duration": 285,
             "props": {
               "text": "Generate & Convert",
               "fontSize": 42,
@@ -1132,15 +1132,15 @@
               {
                 "type": "entrance",
                 "effect": "fadeIn",
-                "delay": 5,
-                "duration": 20,
+                "delay": 0,
+                "duration": 30,
                 "easing": "easeOutCubic"
               },
               {
                 "type": "exit",
                 "effect": "fadeOut",
                 "delay": 0,
-                "duration": 20,
+                "duration": 30,
                 "easing": "easeInCubic"
               }
             ]
@@ -1156,8 +1156,8 @@
               "width": 680,
               "height": 60
             },
-            "from": 1115,
-            "duration": 145,
+            "from": 1110,
+            "duration": 270,
             "opacity": 0.7,
             "props": {
               "text": "Captures leads, answers questions, books appointments.",
@@ -1172,14 +1172,14 @@
                 "type": "entrance",
                 "effect": "fadeIn",
                 "delay": 0,
-                "duration": 20,
+                "duration": 30,
                 "easing": "easeOutCubic"
               },
               {
                 "type": "exit",
                 "effect": "fadeOut",
                 "delay": 0,
-                "duration": 20,
+                "duration": 30,
                 "easing": "easeInCubic"
               }
             ]
@@ -1195,8 +1195,8 @@
               "width": 760,
               "height": 440
             },
-            "from": 1245,
-            "duration": 165,
+            "from": 1170,
+            "duration": 330,
             "opacity": 0.15,
             "props": {
               "shape": "rectangle",
@@ -1208,14 +1208,14 @@
                 "type": "entrance",
                 "effect": "fadeIn",
                 "delay": 0,
-                "duration": 20,
+                "duration": 30,
                 "easing": "easeOutCubic"
               },
               {
                 "type": "exit",
                 "effect": "fadeOut",
                 "delay": 0,
-                "duration": 20,
+                "duration": 30,
                 "easing": "easeInCubic"
               }
             ]
@@ -1231,8 +1231,8 @@
               "width": 100,
               "height": 80
             },
-            "from": 1255,
-            "duration": 155,
+            "from": 1185,
+            "duration": 315,
             "props": {
               "text": "05",
               "fontSize": 56,
@@ -1246,14 +1246,14 @@
                 "type": "entrance",
                 "effect": "fadeIn",
                 "delay": 0,
-                "duration": 20,
+                "duration": 30,
                 "easing": "easeOutCubic"
               },
               {
                 "type": "exit",
                 "effect": "fadeOut",
                 "delay": 0,
-                "duration": 20,
+                "duration": 30,
                 "easing": "easeInCubic"
               }
             ]
@@ -1269,8 +1269,8 @@
               "width": 680,
               "height": 80
             },
-            "from": 1255,
-            "duration": 155,
+            "from": 1185,
+            "duration": 315,
             "props": {
               "text": "Trigger & Automate",
               "fontSize": 42,
@@ -1283,15 +1283,15 @@
               {
                 "type": "entrance",
                 "effect": "fadeIn",
-                "delay": 5,
-                "duration": 20,
+                "delay": 0,
+                "duration": 30,
                 "easing": "easeOutCubic"
               },
               {
                 "type": "exit",
                 "effect": "fadeOut",
                 "delay": 0,
-                "duration": 20,
+                "duration": 30,
                 "easing": "easeInCubic"
               }
             ]
@@ -1307,8 +1307,8 @@
               "width": 680,
               "height": 60
             },
-            "from": 1265,
-            "duration": 145,
+            "from": 1200,
+            "duration": 300,
             "opacity": 0.7,
             "props": {
               "text": "1000+ real-world workflows — 24/7, no downtime.",
@@ -1323,14 +1323,14 @@
                 "type": "entrance",
                 "effect": "fadeIn",
                 "delay": 0,
-                "duration": 20,
+                "duration": 30,
                 "easing": "easeOutCubic"
               },
               {
                 "type": "exit",
                 "effect": "fadeOut",
                 "delay": 0,
-                "duration": 20,
+                "duration": 30,
                 "easing": "easeInCubic"
               }
             ]
@@ -1346,8 +1346,8 @@
               "width": 760,
               "height": 440
             },
-            "from": 1395,
-            "duration": 105,
+            "from": 1380,
+            "duration": 150,
             "opacity": 0.15,
             "props": {
               "shape": "rectangle",
@@ -1359,14 +1359,14 @@
                 "type": "entrance",
                 "effect": "fadeIn",
                 "delay": 0,
-                "duration": 20,
+                "duration": 30,
                 "easing": "easeOutCubic"
               },
               {
                 "type": "exit",
                 "effect": "fadeOut",
                 "delay": 0,
-                "duration": 20,
+                "duration": 30,
                 "easing": "easeInCubic"
               }
             ]
@@ -1382,8 +1382,8 @@
               "width": 100,
               "height": 80
             },
-            "from": 1405,
-            "duration": 95,
+            "from": 1395,
+            "duration": 135,
             "props": {
               "text": "06",
               "fontSize": 56,
@@ -1397,14 +1397,14 @@
                 "type": "entrance",
                 "effect": "fadeIn",
                 "delay": 0,
-                "duration": 20,
+                "duration": 30,
                 "easing": "easeOutCubic"
               },
               {
                 "type": "exit",
                 "effect": "fadeOut",
                 "delay": 0,
-                "duration": 20,
+                "duration": 30,
                 "easing": "easeInCubic"
               }
             ]
@@ -1420,8 +1420,8 @@
               "width": 680,
               "height": 80
             },
-            "from": 1405,
-            "duration": 95,
+            "from": 1395,
+            "duration": 135,
             "props": {
               "text": "Compound ROI",
               "fontSize": 42,
@@ -1434,15 +1434,15 @@
               {
                 "type": "entrance",
                 "effect": "fadeIn",
-                "delay": 5,
-                "duration": 20,
+                "delay": 0,
+                "duration": 30,
                 "easing": "easeOutCubic"
               },
               {
                 "type": "exit",
                 "effect": "fadeOut",
                 "delay": 0,
-                "duration": 20,
+                "duration": 30,
                 "easing": "easeInCubic"
               }
             ]
@@ -1458,8 +1458,8 @@
               "width": 680,
               "height": 60
             },
-            "from": 1415,
-            "duration": 85,
+            "from": 1410,
+            "duration": 120,
             "opacity": 0.8,
             "props": {
               "text": "Fixed price. No drama. Just results.",
@@ -1474,14 +1474,14 @@
                 "type": "entrance",
                 "effect": "fadeIn",
                 "delay": 0,
-                "duration": 20,
+                "duration": 30,
                 "easing": "easeOutCubic"
               },
               {
                 "type": "exit",
                 "effect": "fadeOut",
                 "delay": 0,
-                "duration": 20,
+                "duration": 30,
                 "easing": "easeInCubic"
               }
             ]
@@ -1498,7 +1498,7 @@
               "height": 1080
             },
             "from": 1500,
-            "duration": 300,
+            "duration": 600,
             "props": {
               "shape": "rectangle",
               "fill": "#000000"
@@ -1508,7 +1508,7 @@
                 "type": "entrance",
                 "effect": "fadeIn",
                 "delay": 0,
-                "duration": 20,
+                "duration": 30,
                 "easing": "easeInCubic"
               }
             ]
@@ -1525,7 +1525,7 @@
               "height": 120
             },
             "from": 1530,
-            "duration": 120,
+            "duration": 180,
             "props": {
               "text": "AI is coming.",
               "fontSize": 80,
@@ -1547,7 +1547,7 @@
                 "type": "exit",
                 "effect": "fadeOut",
                 "delay": 0,
-                "duration": 20,
+                "duration": 30,
                 "easing": "easeInCubic"
               }
             ]
@@ -1563,8 +1563,8 @@
               "width": 1920,
               "height": 1080
             },
-            "from": 1650,
-            "duration": 10,
+            "from": 1710,
+            "duration": 15,
             "opacity": 0.95,
             "props": {
               "shape": "rectangle",
@@ -1575,14 +1575,14 @@
                 "type": "entrance",
                 "effect": "fadeIn",
                 "delay": 0,
-                "duration": 5,
+                "duration": 30,
                 "easing": "linear"
               },
               {
                 "type": "exit",
                 "effect": "fadeOut",
                 "delay": 0,
-                "duration": 5,
+                "duration": 30,
                 "easing": "linear"
               }
             ]
@@ -1598,8 +1598,8 @@
               "width": 1800,
               "height": 200
             },
-            "from": 1660,
-            "duration": 140,
+            "from": 1725,
+            "duration": 330,
             "props": {
               "text": "Don't follow.",
               "fontSize": 128,
@@ -1614,7 +1614,7 @@
                 "type": "entrance",
                 "effect": "slideInUp",
                 "delay": 0,
-                "duration": 20,
+                "duration": 30,
                 "easing": "easeOutCubic"
               }
             ]
@@ -1630,8 +1630,8 @@
               "width": 1800,
               "height": 200
             },
-            "from": 1680,
-            "duration": 120,
+            "from": 1755,
+            "duration": 300,
             "props": {
               "text": "Lead.",
               "fontSize": 128,
@@ -1646,7 +1646,7 @@
                 "type": "entrance",
                 "effect": "slideInUp",
                 "delay": 0,
-                "duration": 20,
+                "duration": 30,
                 "easing": "easeOutCubic"
               }
             ]
@@ -1662,8 +1662,8 @@
               "width": 1000,
               "height": 60
             },
-            "from": 1710,
-            "duration": 90,
+            "from": 1860,
+            "duration": 210,
             "props": {
               "text": "SGC TECH AI  •  sgcclaw",
               "fontSize": 28,
@@ -1678,7 +1678,7 @@
                 "type": "entrance",
                 "effect": "fadeIn",
                 "delay": 0,
-                "duration": 20,
+                "duration": 30,
                 "easing": "easeOutCubic"
               }
             ]
@@ -1694,8 +1694,8 @@
               "width": 1000,
               "height": 50
             },
-            "from": 1710,
-            "duration": 90,
+            "from": 1890,
+            "duration": 180,
             "opacity": 0.7,
             "props": {
               "text": "Contact us. Tell us your use case. We've got you.",
@@ -1711,7 +1711,7 @@
                 "type": "entrance",
                 "effect": "fadeIn",
                 "delay": 0,
-                "duration": 20,
+                "duration": 30,
                 "easing": "easeOutCubic"
               }
             ]
@@ -1739,43 +1739,43 @@
                   "volume": 0
                 },
                 {
-                  "frame": 30,
-                  "volume": 0.25
+                  "frame": 60,
+                  "volume": 0.22
                 },
                 {
-                  "frame": 360,
-                  "volume": 0.25
+                  "frame": 450,
+                  "volume": 0.22
                 },
                 {
-                  "frame": 420,
-                  "volume": 0.4
-                },
-                {
-                  "frame": 660,
-                  "volume": 0.4
-                },
-                {
-                  "frame": 900,
-                  "volume": 0.55
-                },
-                {
-                  "frame": 1400,
-                  "volume": 0.65
-                },
-                {
-                  "frame": 1500,
+                  "frame": 500,
                   "volume": 0.3
                 },
                 {
-                  "frame": 1650,
-                  "volume": 0.8
+                  "frame": 840,
+                  "volume": 0.3
                 },
                 {
-                  "frame": 1700,
+                  "frame": 1050,
                   "volume": 0.4
                 },
                 {
+                  "frame": 1500,
+                  "volume": 0.45
+                },
+                {
+                  "frame": 1530,
+                  "volume": 0.15
+                },
+                {
+                  "frame": 1710,
+                  "volume": 0.55
+                },
+                {
                   "frame": 1800,
+                  "volume": 0.35
+                },
+                {
+                  "frame": 2070,
                   "volume": 0
                 }
               ]
@@ -1793,7 +1793,7 @@
               "height": 0
             },
             "from": 0,
-            "duration": 1500,
+            "duration": 2085,
             "props": {
               "src": "./assets/sgcclaw-voiceover.mp3",
               "volume": 1,
