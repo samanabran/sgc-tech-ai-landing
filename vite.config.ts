@@ -10,5 +10,9 @@ export default defineConfig({
       adapter,
       entry: 'src/index.tsx'
     })
-  ]
+  ],
+  test: {
+    environment: 'node',
+    include: ['tests/unit/**/*.test.ts'],
+  },
 })

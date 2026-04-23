@@ -900,48 +900,6 @@
       if (brainState.leadScore > 100) brainState.leadScore = 100;
     }
 
-    function nextBestQuestion() {
-      const p = brainState.profile;
-      if (!p.company) return 'What company are you with so I can tailor a relevant rollout plan?';
-      if (!p.role) return 'What is your role in the buying process?';
-      if (!p.timeline) return 'What timeline are you targeting for go-live?';
-      if (!p.stack.length) return 'Which systems should Aira integrate first (CRM/ERP/support stack)?';
-      return 'Would you like me to move this to a booked demo or escalate directly to a human specialist?';
-    }
-
-    function buildResponse(intent) {
-      const p = brainState.profile;
-      const opener = p.name ? ('Thanks ' + p.name + '. ') : '';
-
-      if (intent === 'booking') {
-        return opener + 'Great choice. Use the Book Demo button below and we can map your first 30-day implementation plan.';
-      }
-      if (intent === 'human') {
-        return opener + 'Absolutely. Tap Talk to Human and choose WhatsApp or Telegram. I will prepare context for fast handoff.';
-      }
-      if (intent === 'pricing') {
-        return opener + 'We offer Starter, Professional, and Enterprise tiers. Pricing depends on scope, integrations, and compliance. ' + nextBestQuestion();
-      }
-      if (intent === 'integrations') {
-        const stack = p.stack.length ? (' I detected: ' + p.stack.join(', ') + '.') : '';
-        return opener + 'Aira supports 200+ integrations including Salesforce, HubSpot, SAP, Slack, Teams, and more.' + stack + ' ' + nextBestQuestion();
-      }
-      if (intent === 'compliance') {
-        return opener + 'Security posture includes SOC 2, GDPR, and HIPAA-ready controls for regulated workloads. ' + nextBestQuestion();
-      }
-      if (intent === 'timeline') {
-        return opener + 'Typical deployment is around 30 days with fixed milestones. ' + nextBestQuestion();
-      }
-      if (intent === 'capabilities') {
-        return opener + 'Aira can predict outcomes, automate workflows, generate leads, and drive measurable ROI. ' + nextBestQuestion();
-      }
-      if (intent === 'greeting') {
-        return opener + 'Welcome to SGC TECH AI. I can help with pricing, integrations, compliance, booking, or human escalation. ' + nextBestQuestion();
-      }
-
-      return opener + 'I understand. I can support deployment planning, integrations, pricing, or escalation to a human specialist. ' + nextBestQuestion();
-    }
-
     function renderHistory() {
       chatLog.innerHTML = '';
       history.forEach((item) => {
@@ -977,17 +935,25 @@
       } catch (_) {}
     }
 
-    function handleVoiceUserInput(transcript) {
+    async function handleVoiceUserInput(transcript) {
       if (!transcript) return;
       appendMessage('user', transcript);
       appendEvent('voice_user_message', transcript);
-      const reply = assistantReply(transcript);
-      appendMessage('assistant', reply);
-      appendEvent('voice_assistant_message', reply);
-      speakAssistant(reply);
+      trackBrainState(transcript);
+      const typingEl = showTyping();
+      try {
+        const reply = await callAira(transcript, 'voice');
+        hideTyping(typingEl);
+        appendMessage('assistant', reply);
+        appendEvent('voice_assistant_message', reply);
+        speakAssistant(reply);
+      } catch (_) {
+        hideTyping(typingEl);
+        appendMessage('assistant', 'Connection error. Please try again.');
+      }
     }
 
-    function assistantReply(userText) {
+    function trackBrainState(userText) {
       const intent = detectIntent(userText);
 
       brainState.turns += 1;
@@ -1003,8 +969,41 @@
         leadScore: brainState.leadScore,
         profile: brainState.profile,
       });
+    }
 
-      return buildResponse(intent);
+    function showTyping() {
+      const el = document.createElement('div');
+      el.className = 'aira-msg aira aira-typing';
+      el.innerHTML = '<span></span><span></span><span></span>';
+      chatLog.appendChild(el);
+      chatLog.scrollTop = chatLog.scrollHeight;
+      return el;
+    }
+
+    function hideTyping(el) {
+      if (el && el.parentNode) el.parentNode.removeChild(el);
+    }
+
+    async function callAira(message, source) {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 30000);
+      try {
+        const res = await fetch('/api/aira/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: message, source: source, sessionId: sessionId }),
+          signal: controller.signal,
+        });
+        const data = await res.json();
+        return data.reply || "I'm having trouble responding right now. Please try again.";
+      } catch (err) {
+        if (err.name === 'AbortError') {
+          throw new Error('Request timed out');
+        }
+        throw err;
+      } finally {
+        clearTimeout(timeoutId);
+      }
     }
 
     function stopVoiceListening() {
@@ -1096,7 +1095,7 @@
       });
     });
 
-    chatForm.addEventListener('submit', (e) => {
+    chatForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       const message = chatInput.value.trim();
       if (!message) return;
@@ -1104,12 +1103,18 @@
       appendMessage('user', message);
       appendEvent('user_message', message);
       chatInput.value = '';
+      trackBrainState(message);
 
-      setTimeout(() => {
-        const reply = assistantReply(message);
+      const typingEl = showTyping();
+      try {
+        const reply = await callAira(message, 'chat');
+        hideTyping(typingEl);
         appendMessage('assistant', reply);
         appendEvent('assistant_message', reply);
-      }, 220);
+      } catch (_) {
+        hideTyping(typingEl);
+        appendMessage('assistant', 'Connection error. Please try again.');
+      }
     });
 
     if (recognition) {

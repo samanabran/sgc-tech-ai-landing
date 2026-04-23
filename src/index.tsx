@@ -1,5 +1,6 @@
 import { Hono } from 'hono'
 import { renderer } from './renderer'
+import quoteBuilderApp from './routes/quote-builder'
 import {
   IconArrow, IconCheck, IconX, IconPlus, IconStar, IconMenu,
   IconHealthcare, IconFinance, IconRetail, IconManufacturing,
@@ -13,6 +14,8 @@ import { CircuitBg } from './components/CircuitBg'
 const app = new Hono()
 
 app.use(renderer)
+
+app.route('/quote-builder', quoteBuilderApp)
 
 const BOOK_DEMO_URL = 'https://app.cal.com/sgctech'
 
@@ -321,6 +324,83 @@ app.post('/api/aira/memory', async (c) => {
   return c.json({ ok: true, saved: true, updatedAt: now })
 })
 
+/* ---------- Aira Chat Proxy ---------- */
+
+interface AiraChatRequest {
+  message?: unknown
+  source?: unknown
+  sessionId?: unknown
+}
+
+const MAX_MESSAGE_LENGTH = 4000
+const MAX_SESSION_ID_LENGTH = 128
+const VALID_SOURCES = ['chat', 'voice', 'widget', 'api']
+
+app.post('/api/aira/chat', async (c) => {
+  let body: AiraChatRequest | null = null
+  try {
+    body = await c.req.json()
+  } catch {
+    return c.json({ ok: false, error: 'Invalid JSON body' }, 400)
+  }
+
+  // Validate message
+  const message = typeof body?.message === 'string' ? body.message.trim() : ''
+  if (!message || message.length > MAX_MESSAGE_LENGTH) {
+    return c.json({ ok: false, error: 'message required and must be under 4000 characters' }, 400)
+  }
+
+  // Validate source
+  const source = VALID_SOURCES.includes(body?.source as string) ? (body?.source as string) : 'chat'
+
+  // Validate session ID
+  const sessionId =
+    typeof body?.sessionId === 'string' && body.sessionId.length <= MAX_SESSION_ID_LENGTH
+      ? body.sessionId.trim()
+      : crypto.randomUUID()
+
+  // Fetch with timeout
+  const controller = new AbortController()
+  const timeoutId = setTimeout(() => controller.abort(), 15000)
+
+  let resp: Response
+  try {
+    resp = await fetch('https://aira.tachimao.com/web/text', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ text: message, session_id: sessionId }),
+      signal: controller.signal,
+    })
+  } catch {
+    clearTimeout(timeoutId)
+    return c.json({ ok: false, reply: 'Unable to process your request. Please try again in a moment.' }, 502)
+  }
+
+  clearTimeout(timeoutId)
+
+  if (!resp.ok) {
+    return c.json({ ok: false, reply: 'Unable to process your request. Please try again in a moment.' }, 502)
+  }
+
+  const rawResponse = resp.headers.get('x-response') ?? ''
+  let reply = "I'm having trouble formulating a response right now. Please try again."
+  if (rawResponse) {
+    try {
+      reply = atob(rawResponse)
+    } catch (decodeError) {
+      console.error('Failed to decode x-response header:', decodeError)
+      return c.json({ ok: false, reply: 'Unable to process response. Please try again.' }, 500)
+    }
+  }
+
+  // Validate upstream session ID
+  const upstreamSessionId = resp.headers.get('x-session-id')
+  const newSessionId =
+    upstreamSessionId && /^[a-zA-Z0-9\-_]{1,128}$/.test(upstreamSessionId) ? upstreamSessionId : sessionId
+
+  return c.json({ ok: true, reply, sessionId: newSessionId, source })
+})
+
 const isAdminAuthorized = (c: any) => {
   const requiredToken = (c.env as any)?.ADMIN_TOKEN
   if (!requiredToken) return true
@@ -594,6 +674,7 @@ app.get('/', (c) => {
             <li><a href="#testimonials">Customers</a></li>
             <li><a href="#stories">Stories</a></li>
             <li><a href="#faq">FAQ</a></li>
+            <li><a href="/quote-builder" class="nav-quote-link">Quote Builder</a></li>
           </ul>
           <div class="nav-cta">
             <a href="https://scholarixglobal.com/web/login" class="btn btn-ghost" style="padding: 0.55rem 1.1rem;" target="_blank" rel="noopener noreferrer">Sign in</a>
@@ -820,10 +901,16 @@ app.get('/', (c) => {
                 </article>
               ))}
             </div>
+
+            {/* Quote Builder CTA */}
+            <div style="text-align: center; margin-top: 2.5rem;" class="reveal">
+              <p style="color: var(--gray-300); margin-bottom: 1rem;">Not sure which plan fits? Build a custom AED quote in 2 minutes.</p>
+              <a href="/quote-builder" class="btn btn-ghost" style="padding: 0.7rem 1.6rem;">
+                Open Quote Builder →
+              </a>
+            </div>
           </div>
         </section>
-
-        {/* ============== TESTIMONIALS ============== */}
         <section id="testimonials" class="section-ambient" style="--sg-color: rgba(0,71,255,0.06)">
           <div class="container">
             <div class="section-glass">

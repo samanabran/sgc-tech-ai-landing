@@ -1,0 +1,263 @@
+<h2>Aira Chatbox — Proposed Redesign</h2>
+<p class="subtitle">Compare the current layout vs. the cleaned-up version. Click a card to select your preference.</p>
+
+<style>
+  .chat-demo {
+    background: #0d1130;
+    border-radius: 14px;
+    border: 1px solid rgba(0,217,255,0.18);
+    width: 300px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 13px;
+    color: #e2e8f0;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  }
+  .chat-header {
+    background: linear-gradient(135deg, #0f1b40 0%, #0a1628 100%);
+    padding: 10px 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(0,217,255,0.12);
+  }
+  .chat-header-name { font-size: 11px; color: #00d9ff; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; }
+  .chat-close { background: none; border: none; color: #94a3b8; cursor: pointer; font-size: 14px; }
+  .chat-body { padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+  .chat-welcome-text {
+    font-size: 11.5px;
+    color: #94a3b8;
+    line-height: 1.5;
+    padding: 8px 10px;
+    background: rgba(0,217,255,0.05);
+    border-radius: 8px;
+    border: 1px solid rgba(0,217,255,0.1);
+  }
+  .mode-switch { display: flex; gap: 6px; }
+  .mode-btn {
+    flex: 1; padding: 7px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.04); color: #94a3b8; font-size: 12px; font-weight: 500; cursor: pointer;
+  }
+  .mode-btn.active { background: #00d9ff; color: #0a1628; border-color: #00d9ff; }
+  .mode-copy { font-size: 11px; color: #64748b; }
+  .chat-log {
+    min-height: 60px; background: rgba(255,255,255,0.03); border-radius: 8px;
+    padding: 8px; display: flex; flex-direction: column; gap: 6px;
+  }
+  .msg { padding: 6px 8px; border-radius: 8px; font-size: 11.5px; max-width: 90%; }
+  .msg.bot { background: rgba(0,217,255,0.1); color: #e2e8f0; align-self: flex-start; }
+  .msg.user { background: rgba(79,70,229,0.25); color: #c7d2fe; align-self: flex-end; }
+  .chat-input-row { display: flex; gap: 6px; }
+  .chat-input {
+    flex: 1; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px; padding: 7px 10px; color: #e2e8f0; font-size: 12px;
+  }
+  .send-btn {
+    background: #00d9ff; color: #0a1628; border: none; border-radius: 8px;
+    padding: 7px 12px; font-size: 12px; font-weight: 600; cursor: pointer;
+  }
+  .quick-btns { display: flex; gap: 6px; }
+  .quick-btn {
+    flex: 1; padding: 8px 6px; border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05);
+    color: #e2e8f0; font-size: 11.5px; font-weight: 500; cursor: pointer; text-align: center;
+  }
+  .quick-btn.human { border-color: rgba(0,217,255,0.3); color: #00d9ff; }
+  .alert-links { display: flex; gap: 6px; }
+  .alert-btn {
+    flex: 1; padding: 7px; border-radius: 8px; font-size: 11px; font-weight: 500;
+    text-align: center; cursor: pointer;
+  }
+  .whatsapp { background: rgba(37,211,102,0.15); border: 1px solid rgba(37,211,102,0.3); color: #25d366; }
+  .telegram { background: rgba(0,136,204,0.15); border: 1px solid rgba(0,136,204,0.3); color: #0088cc; }
+  .status-text { font-size: 10px; color: #4ade80; }
+  .warn-text { font-size: 10px; color: #fbbf24; }
+  .dim-text { font-size: 10px; color: #475569; }
+  .noise-label {
+    display: inline-block; background: rgba(239,68,68,0.15); border: 1px solid rgba(239,68,68,0.3);
+    color: #f87171; font-size: 9px; font-weight: 600; border-radius: 4px;
+    padding: 1px 5px; margin-left: 4px; text-transform: uppercase;
+  }
+  .clean-label {
+    display: inline-block; background: rgba(74,222,128,0.12); border: 1px solid rgba(74,222,128,0.3);
+    color: #4ade80; font-size: 9px; font-weight: 600; border-radius: 4px;
+    padding: 1px 5px; margin-left: 4px; text-transform: uppercase;
+  }
+  /* Welcome popup */
+  .popup-demo {
+    background: #0d1130;
+    border-radius: 14px;
+    border: 1px solid rgba(0,217,255,0.25);
+    width: 300px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 13px;
+    color: #e2e8f0;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(0,217,255,0.1);
+    padding: 20px;
+  }
+  .popup-title { font-size: 16px; font-weight: 700; margin-bottom: 8px; color: #f1f5f9; }
+  .popup-body { font-size: 12.5px; color: #94a3b8; line-height: 1.6; margin-bottom: 16px; }
+  .popup-btns { display: flex; gap: 8px; }
+  .popup-btn-chat {
+    flex: 1; padding: 10px; border-radius: 10px; background: #00d9ff;
+    color: #0a1628; font-weight: 600; font-size: 13px; border: none; cursor: pointer; text-align: center;
+  }
+  .popup-btn-voice {
+    flex: 1; padding: 10px; border-radius: 10px; background: rgba(255,255,255,0.06);
+    color: #e2e8f0; font-weight: 500; font-size: 13px; border: 1px solid rgba(255,255,255,0.12); cursor: pointer; text-align: center;
+  }
+  .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+  .compare-label { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 10px; padding: 4px 10px; border-radius: 6px; display: inline-block; }
+  .compare-label.before { background: rgba(239,68,68,0.12); color: #f87171; }
+  .compare-label.after { background: rgba(74,222,128,0.1); color: #4ade80; }
+  .section { margin-bottom: 32px; }
+</style>
+
+<div class="section">
+  <h3>Part 1 — Welcome Message: Popup vs. Inside Chatbox</h3>
+  <p class="subtitle">The welcome text moves out of the chatbox into a popup overlay that appears when the page loads. User picks Chat or Voice to dismiss it.</p>
+
+  <div class="compare-grid" style="margin-top: 16px;">
+    <div>
+      <div class="compare-label before">Current (inside chatbox)</div>
+      <div class="chat-demo">
+        <div class="chat-header">
+          <span class="chat-header-name">Aira Sales Assistant</span>
+          <button class="chat-close">✕</button>
+        </div>
+        <div class="chat-body">
+          <div class="chat-welcome-text">
+            Welcome to SGC TECH AI. We help B2B teams cut operational cost, automate workflows, and deploy production AI in as little as 30 days.
+            <span class="noise-label">redundant</span>
+          </div>
+          <div class="mode-switch">
+            <button class="mode-btn active">Chat</button>
+            <button class="mode-btn">Voice</button>
+          </div>
+          <div class="mode-copy">Chat mode is active. Ask pricing, integrations, or use the quick actions below. <span class="noise-label">remove</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="compare-label after">Proposed (separate popup)</div>
+      <div class="popup-demo">
+        <div class="popup-title">Welcome to SGC TECH AI</div>
+        <div class="popup-body">We help B2B teams cut operational cost, automate workflows, and deploy production AI in as little as 30 days.</div>
+        <div class="popup-btns">
+          <div class="popup-btn-chat">Chat</div>
+          <div class="popup-btn-voice">Voice</div>
+        </div>
+      </div>
+      <p class="subtitle" style="margin-top:8px; font-size:11px;">Appears on page load · clicking Chat or Voice dismisses it and opens the chatbox in that mode</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>Part 2 — Cleaned-up Chatbox</h3>
+  <p class="subtitle">All noise removed. Chat/Voice toggle stays. Book Demo + Talk to Human inside. WhatsApp/Telegram only appear after "Talk to Human."</p>
+
+  <div class="compare-grid" style="margin-top: 16px;">
+    <div>
+      <div class="compare-label before">Current (noisy)</div>
+      <div class="chat-demo">
+        <div class="chat-header">
+          <span class="chat-header-name">Aira Sales Assistant</span>
+          <button class="chat-close">✕</button>
+        </div>
+        <div class="chat-body">
+          <div class="mode-switch">
+            <button class="mode-btn active">Chat</button>
+            <button class="mode-btn">Voice</button>
+          </div>
+          <div class="mode-copy">Chat mode is active. Ask pricing… <span class="noise-label">remove</span></div>
+          <div class="chat-log">
+            <div class="msg bot">Hello, welcome to SGC TECH AI. I am Aira. How can I support your B2B sales goals today?</div>
+          </div>
+          <div class="chat-input-row">
+            <input class="chat-input" placeholder="Type your message..." />
+            <button class="send-btn">Send</button>
+          </div>
+          <div class="quick-btns">
+            <div class="quick-btn">Book Demo</div>
+            <div class="quick-btn human">Talk to Human</div>
+          </div>
+          <div class="alert-links">
+            <div class="alert-btn whatsapp">Use WhatsApp</div>
+            <div class="alert-btn telegram">Use Telegram</div>
+          </div>
+          <div class="status-text">Attempting Telegram. If app launch fails… <span class="noise-label">remove</span></div>
+          <div class="dim-text">Conversation and AI memory are recorded in browser storage on this device. <span class="noise-label">remove</span></div>
+          <div class="warn-text">Central memory synced. <span class="noise-label">remove</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="compare-label after">Proposed (clean)</div>
+      <div class="chat-demo">
+        <div class="chat-header">
+          <span class="chat-header-name">Aira Sales Assistant</span>
+          <button class="chat-close">✕</button>
+        </div>
+        <div class="chat-body">
+          <div class="mode-switch">
+            <button class="mode-btn active">Chat</button>
+            <button class="mode-btn">Voice</button>
+          </div>
+          <div class="chat-log">
+            <div class="msg bot">Hello, welcome to SGC TECH AI. I am Aira. How can I support your B2B sales goals today?</div>
+          </div>
+          <div class="chat-input-row">
+            <input class="chat-input" placeholder="Type your message..." />
+            <button class="send-btn">Send</button>
+          </div>
+          <div class="quick-btns">
+            <div class="quick-btn">Book Demo</div>
+            <div class="quick-btn human">Talk to Human</div>
+          </div>
+        </div>
+      </div>
+      <p class="subtitle" style="margin-top:8px; font-size:11px;">WhatsApp + Telegram appear only after clicking "Talk to Human"</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>Part 3 — After "Talk to Human" is clicked</h3>
+  <p class="subtitle">Only then do WhatsApp and Telegram appear, replacing the quick action buttons.</p>
+
+  <div style="margin-top: 16px; display: inline-block;">
+    <div class="chat-demo">
+      <div class="chat-header">
+        <span class="chat-header-name">Aira Sales Assistant</span>
+        <button class="chat-close">✕</button>
+      </div>
+      <div class="chat-body">
+        <div class="mode-switch">
+          <button class="mode-btn active">Chat</button>
+          <button class="mode-btn">Voice</button>
+        </div>
+        <div class="chat-log">
+          <div class="msg bot">Hello, welcome to SGC TECH AI. I am Aira. How can I support your B2B sales goals today?</div>
+          <div class="msg user">I'd like to talk to a human</div>
+          <div class="msg bot">Sure! Choose how you'd like to connect:</div>
+        </div>
+        <div class="chat-input-row">
+          <input class="chat-input" placeholder="Type your message..." />
+          <button class="send-btn">Send</button>
+        </div>
+        <div class="quick-btns">
+          <div class="quick-btn">Book Demo</div>
+          <div class="quick-btn human">Talk to Human</div>
+        </div>
+        <div class="alert-links">
+          <div class="alert-btn whatsapp">Use WhatsApp</div>
+          <div class="alert-btn telegram">Use Telegram</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

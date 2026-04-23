@@ -1,7 +1,20 @@
 {
   "permissions": {
     "allow": [
-      "Bash(gh repo *)"
+      "Bash(gh repo *)",
+      "Bash(grep -n \"<style\\\\|<script\\\\|css\\\\`\\\\|style\\\\`\" /c/Users/branm/sgc-tech-ai-landing/src/index.tsx)",
+      "Bash(bash *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git commit *)",
+      "Bash(npm run *)",
+      "Bash(curl *)",
+      "Bash(grep -v \"^$\")",
+      "Bash(python3 -c \"import base64; print\\(base64.b64decode\\('R29vZCBldmVuaW5nLiBJIGNhbiBhc3Npc3Qgd2l0aCBBSSBpbXBsZW1lbnRhdGlvbiwgT2Rvb0VSUCBzb2x1dGlvbnMsIG9yIGN1c3RvbSBTYWFTIGRldmVsb3BtZW50IGZvciB5b3VyIFVBRSBidXNpbmVzcy4gV2hpY2ggYXJlYSBpbnRlcmVzdHMgeW91Pw=='\\).decode\\(\\)\\)\")"
     ]
-  }
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "rendervid"
+  ]
 }
