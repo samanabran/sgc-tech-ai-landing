@@ -99,6 +99,40 @@ const pricing = [
     ],
   },
   {
+    tier: 'AI Implementation',
+    price: null,
+    period: '',
+    desc: 'We integrate AI into your existing systems — ERPs, CRMs, or custom software.',
+    featured: false,
+    cta: 'Get started',
+    features: [
+      { text: 'Integration with ERPs & CRMs',    on: true },
+      { text: 'API-first architecture',         on: true },
+      { text: 'Data pipeline setup',             on: true },
+      { text: 'Workflow automation',           on: true },
+      { text: '3-month commitment',         on: true },
+      { text: 'Training & handoff',          on: true },
+      { text: 'Ongoing support available',    on: false },
+    ],
+  },
+  {
+    tier: 'Odoo Custom Modules',
+    price: null,
+    period: '',
+    desc: 'Bespoke Odoo modules tailored to your industry-specific workflows.',
+    featured: false,
+    cta: 'Build my module',
+    features: [
+      { text: 'Custom Odoo module development',   on: true },
+      { text: 'Industry-specific workflows', on: true },
+      { text: 'API integrations',         on: true },
+      { text: 'Data migration',           on: true },
+      { text: 'Testing & documentation', on: true },
+      { text: 'Source code ownership',     on: true },
+      { text: 'Annual maintenance opt-in', on: false },
+    ],
+  },
+  {
     tier: 'Enterprise',
     price: 'Custom',
     period: '',
@@ -869,6 +903,8 @@ app.get('/', (c) => {
                   <div class="pricing-price">
                     {p.price === 'Custom' ? (
                       <span class="amount">Custom</span>
+                    ) : p.price === null ? (
+                      <span class="amount" style="font-size: 0.65em; opacity: 0.7;">Request Quote</span>
                     ) : (
                       <>
                         <span class="currency">$</span>

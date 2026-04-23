@@ -8,6 +8,7 @@ export interface Industry {
   proofPoint: { title: string; description: string; metric: string }
   recommendedAiFeatures: string[]
   recommendedModules: string[]
+  isSpecial?: boolean
 }
 
 export interface AiFeature {
@@ -143,6 +144,32 @@ export const INDUSTRIES: Industry[] = [
     proofPoint: { title: 'Contract Automation', description: 'Contract review & discovery acceleration', metric: '60% faster' },
     recommendedAiFeatures: ['aml-screening', 'process-automation'],
     recommendedModules: ['crm', 'document-mgmt', 'dashboard'],
+  },
+  // Special: AI Implementation only (no base industry)
+  {
+    id: 'ai-implementation',
+    name: 'AI Implementation',
+    icon: 'brain',
+    baseCost: 0,
+    avgDeploymentDays: 45,
+    maxConcurrentUsers: 50,
+    proofPoint: { title: 'Custom AI Integration', description: 'Integrate AI into your existing systems', metric: 'Custom' },
+    recommendedAiFeatures: [],
+    recommendedModules: [],
+    isSpecial: true,
+  },
+  // Special: Odoo Custom Modules only
+  {
+    id: 'odoo-modules',
+    name: 'Odoo Custom Modules',
+    icon: 'box',
+    baseCost: 0,
+    avgDeploymentDays: 60,
+    maxConcurrentUsers: 100,
+    proofPoint: { title: 'Bespoke Odoo Modules', description: 'Custom modules for your workflows', metric: 'Custom' },
+    recommendedAiFeatures: [],
+    recommendedModules: [],
+    isSpecial: true,
   },
 ]
 

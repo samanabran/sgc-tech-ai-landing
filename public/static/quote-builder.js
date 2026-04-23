@@ -620,6 +620,119 @@
     // Email quote button
     $('qb-modal-email')?.addEventListener('click', sendQuoteEmail)
 
+    // Clear All button - reset all selections
+    $('qb-clear-all')?.addEventListener('click', () => {
+      // Reset state
+      state.industryId = null
+      state.industryData = null
+      state.aiFeatures.clear()
+      state.modules.clear()
+      state.includeRetainer = false
+      
+      // Uncheck all checkboxes
+      document.querySelectorAll('.qb-cb').forEach(cb => { cb.checked = false })
+      
+      // Remove selected class from all industry cards
+      document.querySelectorAll('.qb-industry-card.is-selected').forEach(card => {
+        card.classList.remove('is-selected')
+        card.setAttribute('aria-pressed', 'false')
+      })
+      
+      // Hide builder
+      const builder = $('qb-builder')
+      if (builder) builder.hidden = true
+      
+      // Reset recommended highlights
+      document.querySelectorAll('.is-recommended').forEach(el => {
+        el.classList.remove('is-recommended')
+      })
+      
+      // Reset pricing UI
+      updatePricingUI()
+      
+      // Scroll back to industry step
+      $('qb-step-industry')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    })
+
+    // Pre-defined builds buttons
+    document.querySelectorAll('.qb-build-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const buildId = btn.dataset.buildId
+        if (!buildId) return
+        
+        // Define pre-built packages
+        const builds = {
+          starter: {
+            name: 'Starter AI',
+            baseCost: 2400,
+            days: 14,
+            aiFeatures: ['chatbot', 'process-automation'],
+            modules: ['crm'],
+          },
+          pro: {
+            name: 'Professional',
+            baseCost: 7900,
+            days: 21,
+            aiFeatures: ['chatbot', 'support-agent', 'predictive-analytics', 'process-automation'],
+            modules: ['crm', 'accounting', 'dashboard', 'inventory'],
+          },
+          enterprise: {
+            name: 'Enterprise',
+            baseCost: 15000,
+            days: 30,
+            aiFeatures: ['chatbot', 'support-agent', 'predictive-analytics', 'process-automation', 'vision-qc', 'aml-screening'],
+            modules: ['crm', 'accounting', 'dashboard', 'inventory', 'hr', 'project-mgmt', 'document-mgmt'],
+          },
+        }
+        
+        const build = builds[buildId]
+        if (!build) return
+        
+        // Set industry context for calculation (use a placeholder)
+        state.industryId = buildId
+        state.industryData = {
+          baseCost: build.baseCost,
+          avgDeploymentDays: build.days,
+        }
+        
+        // Clear current selections
+        state.aiFeatures.clear()
+        state.modules.clear()
+        
+        // Apply build features
+        build.aiFeatures.forEach(id => state.aiFeatures.add(id))
+        build.modules.forEach(id => state.modules.add(id))
+        
+        // Check the boxes
+        document.querySelectorAll('.qb-cb').forEach(cb => {
+          const id = cb.dataset.featureId
+          const kind = cb.dataset.featureKind
+          if (kind === 'ai' && build.aiFeatures.includes(id)) {
+            cb.checked = true
+          } else if (kind === 'module' && build.modules.includes(id)) {
+            cb.checked = true
+          }
+        })
+        
+        // Update context bar
+        const ctxIndustry = $('qb-context-industry')
+        const ctxDays = $('qb-context-days')
+        const ctxProof = $('qb-context-proof')
+        if (ctxIndustry) ctxIndustry.textContent = build.name
+        if (ctxDays) ctxDays.textContent = build.days + '-day deployment'
+        if (ctxProof) ctxProof.textContent = 'Pre-built Package'
+        
+        // Show builder
+        const builder = $('qb-builder')
+        if (builder) {
+          builder.hidden = false
+          builder.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        }
+        
+        updatePricingUI()
+      })
+    })
+
     // Signal that JS has fully initialized (used by E2E tests)
     window.QBInitialized = true
   }

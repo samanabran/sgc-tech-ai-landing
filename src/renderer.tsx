@@ -1,17 +1,70 @@
-import { jsxRenderer } from 'hono/jsx-renderer'
+import { jsxRenderer, useRequestContext } from 'hono/jsx-renderer'
+
+const SITE_ORIGIN = 'https://sgctech.ai'
+
+const PAGE_META: Record<string, { title: string; description: string; ogTitle?: string }> = {
+  '/': {
+    title: 'SGC TECH AI — AI-Powered Cost Savings, Deployed in 30 Days',
+    description: 'Enterprise AI that cuts costs by up to 63%. Production-ready AI agents, integrations, and workflows for modern businesses. Deployed in 30 days.',
+    ogTitle: 'SGC TECH AI — Cut Costs. Optimize Operations. Ship AI in 30 Days.',
+  },
+  '/quote-builder': {
+    title: 'Quote Builder — SGC TECH AI | Custom AI Implementation Pricing',
+    description: 'Build your custom AI implementation quote. Transparent pricing, zero surprises, 30-day deployment. Configure AI features and ERP modules to get an instant estimate.',
+    ogTitle: 'Quote Builder — Build Your Custom AI Implementation Package',
+  },
+  '/terms': {
+    title: 'Terms of Service — SGC TECH AI',
+    description: 'Terms of service for SGC TECH AI platform and services.',
+  },
+  '/privacy': {
+    title: 'Privacy Policy — SGC TECH AI',
+    description: 'SGC TECH AI privacy policy. Learn how we collect, use and protect your personal data.',
+  },
+  '/security': {
+    title: 'Security — SGC TECH AI',
+    description: 'SGC TECH AI security practices, data protection, and compliance information.',
+  },
+}
+
+const DEFAULT_META = {
+  title: 'SGC TECH AI — AI-Powered Cost Savings, Deployed in 30 Days',
+  description: 'Enterprise AI that cuts costs by up to 63%. Production-ready AI agents, integrations, and workflows for modern businesses. Deployed in 30 days.',
+  ogTitle: 'SGC TECH AI — Cut Costs. Optimize Operations. Ship AI in 30 Days.',
+}
 
 export const renderer = jsxRenderer(({ children }) => {
+  const c = useRequestContext()
+  const path = c.req.path.replace(/\/$/, '') || '/'
+  const meta = PAGE_META[path] ?? DEFAULT_META
+  const ogTitle = meta.ogTitle ?? meta.title
+  const canonical = `${SITE_ORIGIN}${path === '/' ? '/' : path}`
+
   return (
     <html lang="en">
       <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="theme-color" content="#0b0e27" />
-        <meta name="description" content="SGC TECH AI — Enterprise AI that cuts costs by up to 63%. Production-ready AI agents, integrations, and workflows for modern businesses. Deployed in 30 days." />
-        <meta property="og:title" content="SGC TECH AI — Cut Costs. Optimize Operations. Ship AI in 30 Days." />
-        <meta property="og:description" content="Deploy production-grade AI that reduces operational costs by up to 63%. Built for B2B enterprise. Live in 30 days." />
+        <meta name="description" content={meta.description} />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href={canonical} />
+
+        {/* Open Graph */}
+        <meta property="og:title" content={ogTitle} />
+        <meta property="og:description" content={meta.description} />
         <meta property="og:type" content="website" />
-        <title>SGC TECH AI — AI-Powered Cost Savings, Deployed in 30 Days</title>
+        <meta property="og:url" content={canonical} />
+        <meta property="og:site_name" content="SGC TECH AI" />
+        <meta property="og:image" content={`${SITE_ORIGIN}/static/sgc-tech-logo.png`} />
+
+        {/* Twitter / X Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={ogTitle} />
+        <meta name="twitter:description" content={meta.description} />
+        <meta name="twitter:image" content={`${SITE_ORIGIN}/static/sgc-tech-logo.png`} />
+
+        <title>{meta.title}</title>
         <link rel="icon" type="image/png" href="/static/sgc-tech-logo.png" />
         <link rel="preconnect" href="https://api.fontshare.com" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
