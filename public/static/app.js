@@ -610,21 +610,18 @@
     const panel = root.querySelector('[data-chat-panel]');
     const closeBtn = root.querySelector('[data-chat-close]');
     const modeBtns = Array.from(root.querySelectorAll('[data-mode]'));
-    const modeCopy = root.querySelector('[data-mode-copy]');
     const talkBtn = root.querySelector('[data-talk-human]');
     const alertLinksWrap = root.querySelector('[data-alert-links]');
     const alertWhatsapp = root.querySelector('[data-alert-whatsapp]');
     const alertTelegram = root.querySelector('[data-alert-telegram]');
-    const alertStatus = root.querySelector('[data-alert-status]');
     const chatLog = root.querySelector('[data-chat-log]');
     const chatForm = root.querySelector('[data-chat-form]');
     const chatInput = root.querySelector('[data-chat-input]');
     const voicePanel = root.querySelector('[data-voice-panel]');
     const voiceToggleBtn = root.querySelector('[data-voice-toggle]');
-    const voiceStatus = root.querySelector('[data-voice-status]');
     const syncStatus = root.querySelector('[data-sync-status]');
 
-    if (!launcher || !panel || !closeBtn || !modeBtns.length || !modeCopy || !talkBtn || !alertLinksWrap || !alertWhatsapp || !alertTelegram || !alertStatus || !chatLog || !chatForm || !chatInput || !voicePanel || !voiceToggleBtn || !voiceStatus) {
+    if (!launcher || !panel || !closeBtn || !modeBtns.length || !talkBtn || !alertLinksWrap || !alertWhatsapp || !alertTelegram || !chatLog || !chatForm || !chatInput || !voicePanel || !voiceToggleBtn) {
       return;
     }
 
@@ -1010,17 +1007,11 @@
       return buildResponse(intent);
     }
 
-    const modeMessages = {
-      chat: 'Chat mode is active. Ask pricing, integrations, or use the quick actions below.',
-      voice: 'Voice mode is active. Tap Start Voice Conversation and speak naturally.',
-    };
-
     function stopVoiceListening() {
       if (!canUseVoice || !recognition || !isVoiceListening) return;
       isVoiceListening = false;
       voiceToggleBtn.classList.remove('listening');
       voiceToggleBtn.textContent = 'Start Voice Conversation';
-      voiceStatus.textContent = 'Voice mode ready. Tap to start speaking.';
       try {
         recognition.stop();
       } catch (_) {}
@@ -1032,14 +1023,12 @@
       isVoiceListening = true;
       voiceToggleBtn.classList.add('listening');
       voiceToggleBtn.textContent = 'Stop Listening';
-      voiceStatus.textContent = 'Listening... speak now.';
       try {
         recognition.start();
       } catch (_) {
         isVoiceListening = false;
         voiceToggleBtn.classList.remove('listening');
         voiceToggleBtn.textContent = 'Start Voice Conversation';
-        voiceStatus.textContent = 'Could not start voice input. Please try again.';
       }
       appendEvent('voice_start', 'manual');
     }
@@ -1065,8 +1054,6 @@
         btn.classList.toggle('active', active);
         btn.setAttribute('aria-selected', String(active));
       });
-      modeCopy.textContent = modeMessages[mode] || modeMessages.chat;
-
       const isVoiceMode = mode === 'voice';
       chatForm.hidden = isVoiceMode;
       voicePanel.hidden = !isVoiceMode;
@@ -1075,7 +1062,6 @@
         stopVoiceListening();
       } else if (!canUseVoice) {
         voiceToggleBtn.disabled = true;
-        voiceStatus.textContent = 'Voice is not supported in this browser. Please use Chat mode.';
       }
     };
 
@@ -1130,10 +1116,8 @@
       recognition.onresult = (event) => {
         const transcript = event.results?.[0]?.[0]?.transcript?.trim() || '';
         if (!transcript) {
-          voiceStatus.textContent = 'I did not catch that. Please try again.';
           return;
         }
-        voiceStatus.textContent = 'Heard: "' + transcript + '"';
         handleVoiceUserInput(transcript);
       };
 
@@ -1141,16 +1125,12 @@
         isVoiceListening = false;
         voiceToggleBtn.classList.remove('listening');
         voiceToggleBtn.textContent = 'Start Voice Conversation';
-        voiceStatus.textContent = 'Voice error detected. Please try again.';
       };
 
       recognition.onend = () => {
         isVoiceListening = false;
         voiceToggleBtn.classList.remove('listening');
         voiceToggleBtn.textContent = 'Start Voice Conversation';
-        if (root.getAttribute('data-active-mode') === 'voice') {
-          voiceStatus.textContent = 'Voice mode ready. Tap to continue speaking.';
-        }
       };
     }
 
@@ -1174,12 +1154,10 @@
       alertTelegram.setAttribute('href', telegramUrl);
       alertTelegram.setAttribute('data-fallback-href', telegramWebFallback);
       alertLinksWrap.hidden = false;
-      alertStatus.textContent = 'Choose a channel to alert human support: WhatsApp or Telegram.';
       appendEvent('talk_to_human', root.getAttribute('data-active-mode') || 'chat');
     });
 
     alertWhatsapp.addEventListener('click', () => {
-      alertStatus.textContent = 'Opening WhatsApp with your handoff message.';
       appendEvent('alert_whatsapp', window.location.href);
     });
 
@@ -1190,7 +1168,6 @@
           window.open(fallback, '_blank', 'noopener,noreferrer');
         }, 500);
       }
-      alertStatus.textContent = 'Attempting Telegram. If app launch fails, web fallback will open.';
       appendEvent('alert_telegram', window.location.href);
     });
 
@@ -1214,6 +1191,23 @@
       }
       queueCentralSync();
     });
+
+    function initWelcomePopup() {
+      if (sessionStorage.getItem('aira-welcomed')) return;
+      const overlay = document.getElementById('aira-welcome-popup');
+      if (!overlay) return;
+      overlay.querySelectorAll('[data-welcome-mode]').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          const mode = btn.getAttribute('data-welcome-mode');
+          sessionStorage.setItem('aira-welcomed', '1');
+          overlay.classList.add('aira-welcome-overlay--exit');
+          overlay.addEventListener('animationend', function() { overlay.remove(); }, { once: true });
+          setMode(mode);
+          setOpen(true);
+        });
+      });
+    }
+    initWelcomePopup();
   }
 
   initAiraChatbox();
