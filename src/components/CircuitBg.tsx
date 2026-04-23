@@ -46,17 +46,11 @@ export const CircuitBg = () => (
       <circle cx="1100" cy="380" r="3" />
     </g>
 
-    {/* animated pulse traveling along main horizontal */}
-    <g>
-      <circle r="3" fill="#00d9ff">
-        <animateMotion dur="6s" repeatCount="indefinite" path="M0 120 L200 120 L240 160 L600 160 L640 200 L900 200 L940 160 L1440 160" />
-      </circle>
-      <circle r="3" fill="#00d9ff">
-        <animateMotion dur="8s" repeatCount="indefinite" path="M0 440 L120 440 L160 400 L440 400 L480 440 L760 440 L800 480 L1440 480" />
-      </circle>
-      <circle r="2.5" fill="#00d9ff">
-        <animateMotion dur="7s" repeatCount="indefinite" path="M720 800 L720 460 L760 420 L760 100 L720 60 L720 0" />
-      </circle>
+    {/* CSS-driven pulses to avoid SMIL animations */}
+    <g class="circuit-pulses">
+      <circle class="circuit-pulse one" cx="640" cy="200" r="3" fill="#00d9ff" />
+      <circle class="circuit-pulse two" cx="760" cy="440" r="3" fill="#00d9ff" />
+      <circle class="circuit-pulse three" cx="720" cy="460" r="2.5" fill="#00d9ff" />
     </g>
   </svg>
 )

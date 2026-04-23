@@ -1116,6 +1116,38 @@ section {
   stroke-width: 1;
 }
 
+.circuit-pulse {
+  opacity: 0.2;
+  transform-origin: center;
+  animation: circuitPulseBlink 2.4s ease-in-out infinite;
+  filter: drop-shadow(0 0 8px rgba(0, 217, 255, 0.75));
+}
+
+.circuit-pulse.one {
+  animation-duration: 2.6s;
+}
+
+.circuit-pulse.two {
+  animation-duration: 3s;
+  animation-delay: 0.45s;
+}
+
+.circuit-pulse.three {
+  animation-duration: 2.2s;
+  animation-delay: 0.9s;
+}
+
+@keyframes circuitPulseBlink {
+  0%, 100% {
+    opacity: 0.2;
+    transform: scale(0.85);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.25);
+  }
+}
+
 /* Scroll indicator */
 .scroll-hint {
   position: absolute;

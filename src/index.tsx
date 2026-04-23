@@ -1029,6 +1029,8 @@ app.get('/', (c) => {
             <form class="aira-chat-form" data-chat-form>
               <input
                 type="text"
+                id="aira-chat-input"
+                name="airaMessage"
                 class="aira-chat-input"
                 data-chat-input
                 placeholder="Type your message..."
