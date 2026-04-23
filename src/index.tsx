@@ -986,6 +986,18 @@ app.get('/', (c) => {
         </section>
       </main>
 
+      {/* Welcome popup — shown once per session, dismissed by picking Chat or Voice */}
+      <div id="aira-welcome-popup" class="aira-welcome-overlay" aria-modal="true" role="dialog" aria-label="Welcome to SGC TECH AI">
+        <div class="aira-welcome-card">
+          <p class="aira-welcome-title">Welcome to SGC TECH AI</p>
+          <p class="aira-welcome-body">We help B2B teams cut operational cost, automate workflows, and deploy production AI in as little as 30 days.</p>
+          <div class="aira-welcome-actions">
+            <button type="button" class="aira-welcome-btn aira-welcome-chat" data-welcome-mode="chat">Chat</button>
+            <button type="button" class="aira-welcome-btn aira-welcome-voice" data-welcome-mode="voice">Voice</button>
+          </div>
+        </div>
+      </div>
+
       <div
         class="aira-chatbox"
         data-booking-url={BOOK_DEMO_URL}
@@ -1011,18 +1023,10 @@ app.get('/', (c) => {
           </header>
 
           <div class="aira-chat-body">
-            <p class="aira-chat-welcome">
-              Welcome to SGC TECH AI. We help B2B teams cut operational cost, automate workflows, and deploy production AI in as little as 30 days.
-            </p>
-
             <div class="aira-mode-switch" role="tablist" aria-label="Assistant mode">
               <button type="button" class="aira-mode-btn active" data-mode="chat" role="tab" aria-selected="true">Chat</button>
               <button type="button" class="aira-mode-btn" data-mode="voice" role="tab" aria-selected="false">Voice</button>
             </div>
-
-            <p class="aira-mode-copy" data-mode-copy>
-              Chat mode is active. Ask pricing, integrations, or use the quick actions below.
-            </p>
 
             <div class="aira-chat-log" data-chat-log aria-live="polite" aria-label="Aira conversation history"></div>
 
@@ -1043,7 +1047,6 @@ app.get('/', (c) => {
               <button type="button" class="aira-voice-toggle" data-voice-toggle>
                 Start Voice Conversation
               </button>
-              <p class="aira-voice-status" data-voice-status aria-live="polite">Voice mode ready. Tap to start speaking.</p>
             </div>
 
             <div class="aira-quick-actions">
@@ -1064,9 +1067,6 @@ app.get('/', (c) => {
               </a>
             </div>
 
-            <p class="aira-alert-status" data-alert-status aria-live="polite"></p>
-            <p class="aira-recording-note">Conversation and AI memory are recorded in browser storage on this device.</p>
-            <p class="aira-sync-note" data-sync-status aria-live="polite">Central memory sync: checking...</p>
           </div>
         </section>
       </div>
