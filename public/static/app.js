@@ -619,9 +619,12 @@
     const chatLog = root.querySelector('[data-chat-log]');
     const chatForm = root.querySelector('[data-chat-form]');
     const chatInput = root.querySelector('[data-chat-input]');
+    const voicePanel = root.querySelector('[data-voice-panel]');
+    const voiceToggleBtn = root.querySelector('[data-voice-toggle]');
+    const voiceStatus = root.querySelector('[data-voice-status]');
     const syncStatus = root.querySelector('[data-sync-status]');
 
-    if (!launcher || !panel || !closeBtn || !modeBtns.length || !modeCopy || !talkBtn || !alertLinksWrap || !alertWhatsapp || !alertTelegram || !alertStatus || !chatLog || !chatForm || !chatInput) {
+    if (!launcher || !panel || !closeBtn || !modeBtns.length || !modeCopy || !talkBtn || !alertLinksWrap || !alertWhatsapp || !alertTelegram || !alertStatus || !chatLog || !chatForm || !chatInput || !voicePanel || !voiceToggleBtn || !voiceStatus) {
       return;
     }
 
@@ -641,6 +644,17 @@
     let syncTimer = null;
     let syncInFlight = false;
     let syncQueued = false;
+    let isVoiceListening = false;
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const canUseVoice = typeof SpeechRecognition === 'function' && 'speechSynthesis' in window;
+    let recognition = null;
+
+    if (canUseVoice) {
+      recognition = new SpeechRecognition();
+      recognition.lang = 'en-US';
+      recognition.interimResults = false;
+      recognition.maxAlternatives = 1;
+    }
 
     function loadStorage(key) {
       try {
@@ -954,6 +968,28 @@
       queueCentralSync();
     }
 
+    function speakAssistant(text) {
+      if (!('speechSynthesis' in window) || !text) return;
+      try {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'en-US';
+        utterance.rate = 1;
+        utterance.pitch = 1;
+        window.speechSynthesis.speak(utterance);
+      } catch (_) {}
+    }
+
+    function handleVoiceUserInput(transcript) {
+      if (!transcript) return;
+      appendMessage('user', transcript);
+      appendEvent('voice_user_message', transcript);
+      const reply = assistantReply(transcript);
+      appendMessage('assistant', reply);
+      appendEvent('voice_assistant_message', reply);
+      speakAssistant(reply);
+    }
+
     function assistantReply(userText) {
       const intent = detectIntent(userText);
 
@@ -976,8 +1012,37 @@
 
     const modeMessages = {
       chat: 'Chat mode is active. Ask pricing, integrations, or use the quick actions below.',
-      voice: 'Voice mode is active. Speak your use case and Aira will guide next steps and booking.',
+      voice: 'Voice mode is active. Tap Start Voice Conversation and speak naturally.',
     };
+
+    function stopVoiceListening() {
+      if (!canUseVoice || !recognition || !isVoiceListening) return;
+      isVoiceListening = false;
+      voiceToggleBtn.classList.remove('listening');
+      voiceToggleBtn.textContent = 'Start Voice Conversation';
+      voiceStatus.textContent = 'Voice mode ready. Tap to start speaking.';
+      try {
+        recognition.stop();
+      } catch (_) {}
+      appendEvent('voice_stop', 'manual');
+    }
+
+    function startVoiceListening() {
+      if (!canUseVoice || !recognition || isVoiceListening) return;
+      isVoiceListening = true;
+      voiceToggleBtn.classList.add('listening');
+      voiceToggleBtn.textContent = 'Stop Listening';
+      voiceStatus.textContent = 'Listening... speak now.';
+      try {
+        recognition.start();
+      } catch (_) {
+        isVoiceListening = false;
+        voiceToggleBtn.classList.remove('listening');
+        voiceToggleBtn.textContent = 'Start Voice Conversation';
+        voiceStatus.textContent = 'Could not start voice input. Please try again.';
+      }
+      appendEvent('voice_start', 'manual');
+    }
 
     const setOpen = (open) => {
       if (open) {
@@ -1001,6 +1066,17 @@
         btn.setAttribute('aria-selected', String(active));
       });
       modeCopy.textContent = modeMessages[mode] || modeMessages.chat;
+
+      const isVoiceMode = mode === 'voice';
+      chatForm.hidden = isVoiceMode;
+      voicePanel.hidden = !isVoiceMode;
+
+      if (!isVoiceMode) {
+        stopVoiceListening();
+      } else if (!canUseVoice) {
+        voiceToggleBtn.disabled = true;
+        voiceStatus.textContent = 'Voice is not supported in this browser. Please use Chat mode.';
+      }
     };
 
     const buildAlertMessage = () => {
@@ -1048,6 +1124,43 @@
         appendMessage('assistant', reply);
         appendEvent('assistant_message', reply);
       }, 220);
+    });
+
+    if (recognition) {
+      recognition.onresult = (event) => {
+        const transcript = event.results?.[0]?.[0]?.transcript?.trim() || '';
+        if (!transcript) {
+          voiceStatus.textContent = 'I did not catch that. Please try again.';
+          return;
+        }
+        voiceStatus.textContent = 'Heard: "' + transcript + '"';
+        handleVoiceUserInput(transcript);
+      };
+
+      recognition.onerror = () => {
+        isVoiceListening = false;
+        voiceToggleBtn.classList.remove('listening');
+        voiceToggleBtn.textContent = 'Start Voice Conversation';
+        voiceStatus.textContent = 'Voice error detected. Please try again.';
+      };
+
+      recognition.onend = () => {
+        isVoiceListening = false;
+        voiceToggleBtn.classList.remove('listening');
+        voiceToggleBtn.textContent = 'Start Voice Conversation';
+        if (root.getAttribute('data-active-mode') === 'voice') {
+          voiceStatus.textContent = 'Voice mode ready. Tap to continue speaking.';
+        }
+      };
+    }
+
+    voiceToggleBtn.addEventListener('click', () => {
+      if (!canUseVoice) return;
+      if (isVoiceListening) {
+        stopVoiceListening();
+      } else {
+        startVoiceListening();
+      }
     });
 
     talkBtn.addEventListener('click', () => {

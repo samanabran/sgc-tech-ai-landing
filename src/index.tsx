@@ -1037,6 +1037,13 @@ app.get('/', (c) => {
               <button type="submit" class="aira-chat-send">Send</button>
             </form>
 
+            <div class="aira-voice-panel" data-voice-panel hidden>
+              <button type="button" class="aira-voice-toggle" data-voice-toggle>
+                Start Voice Conversation
+              </button>
+              <p class="aira-voice-status" data-voice-status aria-live="polite">Voice mode ready. Tap to start speaking.</p>
+            </div>
+
             <div class="aira-quick-actions">
               <a href={BOOK_DEMO_URL} target="_blank" rel="noopener noreferrer" class="aira-quick-btn" data-book-demo>
                 Book Demo

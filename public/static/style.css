@@ -308,7 +308,7 @@ section {
   font-size: 0.9rem;
   letter-spacing: -0.01em;
   transition: transform 0.35s var(--ease-out-expo), box-shadow 0.35s var(--ease-out-expo);
-  animation: airaLauncherFloat 3.2s ease-in-out infinite;
+  animation: airaLauncherFloat 2.3s ease-in-out infinite;
 }
 
 .floating-message-btn:hover {
@@ -329,6 +329,7 @@ section {
 .floating-message-btn svg {
   width: 18px;
   height: 18px;
+  animation: airaIconWiggle 2s ease-in-out infinite;
 }
 
 .aira-chatbox {
@@ -433,6 +434,35 @@ section {
   gap: 0.5rem;
 }
 
+.aira-voice-panel {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.aira-voice-toggle {
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--cyan) 0%, #7eeaff 100%);
+  color: var(--navy-900);
+  font-size: 0.86rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  padding: 0.62rem 0.8rem;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 14px 24px -16px rgba(0, 217, 255, 0.95);
+}
+
+.aira-voice-toggle.listening {
+  background: linear-gradient(135deg, #ffc14d 0%, #ff8f52 100%);
+  animation: airaListeningPulse 1s ease-in-out infinite;
+}
+
+.aira-voice-status {
+  margin: 0;
+  color: var(--gray-300);
+  font-size: 0.84rem;
+  line-height: 1.45;
+}
+
 .aira-chat-input {
   min-width: 0;
   border-radius: 10px;
@@ -496,7 +526,18 @@ section {
 
 @keyframes airaLauncherFloat {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-4px); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes airaIconWiggle {
+  0%, 86%, 100% { transform: rotate(0deg); }
+  90% { transform: rotate(-10deg); }
+  94% { transform: rotate(10deg); }
+}
+
+@keyframes airaListeningPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
 }
 
 @keyframes airaMsgIn {
