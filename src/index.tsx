@@ -475,7 +475,8 @@ app.post('/api/aira/chat', async (c) => {
   let reply = "I'm having trouble formulating a response right now. Please try again."
   if (rawResponse) {
     try {
-      reply = atob(rawResponse)
+      const bytes = Uint8Array.from(atob(rawResponse), c => c.charCodeAt(0))
+      reply = new TextDecoder('utf-8').decode(bytes)
     } catch (decodeError) {
       console.error('Failed to decode x-response header:', decodeError)
       return c.json({ ok: false, reply: 'Unable to process response. Please try again.' }, 500)

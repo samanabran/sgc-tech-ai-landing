@@ -962,6 +962,16 @@ if (!launcher || !panel || !closeBtn || !talkBtn || !alertLinksWrap || !alertWha
       if (vrMicStream) { vrMicStream.getTracks().forEach(t => t.stop()); vrMicStream = null; }
     }
 
+    function decodeBase64UTF8(b64) {
+      try {
+        return new TextDecoder('utf-8').decode(
+          Uint8Array.from(atob(b64), c => c.charCodeAt(0))
+        );
+      } catch (_) {
+        return atob(b64);
+      }
+    }
+
     async function processVoiceAudio(chunks, mimeType) {
       if (!chunks.length) { setVoiceState('idle'); return; }
       vrProcessing = true;
@@ -980,10 +990,10 @@ if (!launcher || !panel || !closeBtn || !talkBtn || !alertLinksWrap || !alertWha
         const rawT = resp.headers.get('X-Transcript');
         const rawR = resp.headers.get('X-Response');
         if (rawT) {
-          try { const t = atob(rawT); appendMessage('user', t); appendEvent('voice_user_message', t); trackBrainState(t); } catch (_) {}
+          try { const t = decodeBase64UTF8(rawT); appendMessage('user', t); appendEvent('voice_user_message', t); trackBrainState(t); } catch (_) {}
         }
         if (rawR) {
-          try { const r = atob(rawR); appendMessage('assistant', r); appendEvent('voice_assistant_message', r); } catch (_) {}
+          try { const r = decodeBase64UTF8(rawR); appendMessage('assistant', r); appendEvent('voice_assistant_message', r); } catch (_) {}
         }
 
         const audioBuf = await resp.arrayBuffer();
