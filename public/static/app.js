@@ -1191,16 +1191,6 @@ if (!launcher || !panel || !closeBtn || !modeBtns.length || !talkBtn || !alertLi
       };
     }
 
-    // Voice toggle - click to start/stop
-    voiceToggleBtn.addEventListener('click', () => {
-      if (!canUseVoice) return;
-      if (isVoiceListening) {
-        stopVoiceListening();
-      } else {
-        startVoiceListening();
-      }
-    });
-
     // Hold to talk - press and hold mic button
     if (voiceToggleBtn) {
       voiceToggleBtn.addEventListener('pointerdown', (e) => {

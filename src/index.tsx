@@ -1264,7 +1264,7 @@ app.get('/', (c) => {
                     <line x1="8" y1="23" x2="16" y2="23"/>
                   </svg>
                 </button>
-                <p class="aira-voice-hint">Or press and hold Space to talk</p>
+                <p class="aira-voice-hint">Hold button or press Space to talk</p>
               </div>
             </div>
 

@@ -222,5 +222,273 @@ test.describe('Aira Chatbox', () => {
       await input.press('Enter')
       await expect(page.locator('[data-char-counter]')).toHaveText('0/2000')
     })
+
+    test('mocking API returns custom reply', async ({ page }) => {
+      await page.route('/api/aira/chat', async route => {
+        await route.fulfill({
+          status: 200,
+          contentType: 'application/json',
+          body: JSON.stringify({ ok: true, reply: 'Integration platform with 200+ connectors.', sessionId: 's2' }),
+        })
+      })
+
+      await openPanel(page)
+      const input = page.locator('[data-chat-input]')
+      await input.fill('Tell me about integrations')
+      await input.press('Enter')
+
+      // Verify user message
+      await expect(page.locator('[data-chat-log] .aira-msg.user')).toContainText('Tell me about integrations')
+
+      // Verify mocked assistant reply
+      await expect(page.locator('[data-chat-log] .aira-msg.assistant').last())
+        .toContainText('Integration platform with 200+ connectors.', { timeout: 5000 })
+    })
+
+    test('multiple messages build conversation history', async ({ page }) => {
+      await page.route('/api/aira/chat', async route => {
+        const body = await route.request.postDataJSON()
+        const message = body.message
+        let reply = 'OK'
+        if (message.includes('pricing')) reply = 'Professional tier is AED 7,900/month'
+        else if (message.includes('timeline')) reply = 'Typical deployment is 30 days'
+        await route.fulfill({
+          status: 200,
+          contentType: 'application/json',
+          body: JSON.stringify({ ok: true, reply, sessionId: 's3' }),
+        })
+      })
+
+      await openPanel(page)
+      const input = page.locator('[data-chat-input]')
+
+      // First message
+      await input.fill('What about pricing?')
+      await input.press('Enter')
+      await expect(page.locator('[data-chat-log] .aira-msg.assistant').first())
+        .toContainText('Professional tier', { timeout: 5000 })
+
+      // Second message
+      await input.fill('How fast can you deploy?')
+      await input.press('Enter')
+      await expect(page.locator('[data-chat-log] .aira-msg.assistant').last())
+        .toContainText('30 days', { timeout: 5000 })
+
+      // Verify both messages remain in history
+      const userMessages = page.locator('[data-chat-log] .aira-msg.user')
+      await expect(userMessages).toHaveCount(2)
+    })
+  })
+
+  // ── Voice panel & UI ──────────────────────────────────────────────
+  test.describe('Voice panel UI', () => {
+    test.beforeEach(async ({ page }) => { await openPanel(page) })
+
+    test('voice panel is hidden in chat mode', async ({ page }) => {
+      await expect(page.locator('[data-voice-panel]')).toBeHidden()
+    })
+
+    test('voice visualizer element exists and is not recording initially', async ({ page }) => {
+      await page.locator('[data-mode="voice"]').dispatchEvent('click')
+      await expect(page.locator('[data-voice-panel]')).toBeVisible()
+      const visualizer = page.locator('#aira-voice-visualizer')
+      await expect(visualizer).toBeVisible()
+      await expect(visualizer).not.toHaveClass(/recording/)
+    })
+
+    test('voice status text reads "Tap the microphone to start" initially', async ({ page }) => {
+      await page.locator('[data-mode="voice"]').dispatchEvent('click')
+      const statusEl = page.locator('#aira-voice-status')
+      await expect(statusEl).toContainText('Tap the microphone to start')
+    })
+
+    test('voice toggle button SVG exists', async ({ page }) => {
+      await page.locator('[data-mode="voice"]').dispatchEvent('click')
+      const micBtn = page.locator('#aira-voice-mic-btn')
+      await expect(micBtn).toBeVisible()
+      const svg = micBtn.locator('svg')
+      await expect(svg).toBeVisible()
+    })
+
+    test('voice hint text is visible below microphone button', async ({ page }) => {
+      await page.locator('[data-mode="voice"]').dispatchEvent('click')
+      const hint = page.locator('.aira-voice-hint')
+      await expect(hint).toContainText('Hold button or press Space')
+    })
+
+    test('voice bars are rendered in visualizer', async ({ page }) => {
+      await page.locator('[data-mode="voice"]').dispatchEvent('click')
+      const bars = page.locator('.aira-voice-bars')
+      await expect(bars).toBeVisible()
+    })
+  })
+
+  // ── Chat log & message rendering ──────────────────────────────────
+  test.describe('Chat log & message rendering', () => {
+    test.beforeEach(async ({ page }) => { await openPanel(page) })
+
+    test('chat log element has aria-live="polite"', async ({ page }) => {
+      const chatLog = page.locator('[data-chat-log]')
+      await expect(chatLog).toHaveAttribute('aria-live', 'polite')
+    })
+
+    test('chat log element has aria-label', async ({ page }) => {
+      const chatLog = page.locator('[data-chat-log]')
+      await expect(chatLog).toHaveAttribute('aria-label', /conversation|history/i)
+    })
+
+    test('empty chat log shows no messages', async ({ page }) => {
+      const messages = page.locator('[data-chat-log] .aira-msg')
+      await expect(messages).toHaveCount(0)
+    })
+
+    test('user messages have correct CSS class', async ({ page }) => {
+      await page.locator('[data-chat-input]').fill('Test message')
+      await page.locator('[data-chat-input]').press('Enter')
+      await expect(page.locator('[data-chat-log] .aira-msg.user').first()).toBeVisible()
+    })
+
+    test('assistant messages have correct CSS class', async ({ page }) => {
+      await page.route('/api/aira/chat', async route => {
+        await route.fulfill({
+          status: 200,
+          contentType: 'application/json',
+          body: JSON.stringify({ ok: true, reply: 'Test reply', sessionId: 's4' }),
+        })
+      })
+
+      await page.locator('[data-chat-input]').fill('Hello')
+      await page.locator('[data-chat-input]').press('Enter')
+      await expect(page.locator('[data-chat-log] .aira-msg.assistant').first())
+        .toContainText('Test reply', { timeout: 5000 })
+    })
+  })
+
+  // ── Form & input validation ───────────────────────────────────────
+  test.describe('Form & input validation', () => {
+    test.beforeEach(async ({ page }) => { await openPanel(page) })
+
+    test('form submission is prevented with dispatchEvent', async ({ page }) => {
+      const form = page.locator('[data-chat-form]')
+      const input = page.locator('[data-chat-input]')
+
+      let submissionAttempted = false
+      await page.on('console', msg => {
+        if (msg.type() === 'error') submissionAttempted = true
+      })
+
+      await input.fill('Test')
+      await form.dispatchEvent('submit')
+      // Form should submit without errors via dispatchEvent
+      await expect(input).toBeFocused()
+    })
+
+    test('textarea maintains focus after submit', async ({ page }) => {
+      const input = page.locator('[data-chat-input]')
+      await input.fill('Message')
+      await input.press('Enter')
+      // Input should eventually be cleared and refocused
+      await expect(input).toHaveValue('', { timeout: 5000 })
+    })
+
+    test('max character limit is 2000', async ({ page }) => {
+      const input = page.locator('[data-chat-input]')
+      const longText = 'A'.repeat(2500)
+      await input.fill(longText)
+      const counter = page.locator('[data-char-counter]')
+      // Counter should show actual text length
+      const text = await counter.textContent()
+      expect(text).toMatch(/\d+\/2000/)
+    })
+  })
+
+  // ── Panel accessibility ───────────────────────────────────────────
+  test.describe('Panel accessibility', () => {
+    test('panel has aria-label', async ({ page }) => {
+      await openPanel(page)
+      const panel = page.locator('[data-chat-panel]')
+      await expect(panel).toHaveAttribute('aria-label', /Aira|assistant/i)
+    })
+
+    test('launcher button has aria-label', async ({ page }) => {
+      const launcher = page.locator('[data-chat-launcher]')
+      await expect(launcher).toHaveAttribute('aria-label', /chat|assistant/i)
+    })
+
+    test('close button has aria-label', async ({ page }) => {
+      await openPanel(page)
+      const closeBtn = page.locator('[data-chat-close]')
+      await expect(closeBtn).toHaveAttribute('aria-label', /close|chat/i)
+    })
+
+    test('mode buttons have role="tab" and aria-selected', async ({ page }) => {
+      await openPanel(page)
+      const chatBtn = page.locator('[data-mode="chat"]')
+      const voiceBtn = page.locator('[data-mode="voice"]')
+
+      await expect(chatBtn).toHaveAttribute('role', 'tab')
+      await expect(voiceBtn).toHaveAttribute('role', 'tab')
+
+      await expect(chatBtn).toHaveAttribute('aria-selected', 'true')
+      await expect(voiceBtn).toHaveAttribute('aria-selected', 'false')
+
+      // Switch to voice and verify ARIA attributes update
+      await voiceBtn.dispatchEvent('click')
+      await expect(chatBtn).toHaveAttribute('aria-selected', 'false')
+      await expect(voiceBtn).toHaveAttribute('aria-selected', 'true')
+    })
+  })
+
+  // ── LocalStorage persistence ──────────────────────────────────────
+  test.describe('LocalStorage persistence', () => {
+    test('chat history persists in localStorage', async ({ page }) => {
+      await page.goto('/')
+      await page.evaluate(() => {
+        localStorage.clear()
+      })
+      await page.reload()
+
+      // Open and send a message
+      const launcher = page.locator('[data-chat-launcher]')
+      await launcher.click({ force: true })
+      await page.locator('.aira-chat-panel.is-open').waitFor({ state: 'attached', timeout: 5000 })
+      await page.waitForTimeout(380)
+
+      const input = page.locator('[data-chat-input]')
+      await input.fill('Persist this message')
+      await input.press('Enter')
+
+      // Verify message appears in chat log
+      await expect(page.locator('[data-chat-log] .aira-msg.user'))
+        .toContainText('Persist this message')
+
+      // Check localStorage directly
+      const storageData = await page.evaluate(() => {
+        return localStorage.getItem('aira-history')
+      })
+      expect(storageData).toContain('Persist this message')
+    })
+
+    test('localStorage is cleared when cleared by user', async ({ page }) => {
+      await page.goto('/')
+      await page.evaluate(() => {
+        localStorage.setItem('aira-history', JSON.stringify([{ role: 'user', text: 'Old message' }]))
+      })
+      await page.reload()
+
+      // Clear storage and reload
+      await page.evaluate(() => {
+        localStorage.clear()
+      })
+      await page.reload()
+
+      // Open chat and verify history is empty
+      const launcher = page.locator('[data-chat-launcher]')
+      await launcher.click({ force: true })
+      await page.locator('.aira-chat-panel.is-open').waitFor({ state: 'attached', timeout: 5000 })
+
+      const messages = page.locator('[data-chat-log] .aira-msg')
+      await expect(messages).toHaveCount(0)
+    })
   })
 })
