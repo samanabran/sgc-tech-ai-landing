@@ -55,6 +55,30 @@ const tierLabel: Record<string, string> = {
   specialized: 'Tier 3 — Specialized',
 }
 
+interface QbIconProps {
+  name: string
+  size?: number
+}
+
+const QbIcon = (props: QbIconProps) => {
+  const { name, size = 16 } = props
+  const iconPath = QbIcons[name] || QbIcons.info
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      style="display: inline; vertical-align: middle;"
+      innerHTML={iconPath}
+    />
+  )
+}
+
 quoteBuilderApp.get('/', async (c) => {
   // Group AI features by tier, modules by category
   const aiByTier: Record<string, typeof AI_FEATURES> = {}
