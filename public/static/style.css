@@ -289,157 +289,482 @@ section {
 }
 .btn:hover .arrow { transform: translateX(4px); }
 
-/* Floating Aira voice agent button */
-.floating-message-btn {
-  position: fixed;
-  right: clamp(0.9rem, 2vw, 1.4rem);
-  bottom: clamp(0.9rem, 2vw, 1.4rem);
-  z-index: 120;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-  padding: 0.75rem 1rem;
-  border-radius: 999px;
-  color: var(--navy-900);
-  background: linear-gradient(135deg, var(--cyan) 0%, #7eeaff 100%);
-  border: 1px solid rgba(255, 255, 255, 0.45);
-  box-shadow: 0 16px 30px -14px rgba(0, 217, 255, 0.75);
-  font-weight: 700;
-  font-size: 0.9rem;
-  letter-spacing: -0.01em;
-  transition: transform 0.35s var(--ease-out-expo), box-shadow 0.35s var(--ease-out-expo);
-  animation: airaLauncherFloat 2.3s ease-in-out infinite;
-}
+/* ===================================================================
+   AIRA Chatbox — Glowing AI Assistant (complete redesign)
+   =================================================================== */
 
-.floating-message-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 22px 35px -14px rgba(0, 217, 255, 0.9);
-}
-
-.floating-message-btn::before {
-  content: '';
-  position: absolute;
-  inset: -6px;
-  border-radius: inherit;
-  border: 1px solid rgba(0, 217, 255, 0.45);
-  opacity: 0;
-  animation: airaLauncherPulse 2.6s ease-out infinite;
-}
-
-.floating-message-btn svg {
-  width: 18px;
-  height: 18px;
-  animation: airaIconWiggle 2s ease-in-out infinite;
-}
-
+/* Wrapper */
 .aira-chatbox {
   position: fixed;
-  right: clamp(0.9rem, 2vw, 1.4rem);
-  bottom: clamp(0.9rem, 2vw, 1.4rem);
+  right: clamp(0.9rem, 2vw, 1.5rem);
+  bottom: clamp(0.9rem, 2vw, 1.5rem);
   z-index: 120;
 }
 
+/* ---- Floating Launch Button ---- */
+.floating-ai-btn {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(0,71,255,0.9) 0%, rgba(0,217,255,0.85) 100%);
+  border: 2px solid rgba(255,255,255,0.22);
+  box-shadow:
+    0 0 20px rgba(0,217,255,0.7),
+    0 0 40px rgba(0,71,255,0.45),
+    0 0 60px rgba(0,217,255,0.2);
+  cursor: pointer;
+  transition: transform 0.45s cubic-bezier(0.175,0.885,0.32,1.275),
+              box-shadow 0.35s ease;
+  overflow: visible;
+}
+
+.floating-ai-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.25), transparent);
+  opacity: 0.35;
+}
+
+.floating-ai-btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid rgba(0,217,255,0.12);
+}
+
+.floating-ai-btn:hover {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow:
+    0 0 30px rgba(0,217,255,0.9),
+    0 0 55px rgba(0,71,255,0.65),
+    0 0 75px rgba(0,217,255,0.35);
+}
+
+.floating-ai-btn.is-active {
+  transform: rotate(90deg);
+}
+
+.floating-ai-btn-ping {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: rgba(0,217,255,0.45);
+  animation: airaLauncherPing 2.4s cubic-bezier(0,0,0.2,1) infinite;
+  pointer-events: none;
+}
+
+.floating-ai-btn-icon {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  transition: opacity 0.2s ease;
+}
+
+.floating-ai-btn-icon svg {
+  width: 28px;
+  height: 28px;
+}
+
+/* Bot / X icon swap */
+.floating-ai-btn .icon-close { display: none; }
+.floating-ai-btn.is-active .icon-bot  { display: none; }
+.floating-ai-btn.is-active .icon-close { display: block; }
+
+/* ---- Chat Panel ---- */
 .aira-chat-panel {
   position: absolute;
   right: 0;
-  bottom: calc(100% + 0.8rem);
-  width: min(380px, calc(100vw - 1.8rem));
-  border-radius: 18px;
-  background: rgba(9, 17, 42, 0.94);
-  border: 1px solid rgba(0, 217, 255, 0.28);
-  box-shadow: 0 26px 48px -22px rgba(0, 0, 0, 0.62), 0 0 0 1px rgba(0, 217, 255, 0.09) inset;
-  backdrop-filter: blur(16px) saturate(130%);
-  -webkit-backdrop-filter: blur(16px) saturate(130%);
+  bottom: calc(100% + 0.9rem);
+  width: min(430px, calc(100vw - 1.8rem));
+  border-radius: 24px;
+  background: linear-gradient(135deg, rgba(39,39,42,0.92) 0%, rgba(24,24,27,0.96) 100%);
+  border: 1px solid rgba(113,113,122,0.45);
+  box-shadow:
+    0 28px 56px -24px rgba(0,0,0,0.75),
+    0 0 0 1px rgba(255,255,255,0.04) inset;
+  backdrop-filter: blur(24px) saturate(150%);
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
   overflow: hidden;
-  transform: translateY(14px) scale(0.98);
+  transform: scale(0.85) translateY(16px);
+  transform-origin: bottom right;
   opacity: 0;
-  transition: transform 0.32s var(--ease-out-expo), opacity 0.28s ease;
+  transition: transform 0.32s cubic-bezier(0.175,0.885,0.32,1.275),
+              opacity 0.26s ease;
 }
 
 .aira-chat-panel.is-open {
-  transform: translateY(0) scale(1);
+  transform: scale(1) translateY(0);
   opacity: 1;
 }
 
+/* Subtle gradient overlay */
+.aira-panel-overlay {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(135deg, rgba(239,68,68,0.04), transparent, rgba(147,51,234,0.04));
+}
+
+/* ---- Panel Header ---- */
 .aira-chat-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 0.7rem;
-  padding: 0.85rem 1rem;
-  border-bottom: 1px solid rgba(0, 217, 255, 0.18);
+  gap: 0.5rem;
+  padding: 0.9rem 1.2rem 0.65rem;
 }
 
-.aira-chat-eyebrow {
-  margin: 0;
-  font-family: 'JetBrains Mono', monospace;
-  color: var(--cyan);
-  font-size: 0.74rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+.aira-chat-status {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.aira-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #22c55e;
+  animation: airaStatusPulse 2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+.aira-chat-status span {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #a1a1aa;
+  font-family: var(--font-mono);
+  letter-spacing: 0.03em;
+}
+
+.aira-chat-badges {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.aira-badge-model {
+  padding: 0.2rem 0.5rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  background: rgba(39,39,42,0.7);
+  color: #d4d4d8;
+  border-radius: 999px;
+  border: 1px solid rgba(113,113,122,0.3);
+  font-family: var(--font-mono);
+}
+
+.aira-badge-pro {
+  padding: 0.2rem 0.5rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  background: rgba(239,68,68,0.1);
+  color: #f87171;
+  border-radius: 999px;
+  border: 1px solid rgba(239,68,68,0.2);
 }
 
 .aira-chat-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 28px;
   height: 28px;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  color: var(--gray-100);
-  font-size: 0.95rem;
-  line-height: 1;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: #71717a;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease;
 }
 
 .aira-chat-close:hover {
-  border-color: var(--cyan);
-  color: var(--cyan);
+  background: rgba(113,113,122,0.2);
+  color: #d4d4d8;
 }
 
+.aira-chat-close svg { width: 14px; height: 14px; }
+
+/* ---- Body ---- */
 .aira-chat-body {
-  padding: 1rem;
-  display: grid;
-  gap: 0.82rem;
+  padding: 0 0.85rem 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
 }
 
-.aira-chat-log {
-  max-height: 180px;
-  overflow: auto;
+/* ---- Mode Switch ---- */
+.aira-mode-switch {
   display: grid;
-  gap: 0.45rem;
-  padding-right: 0.2rem;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.4rem;
 }
+
+.aira-mode-btn {
+  border-radius: 10px;
+  border: 1px solid rgba(113,113,122,0.3);
+  color: #a1a1aa;
+  background: rgba(39,39,42,0.5);
+  padding: 0.45rem 0.7rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.aira-mode-btn:hover:not(.active) {
+  border-color: rgba(113,113,122,0.55);
+  color: #d4d4d8;
+}
+
+.aira-mode-btn.active {
+  border-color: rgba(0,217,255,0.5);
+  color: var(--navy-900);
+  background: linear-gradient(135deg, var(--cyan) 0%, #7eeaff 100%);
+}
+
+/* ---- Chat Log ---- */
+.aira-chat-log {
+  max-height: 200px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding-right: 0.15rem;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(113,113,122,0.3) transparent;
+}
+
+.aira-chat-log::-webkit-scrollbar { width: 4px; }
+.aira-chat-log::-webkit-scrollbar-track { background: transparent; }
+.aira-chat-log::-webkit-scrollbar-thumb { background: rgba(113,113,122,0.3); border-radius: 4px; }
 
 .aira-msg {
   border-radius: 10px;
-  padding: 0.55rem 0.65rem;
+  padding: 0.5rem 0.65rem;
   font-size: 0.82rem;
-  line-height: 1.45;
-  animation: airaMsgIn 0.26s var(--ease-out-expo);
+  line-height: 1.5;
+  animation: airaMsgIn 0.24s var(--ease-out-expo);
 }
 
 .aira-msg.user {
-  background: rgba(0, 217, 255, 0.14);
-  border: 1px solid rgba(0, 217, 255, 0.35);
-  color: var(--gray-100);
+  background: rgba(0,217,255,0.12);
+  border: 1px solid rgba(0,217,255,0.28);
+  color: #e4e4e7;
+  align-self: flex-end;
+  max-width: 88%;
 }
 
 .aira-msg.assistant {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: var(--gray-100);
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: #e4e4e7;
+  align-self: flex-start;
+  max-width: 92%;
 }
 
+/* ---- Chat Form ---- */
 .aira-chat-form {
-  display: grid;
-  grid-template-columns: 1fr auto;
+  display: flex;
+  flex-direction: column;
   gap: 0.5rem;
 }
 
+.aira-chat-input {
+  width: 100%;
+  min-width: 0;
+  border-radius: 12px;
+  border: none;
+  background: transparent;
+  color: #f4f4f5;
+  padding: 0.65rem 0.85rem;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  resize: none;
+  min-height: 80px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  font-family: var(--font-body);
+}
+
+.aira-chat-input::-webkit-scrollbar { display: none; }
+
+.aira-chat-input:focus {
+  outline: none;
+}
+
+.aira-chat-input::placeholder {
+  color: #52525b;
+}
+
+/* Controls row */
+.aira-form-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0.2rem;
+  gap: 0.5rem;
+}
+
+.aira-form-left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.aira-attach-group {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem;
+  background: rgba(39,39,42,0.5);
+  border-radius: 10px;
+  border: 1px solid rgba(63,63,70,0.5);
+}
+
+.aira-icon-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 7px;
+  border: none;
+  background: transparent;
+  color: #52525b;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.aira-icon-btn:hover {
+  background: rgba(63,63,70,0.7);
+  color: #d4d4d8;
+  transform: scale(1.08);
+}
+
+.aira-icon-btn svg { width: 15px; height: 15px; }
+
+.aira-mic-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 7px;
+  border: 1px solid rgba(63,63,70,0.4);
+  background: transparent;
+  color: #52525b;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.aira-mic-btn:hover {
+  background: rgba(63,63,70,0.5);
+  color: #f87171;
+  border-color: rgba(239,68,68,0.3);
+}
+
+.aira-mic-btn svg { width: 15px; height: 15px; }
+
+.aira-form-right {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.aira-char-counter {
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: #52525b;
+  font-family: var(--font-mono);
+  white-space: nowrap;
+}
+
+.aira-send-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  border: none;
+  background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 6px 14px -4px rgba(220,38,38,0.5);
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.aira-send-btn:hover {
+  background: linear-gradient(135deg, #ef4444 0%, #f87171 100%);
+  transform: scale(1.08) rotate(-2deg);
+  box-shadow: 0 10px 20px -6px rgba(239,68,68,0.6);
+}
+
+.aira-send-btn:active { transform: scale(0.95); }
+
+.aira-send-btn svg { width: 16px; height: 16px; }
+
+/* Footer hint row */
+.aira-form-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0.2rem 0;
+  border-top: 1px solid rgba(63,63,70,0.4);
+  font-size: 0.7rem;
+  color: #52525b;
+  gap: 0.5rem;
+}
+
+.aira-form-footer kbd {
+  padding: 0.1rem 0.35rem;
+  background: rgba(39,39,42,0.8);
+  border: 1px solid rgba(63,63,70,0.7);
+  border-radius: 4px;
+  color: #a1a1aa;
+  font-family: var(--font-mono);
+  font-size: 0.67rem;
+}
+
+.aira-sys-status {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.aira-sys-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #22c55e;
+  flex-shrink: 0;
+}
+
+/* ---- Voice Panel ---- */
 .aira-voice-panel {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-  padding: 1.5rem 1rem;
+  padding: 1.2rem 0.5rem;
 }
 
 .aira-voice-recorder {
@@ -470,17 +795,14 @@ section {
   display: block;
   width: 5px;
   height: 14px;
-  background: linear-gradient(180deg, var(--cyan) 0%, rgba(0, 217, 255, 0.4) 100%);
+  background: linear-gradient(180deg, var(--cyan) 0%, rgba(0,217,255,0.4) 100%);
   border-radius: 3px;
-  transition: height 0.15s ease, background 0.15s ease;
+  transition: height 0.15s ease;
 }
 
 .aira-voice-visualizer.recording .aira-voice-bars span {
-  background: linear-gradient(180deg, var(--cyan) 0%, rgba(0, 217, 255, 0.8) 100%);
-  box-shadow: 0 0 8px rgba(0, 217, 255, 0.5);
-}
-
-.aira-voice-visualizer.recording .aira-voice-bars span {
+  background: linear-gradient(180deg, var(--cyan) 0%, rgba(0,217,255,0.8) 100%);
+  box-shadow: 0 0 8px rgba(0,217,255,0.5);
   animation: airaVoiceBar 0.5s ease-in-out infinite;
 }
 
@@ -492,17 +814,12 @@ section {
 .aira-voice-visualizer.recording .aira-voice-bars span:nth-child(6) { animation-delay: 0.40s; height: 28px; }
 .aira-voice-visualizer.recording .aira-voice-bars span:nth-child(7) { animation-delay: 0.48s; height: 20px; }
 
-@keyframes airaVoiceBar {
-  0%, 100% { height: 8px; }
-  50% { height: var(--bar-height, 40px); }
-}
-
 .aira-voice-status {
-  font-size: 0.82rem;
-  color: var(--gray-400);
-  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: #71717a;
   text-align: center;
   min-height: 1.2em;
+  font-family: var(--font-mono);
 }
 
 .aira-voice-mic-btn {
@@ -514,132 +831,37 @@ section {
   border-radius: 50%;
   background: linear-gradient(135deg, var(--cyan) 0%, #7eeaff 100%);
   color: var(--navy-900);
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 8px 24px -8px rgba(0, 217, 255, 0.7);
+  border: 2px solid rgba(255,255,255,0.3);
+  box-shadow: 0 8px 24px -8px rgba(0,217,255,0.65);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.22s ease;
 }
 
 .aira-voice-mic-btn:hover {
-  transform: scale(1.05);
-  box-shadow: 0 12px 32px -8px rgba(0, 217, 255, 0.9);
+  transform: scale(1.06);
+  box-shadow: 0 12px 32px -8px rgba(0,217,255,0.9);
 }
 
 .aira-voice-mic-btn:active,
 .aira-voice-mic-btn.listening {
   background: linear-gradient(135deg, #ffc14d 0%, #ff8f52 100%);
   transform: scale(0.95);
-  box-shadow: 0 4px 16px -4px rgba(255, 193, 77, 0.7);
+  box-shadow: 0 4px 16px -4px rgba(255,193,77,0.7);
   animation: airaListeningPulse 1s ease-in-out infinite;
-}
-
-@keyframes airaListeningPulse {
-  0%, 100% { box-shadow: 0 4px 16px -4px rgba(255, 193, 77, 0.7); }
-  50% { box-shadow: 0 8px 32px -8px rgba(255, 193, 77, 0.95); }
 }
 
 .aira-voice-hint {
-  font-size: 0.75rem;
-  color: var(--gray-600);
+  font-size: 0.72rem;
+  color: #52525b;
   font-family: var(--font-mono);
 }
 
-.aira-voice-toggle {
-  border-radius: 10px;
-  background: linear-gradient(135deg, var(--cyan) 0%, #7eeaff 100%);
-  color: var(--navy-900);
-  font-size: 0.86rem;
-  font-weight: 800;
-  letter-spacing: -0.01em;
-  padding: 0.62rem 0.8rem;
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  box-shadow: 0 14px 24px -16px rgba(0, 217, 255, 0.95);
-}
-
-.aira-voice-toggle.listening {
-  background: linear-gradient(135deg, #ffc14d 0%, #ff8f52 100%);
-  animation: airaListeningPulse 1s ease-in-out infinite;
-}
-
-.aira-chat-input {
-  min-width: 0;
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  background: rgba(255, 255, 255, 0.04);
-  color: var(--gray-100);
-  padding: 0.6rem 0.7rem;
-  font-size: 0.84rem;
-}
-
-.aira-chat-input:focus {
-  outline: none;
-  border-color: rgba(0, 217, 255, 0.55);
-  box-shadow: 0 0 0 2px rgba(0, 217, 255, 0.14);
-}
-
-.aira-chat-send {
-  border-radius: 10px;
-  background: linear-gradient(135deg, var(--cyan) 0%, #7eeaff 100%);
-  color: var(--navy-900);
-  font-size: 0.82rem;
-  font-weight: 700;
-  padding: 0.6rem 0.82rem;
-}
-
-@keyframes airaLauncherPulse {
-  0% { transform: scale(0.96); opacity: 0.6; }
-  70% { transform: scale(1.1); opacity: 0; }
-  100% { transform: scale(1.1); opacity: 0; }
-}
-
-@keyframes airaLauncherFloat {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
-}
-
-@keyframes airaIconWiggle {
-  0%, 86%, 100% { transform: rotate(0deg); }
-  90% { transform: rotate(-10deg); }
-  94% { transform: rotate(10deg); }
-}
-
-@keyframes airaListeningPulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.02); }
-}
-
-@keyframes airaMsgIn {
-  from { opacity: 0; transform: translateY(4px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.aira-mode-switch {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.55rem;
-}
-
-.aira-mode-btn {
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  color: var(--gray-100);
-  background: rgba(255, 255, 255, 0.04);
-  padding: 0.5rem 0.75rem;
-  font-size: 0.85rem;
-  font-weight: 600;
-}
-
-.aira-mode-btn.active {
-  border-color: rgba(0, 217, 255, 0.42);
-  color: var(--navy-900);
-  background: linear-gradient(135deg, var(--cyan) 0%, #7eeaff 100%);
-}
-
+/* ---- Quick Actions ---- */
 .aira-quick-actions,
 .aira-alert-links {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0.55rem;
+  gap: 0.45rem;
 }
 
 .aira-quick-btn,
@@ -648,38 +870,76 @@ section {
   justify-content: center;
   align-items: center;
   border-radius: 10px;
-  padding: 0.62rem 0.72rem;
+  padding: 0.55rem 0.65rem;
   text-align: center;
-  font-size: 0.84rem;
+  font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: -0.01em;
+  cursor: pointer;
+  transition: all 0.18s ease;
 }
 
 .aira-quick-btn {
-  background: rgba(0, 217, 255, 0.1);
-  border: 1px solid rgba(0, 217, 255, 0.28);
-  color: var(--gray-100);
+  background: rgba(0,217,255,0.08);
+  border: 1px solid rgba(0,217,255,0.24);
+  color: var(--cyan);
+  text-decoration: none;
 }
 
 .aira-quick-btn:hover {
-  border-color: rgba(0, 217, 255, 0.6);
-  color: var(--cyan);
+  background: rgba(0,217,255,0.16);
+  border-color: rgba(0,217,255,0.45);
+  color: #7eeaff;
 }
 
 .aira-quick-human {
-  background: rgba(0, 71, 255, 0.13);
-  border-color: rgba(0, 71, 255, 0.38);
+  background: rgba(239,68,68,0.08);
+  border: 1px solid rgba(239,68,68,0.22);
+  color: #fca5a5;
+}
+
+.aira-quick-human:hover {
+  background: rgba(239,68,68,0.16);
+  border-color: rgba(239,68,68,0.4);
+  color: #fecaca;
 }
 
 .aira-alert-btn {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: var(--gray-100);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: #a1a1aa;
+  text-decoration: none;
 }
 
 .aira-alert-btn:hover {
-  border-color: var(--cyan);
-  color: var(--cyan);
+  border-color: rgba(139,92,246,0.4);
+  color: #c4b5fd;
+}
+
+/* ---- Animations ---- */
+@keyframes airaLauncherPing {
+  0% { transform: scale(1); opacity: 0.18; }
+  75%, 100% { transform: scale(1.6); opacity: 0; }
+}
+
+@keyframes airaStatusPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes airaVoiceBar {
+  0%, 100% { height: 8px; }
+  50% { height: var(--bar-height, 40px); }
+}
+
+@keyframes airaListeningPulse {
+  0%, 100% { box-shadow: 0 4px 16px -4px rgba(255,193,77,0.7); }
+  50% { box-shadow: 0 8px 32px -8px rgba(255,193,77,0.95); }
+}
+
+@keyframes airaMsgIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @media (max-width: 700px) {
@@ -689,22 +949,11 @@ section {
   }
 
   .aira-chat-panel {
-    width: min(360px, calc(100vw - 1rem));
-    right: 0;
-  }
-
-  .floating-message-btn {
-    padding: 0.72rem 0.88rem;
-    font-size: 0.82rem;
-    gap: 0.45rem;
+    width: min(380px, calc(100vw - 1rem));
   }
 
   .aira-quick-actions,
   .aira-alert-links {
-    grid-template-columns: 1fr;
-  }
-
-  .aira-chat-form {
     grid-template-columns: 1fr;
   }
 }

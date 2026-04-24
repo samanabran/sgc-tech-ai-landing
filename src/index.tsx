@@ -1123,51 +1123,142 @@ app.get('/', (c) => {
         </div>
       </div>
 
+      {/* ===== AIRA CHATBOX ===== */}
       <div
         class="aira-chatbox"
         data-booking-url={BOOK_DEMO_URL}
         data-alert-phone="971563905772"
         data-memory-api="/api/aira/memory"
       >
+
+        {/* Floating 3D Glowing Button */}
         <button
           type="button"
-          class="floating-message-btn"
+          class="floating-ai-btn"
           data-chat-launcher
           aria-label="Open Aira chat assistant"
           aria-expanded="false"
           title={JSON.stringify(airaVoiceAgentData)}
         >
-          <IconMessage />
-          <span>Message Aira</span>
+          <div class="floating-ai-btn-ping"></div>
+          {/* Bot icon (default) */}
+          <span class="floating-ai-btn-icon icon-bot">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="10" rx="2"/>
+              <path d="M12 11V7"/>
+              <circle cx="12" cy="5" r="2"/>
+              <path d="M8 15h.01M12 15h.01M16 15h.01"/>
+            </svg>
+          </span>
+          {/* X icon (when open) */}
+          <span class="floating-ai-btn-icon icon-close">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 6L6 18M6 6l12 12"/>
+            </svg>
+          </span>
         </button>
 
-        <section class="aira-chat-panel" data-chat-panel hidden>
+        {/* Chat Panel */}
+        <section class="aira-chat-panel" data-chat-panel hidden aria-label="Aira AI assistant">
+
+          {/* Header */}
           <header class="aira-chat-header">
-            <p class="aira-chat-eyebrow">Aira Sales Assistant</p>
-            <button type="button" class="aira-chat-close" data-chat-close aria-label="Close chatbox">x</button>
+            <div class="aira-chat-status">
+              <div class="aira-status-dot"></div>
+              <span>AI Assistant · Aira</span>
+            </div>
+            <div class="aira-chat-badges">
+              <span class="aira-badge-model">SGC TECH</span>
+              <span class="aira-badge-pro">Pro</span>
+              <button type="button" class="aira-chat-close" data-chat-close aria-label="Close chatbox">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 6L6 18M6 6l12 12"/>
+                </svg>
+              </button>
+            </div>
           </header>
 
           <div class="aira-chat-body">
+
+            {/* Mode switch */}
             <div class="aira-mode-switch" role="tablist" aria-label="Assistant mode">
               <button type="button" class="aira-mode-btn active" data-mode="chat" role="tab" aria-selected="true">Chat</button>
               <button type="button" class="aira-mode-btn" data-mode="voice" role="tab" aria-selected="false">Voice</button>
             </div>
 
+            {/* Message log */}
             <div class="aira-chat-log" data-chat-log aria-live="polite" aria-label="Aira conversation history"></div>
 
+            {/* Chat form */}
             <form class="aira-chat-form" data-chat-form>
-              <input
-                type="text"
+              <textarea
                 id="aira-chat-input"
                 name="airaMessage"
                 class="aira-chat-input"
                 data-chat-input
-                placeholder="Type your message..."
+                rows={3}
+                placeholder="Ask Aira anything about SGC TECH AI…"
                 autocomplete="off"
-              />
-              <button type="submit" class="aira-chat-send">Send</button>
+              ></textarea>
+
+              {/* Controls row */}
+              <div class="aira-form-controls">
+                <div class="aira-form-left">
+                  <div class="aira-attach-group">
+                    {/* Attachment icons (decorative for now) */}
+                    <button type="button" class="aira-icon-btn" title="Attach file" tabindex={-1}>
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/>
+                      </svg>
+                    </button>
+                    <button type="button" class="aira-icon-btn" title="Share link" tabindex={-1}>
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+                      </svg>
+                    </button>
+                    <button type="button" class="aira-icon-btn" title="Share code" tabindex={-1}>
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="16 18 22 12 16 6"/>
+                        <polyline points="8 6 2 12 8 18"/>
+                      </svg>
+                    </button>
+                  </div>
+                  {/* Mic shortcut (opens Voice tab) */}
+                  <button type="button" class="aira-mic-btn" title="Switch to voice" data-mode-trigger="voice">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                      <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                      <line x1="12" y1="19" x2="12" y2="23"/>
+                      <line x1="8" y1="23" x2="16" y2="23"/>
+                    </svg>
+                  </button>
+                </div>
+
+                <div class="aira-form-right">
+                  <span class="aira-char-counter" data-char-counter>0/2000</span>
+                  <button type="submit" class="aira-send-btn" aria-label="Send message">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="22" y1="2" x2="11" y2="13"/>
+                      <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+
+              {/* Footer row */}
+              <div class="aira-form-footer">
+                <span>
+                  Press <kbd>Shift+Enter</kbd> for new line
+                </span>
+                <div class="aira-sys-status">
+                  <div class="aira-sys-status-dot"></div>
+                  <span data-sync-status>All systems operational</span>
+                </div>
+              </div>
             </form>
 
+            {/* Voice panel */}
             <div class="aira-voice-panel" data-voice-panel hidden>
               <div class="aira-voice-recorder">
                 <div class="aira-voice-visualizer" id="aira-voice-visualizer">
@@ -1178,7 +1269,7 @@ app.get('/', (c) => {
                 </div>
                 <p class="aira-voice-status" id="aira-voice-status">Tap the microphone to start</p>
                 <button type="button" class="aira-voice-mic-btn" data-voice-toggle id="aira-voice-mic-btn">
-                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
                     <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
                     <line x1="12" y1="19" x2="12" y2="23"/>
@@ -1189,6 +1280,7 @@ app.get('/', (c) => {
               </div>
             </div>
 
+            {/* Quick action buttons */}
             <div class="aira-quick-actions">
               <a href={BOOK_DEMO_URL} target="_blank" rel="noopener noreferrer" class="aira-quick-btn" data-book-demo>
                 Book Demo
@@ -1198,16 +1290,20 @@ app.get('/', (c) => {
               </button>
             </div>
 
+            {/* Human-alert links (shown after Talk to Human) */}
             <div class="aira-alert-links" data-alert-links hidden>
               <a href="#" target="_blank" rel="noopener noreferrer" class="aira-alert-btn" data-alert-whatsapp>
-                Use WhatsApp
+                WhatsApp
               </a>
               <a href="#" target="_blank" rel="noopener noreferrer" class="aira-alert-btn" data-alert-telegram>
-                Use Telegram
+                Telegram
               </a>
             </div>
 
           </div>
+
+          {/* Subtle gradient overlay */}
+          <div class="aira-panel-overlay"></div>
         </section>
       </div>
 

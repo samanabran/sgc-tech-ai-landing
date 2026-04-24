@@ -1057,6 +1057,7 @@ if (!launcher || !panel || !closeBtn || !modeBtns.length || !talkBtn || !alertLi
         }, 240);
       }
       launcher.setAttribute('aria-expanded', String(open));
+      launcher.classList.toggle('is-active', open);
       appendEvent(open ? 'open_panel' : 'close_panel', root.getAttribute('data-active-mode') || 'chat');
     };
 
@@ -1109,6 +1110,34 @@ if (!launcher || !panel || !closeBtn || !modeBtns.length || !talkBtn || !alertLi
       });
     });
 
+    // Character counter + Enter-to-send for textarea
+    const charCounter = root.querySelector('[data-char-counter]');
+    const MAX_CHARS = 2000;
+
+    if (chatInput) {
+      chatInput.addEventListener('input', () => {
+        const len = chatInput.value.length;
+        if (charCounter) charCounter.textContent = len + '/' + MAX_CHARS;
+      });
+
+      chatInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+          e.preventDefault();
+          chatForm.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
+        }
+      });
+    }
+
+    // Mic shortcut button — switches to voice mode
+    const modeTriggerBtns = Array.from(root.querySelectorAll('[data-mode-trigger]'));
+    modeTriggerBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const mode = btn.getAttribute('data-mode-trigger') || 'voice';
+        setMode(mode);
+        appendEvent('switch_mode', mode);
+      });
+    });
+
     chatForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       const message = chatInput.value.trim();
@@ -1117,6 +1146,7 @@ if (!launcher || !panel || !closeBtn || !modeBtns.length || !talkBtn || !alertLi
       appendMessage('user', message);
       appendEvent('user_message', message);
       chatInput.value = '';
+      if (charCounter) charCounter.textContent = '0/' + MAX_CHARS;
       trackBrainState(message);
 
       const typingEl = showTyping();
