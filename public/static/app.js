@@ -1023,33 +1023,36 @@ if (!launcher || !panel || !closeBtn || !modeBtns.length || !talkBtn || !alertLi
       appendEvent('voice_stop', 'manual');
     }
 
-    let pendingVoiceTranscript = '';
+    let pendingVoiceAutoSendTimeout = null;
 
-    function showVoiceConfirmation(transcript) {
+    function handleVoiceTranscript(transcript) {
       if (!transcript) return;
-      pendingVoiceTranscript = transcript;
-      const confirmPanel = root.querySelector('[data-voice-confirmation]');
-      const transcriptBox = root.querySelector('#aira-transcript-preview');
-      if (confirmPanel && transcriptBox) {
-        transcriptBox.textContent = transcript;
-        confirmPanel.hidden = false;
-        appendEvent('voice_confirmation_shown', transcript.substring(0, 50));
+      
+      // Clear any pending auto-send
+      if (pendingVoiceAutoSendTimeout) {
+        clearTimeout(pendingVoiceAutoSendTimeout);
+        pendingVoiceAutoSendTimeout = null;
       }
-    }
-
-    function dismissVoiceConfirmation() {
-      const confirmPanel = root.querySelector('[data-voice-confirmation]');
-      if (confirmPanel) {
-        confirmPanel.hidden = true;
-        pendingVoiceTranscript = '';
-      }
-    }
-
-    function confirmVoiceTranscript() {
-      if (!pendingVoiceTranscript) return;
-      dismissVoiceConfirmation();
-      handleVoiceUserInput(pendingVoiceTranscript);
-      appendEvent('voice_confirmed', pendingVoiceTranscript.substring(0, 50));
+      
+      // Show transcript as pending message in chat
+      appendMessage('user', transcript);
+      appendEvent('voice_user_message', transcript);
+      trackBrainState(transcript);
+      
+      // Auto-send after 1.5 seconds (modern voice pattern)
+      pendingVoiceAutoSendTimeout = setTimeout(async () => {
+        const typingEl = showTyping();
+        try {
+          const reply = await callAira(transcript, 'voice');
+          hideTyping(typingEl);
+          appendMessage('assistant', reply);
+          appendEvent('voice_assistant_message', reply);
+          speakAssistant(reply);
+        } catch (_) {
+          hideTyping(typingEl);
+          appendMessage('assistant', 'Connection error. Please try again.');
+        }
+      }, 1500);
     }
 
     function startVoiceListening() {
@@ -1167,34 +1170,6 @@ if (!launcher || !panel || !closeBtn || !modeBtns.length || !talkBtn || !alertLi
       });
     });
 
-    // Voice confirmation panel buttons - Phase 2
-    const confirmCancelBtn = root.querySelector('[data-voice-confirm-cancel]');
-    const confirmSendBtn = root.querySelector('[data-voice-confirm-send]');
-    
-    if (confirmCancelBtn) {
-      confirmCancelBtn.addEventListener('click', () => {
-        dismissVoiceConfirmation();
-        appendEvent('voice_cancelled', 'user_clicked_cancel');
-      });
-    }
-    
-    if (confirmSendBtn) {
-      confirmSendBtn.addEventListener('click', () => {
-        confirmVoiceTranscript();
-      });
-    }
-    
-    // Escape key to dismiss confirmation
-    root.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        const confirmPanel = root.querySelector('[data-voice-confirmation]');
-        if (confirmPanel && !confirmPanel.hidden) {
-          dismissVoiceConfirmation();
-          appendEvent('voice_dismissed_escape', 'user_pressed_escape');
-        }
-      }
-    });
-
     chatForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       const message = chatInput.value.trim();
@@ -1224,7 +1199,7 @@ if (!launcher || !panel || !closeBtn || !modeBtns.length || !talkBtn || !alertLi
         if (!transcript) {
           return;
         }
-        showVoiceConfirmation(transcript);
+        handleVoiceTranscript(transcript);
       };
 
       recognition.onerror = () => {
