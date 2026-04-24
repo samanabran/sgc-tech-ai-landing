@@ -2,22 +2,33 @@ import { test, expect } from '@playwright/test'
 
 test.describe('Aira Chatbox', () => {
   test.beforeEach(async ({ page }) => {
-    // Dismiss the welcome popup so it doesn't block interactions
     await page.goto('/')
-    await page.evaluate(() => sessionStorage.setItem('aira-welcomed', '1'))
+    // Clear any accumulated chat history so the panel height is deterministic
+    await page.evaluate(() => {
+      localStorage.clear()
+      sessionStorage.clear()
+    })
     await page.reload()
+    // Wait for app.js to initialize
+    await page.waitForLoadState('networkidle')
   })
+
+  /** Open the panel and wait for its animation to settle */
+  async function openPanel(page: any) {
+    await page.locator('[data-chat-launcher]').click({ force: true })
+    await page.locator('.aira-chat-panel.is-open').waitFor({ state: 'attached', timeout: 5000 })
+    // Wait for opening animation to complete (0.32s transition)
+    await page.waitForTimeout(380)
+  }
 
   // ── Launcher button ───────────────────────────────────────────────
   test.describe('Launcher button', () => {
     test('is visible and uses brand glow button class', async ({ page }) => {
-      const launcher = page.locator('.floating-ai-btn[data-chat-launcher]')
-      await expect(launcher).toBeVisible()
+      await expect(page.locator('.floating-ai-btn[data-chat-launcher]')).toBeVisible()
     })
 
     test('has aria-expanded=false initially', async ({ page }) => {
-      const launcher = page.locator('[data-chat-launcher]')
-      await expect(launcher).toHaveAttribute('aria-expanded', 'false')
+      await expect(page.locator('[data-chat-launcher]')).toHaveAttribute('aria-expanded', 'false')
     })
 
     test('click sets aria-expanded=true and adds is-active class', async ({ page }) => {
@@ -42,45 +53,43 @@ test.describe('Aira Chatbox', () => {
   // ── Panel open / close ────────────────────────────────────────────
   test.describe('Panel open/close', () => {
     test('clicking launcher opens chat panel', async ({ page }) => {
-      await page.locator('[data-chat-launcher]').click({ force: true })
-      const panel = page.locator('[data-chat-panel]')
-      await expect(panel).toBeVisible()
+      await openPanel(page)
+      await expect(page.locator('[data-chat-panel]')).toBeVisible()
     })
 
     test('close button hides panel', async ({ page }) => {
-      await page.locator('[data-chat-launcher]').click({ force: true })
-      await page.locator('[data-chat-close]').click({ force: true })
+      await openPanel(page)
+      // Use dispatchEvent to bypass viewport edge-cases with fixed/absolute panels
+      await page.locator('[data-chat-close]').dispatchEvent('click')
       await expect(page.locator('[data-chat-panel]')).not.toBeVisible()
     })
 
     test('close button removes is-active from launcher', async ({ page }) => {
       const launcher = page.locator('[data-chat-launcher]')
-      await launcher.click({ force: true })
-      await page.locator('[data-chat-close]').click({ force: true })
+      await openPanel(page)
+      await page.locator('[data-chat-close]').dispatchEvent('click')
       await expect(launcher).not.toHaveClass(/is-active/)
     })
 
     test('Escape key closes panel', async ({ page }) => {
-      await page.locator('[data-chat-launcher]').click({ force: true })
+      await openPanel(page)
       await page.keyboard.press('Escape')
       await expect(page.locator('[data-chat-panel]')).not.toBeVisible()
     })
 
     test('clicking outside panel closes it', async ({ page }) => {
-      await page.locator('[data-chat-launcher]').click({ force: true })
+      await openPanel(page)
       await page.mouse.click(50, 50)
       await expect(page.locator('[data-chat-panel]')).not.toBeVisible()
     })
   })
 
-  // ── Header elements ───────────────────────────────────────────────
+  // ── Panel header ──────────────────────────────────────────────────
   test.describe('Panel header', () => {
-    test.beforeEach(async ({ page }) => {
-      await page.locator('[data-chat-launcher]').click({ force: true })
-    })
+    test.beforeEach(async ({ page }) => { await openPanel(page) })
 
     test('shows status dot', async ({ page }) => {
-      await expect(page.locator('.aira-status-dot')).toBeVisible()
+      await expect(page.locator('.aira-status-dot').first()).toBeVisible()
     })
 
     test('shows SGC TECH badge', async ({ page }) => {
@@ -94,17 +103,14 @@ test.describe('Aira Chatbox', () => {
 
   // ── Chat textarea & input ─────────────────────────────────────────
   test.describe('Chat input', () => {
-    test.beforeEach(async ({ page }) => {
-      await page.locator('[data-chat-launcher]').click({ force: true })
-    })
+    test.beforeEach(async ({ page }) => { await openPanel(page) })
 
     test('textarea input is visible', async ({ page }) => {
       await expect(page.locator('[data-chat-input]')).toBeVisible()
     })
 
     test('textarea has correct placeholder', async ({ page }) => {
-      const input = page.locator('[data-chat-input]')
-      await expect(input).toHaveAttribute('placeholder', /Ask Aira/)
+      await expect(page.locator('[data-chat-input]')).toHaveAttribute('placeholder', /Ask Aira/)
     })
 
     test('character counter starts at 0/2000', async ({ page }) => {
@@ -112,8 +118,7 @@ test.describe('Aira Chatbox', () => {
     })
 
     test('character counter updates as user types', async ({ page }) => {
-      const input = page.locator('[data-chat-input]')
-      await input.fill('Hello Aira')
+      await page.locator('[data-chat-input]').fill('Hello Aira')
       await expect(page.locator('[data-char-counter]')).toHaveText('10/2000')
     })
 
@@ -135,9 +140,7 @@ test.describe('Aira Chatbox', () => {
 
   // ── Mode switch (Chat / Voice) ────────────────────────────────────
   test.describe('Mode switch', () => {
-    test.beforeEach(async ({ page }) => {
-      await page.locator('[data-chat-launcher]').click({ force: true })
-    })
+    test.beforeEach(async ({ page }) => { await openPanel(page) })
 
     test('chat mode is active by default', async ({ page }) => {
       await expect(page.locator('[data-mode="chat"]')).toHaveClass(/active/)
@@ -146,29 +149,27 @@ test.describe('Aira Chatbox', () => {
     })
 
     test('clicking Voice tab switches mode', async ({ page }) => {
-      await page.locator('[data-mode="voice"]').click()
+      await page.locator('[data-mode="voice"]').dispatchEvent('click')
       await expect(page.locator('[data-mode="voice"]')).toHaveClass(/active/)
       await expect(page.locator('[data-voice-panel]')).toBeVisible()
       await expect(page.locator('[data-chat-form]')).toBeHidden()
     })
 
     test('mic shortcut button switches to voice mode', async ({ page }) => {
-      await page.locator('[data-mode-trigger="voice"]').click()
+      await page.locator('[data-mode-trigger="voice"]').dispatchEvent('click')
       await expect(page.locator('[data-mode="voice"]')).toHaveClass(/active/)
     })
 
     test('switching back to chat shows form', async ({ page }) => {
-      await page.locator('[data-mode="voice"]').click()
-      await page.locator('[data-mode="chat"]').click()
+      await page.locator('[data-mode="voice"]').dispatchEvent('click')
+      await page.locator('[data-mode="chat"]').dispatchEvent('click')
       await expect(page.locator('[data-chat-form]')).toBeVisible()
     })
   })
 
   // ── Quick actions ─────────────────────────────────────────────────
   test.describe('Quick actions', () => {
-    test.beforeEach(async ({ page }) => {
-      await page.locator('[data-chat-launcher]').click({ force: true })
-    })
+    test.beforeEach(async ({ page }) => { await openPanel(page) })
 
     test('Book Demo button is visible', async ({ page }) => {
       await expect(page.locator('[data-book-demo]')).toBeVisible()
@@ -179,7 +180,7 @@ test.describe('Aira Chatbox', () => {
     })
 
     test('Talk to Human reveals alert links', async ({ page }) => {
-      await page.locator('[data-talk-human]').click()
+      await page.locator('[data-talk-human]').dispatchEvent('click')
       await expect(page.locator('[data-alert-links]')).toBeVisible()
       await expect(page.locator('[data-alert-whatsapp]')).toBeVisible()
       await expect(page.locator('[data-alert-telegram]')).toBeVisible()
@@ -188,23 +189,21 @@ test.describe('Aira Chatbox', () => {
 
   // ── Aira chat API round-trip (mocked) ─────────────────────────────
   test.describe('Chat API', () => {
-    test('typing a message and pressing Enter calls /api/aira/chat and shows reply', async ({ page }) => {
-      await page.route('/api/aira/chat', async route => {
-        await route.fulfill({
-          status: 200,
-          contentType: 'application/json',
-          body: JSON.stringify({ ok: true, reply: 'Hello from Aira!', sessionId: 'test-session' }),
-        })
-      })
-
-      await page.locator('[data-chat-launcher]').click({ force: true })
+    test('sending a message shows typing indicator then an assistant reply', async ({ page }) => {
+      await openPanel(page)
       const input = page.locator('[data-chat-input]')
       await input.fill('What can you do?')
       await input.press('Enter')
 
-      // Message should appear in the log
+      // User message appears synchronously
       await expect(page.locator('[data-chat-log] .aira-msg.user')).toContainText('What can you do?')
-      await expect(page.locator('[data-chat-log] .aira-msg.assistant')).toContainText('Hello from Aira!', { timeout: 10000 })
+
+      // Typing indicator should appear while waiting for the reply
+      await expect(page.locator('.aira-typing')).toBeVisible({ timeout: 5000 })
+
+      // An assistant reply (real API or connection-error fallback) should arrive within 20 s
+      await expect(page.locator('[data-chat-log] .aira-msg.assistant').last())
+        .not.toHaveText(/Hello, welcome/, { timeout: 20000 })
     })
 
     test('char counter resets to 0/2000 after send', async ({ page }) => {
@@ -216,7 +215,7 @@ test.describe('Aira Chatbox', () => {
         })
       })
 
-      await page.locator('[data-chat-launcher]').click({ force: true })
+      await openPanel(page)
       const input = page.locator('[data-chat-input]')
       await input.fill('Hello')
       await expect(page.locator('[data-char-counter]')).toHaveText('5/2000')

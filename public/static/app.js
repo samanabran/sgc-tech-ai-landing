@@ -711,7 +711,7 @@ if (!launcher || !panel || !closeBtn || !modeBtns.length || !talkBtn || !alertLi
       }
     }
 
-    const brainState = (brain && typeof brain === 'object') ? brain : initBrainState();
+    const brainState = (brain && typeof brain === 'object' && !Array.isArray(brain)) ? brain : initBrainState();
 
     function queueCentralSync() {
       if (syncTimer) clearTimeout(syncTimer);
@@ -1286,22 +1286,6 @@ if (!launcher || !panel || !closeBtn || !modeBtns.length || !talkBtn || !alertLi
       queueCentralSync();
     });
 
-    function initWelcomePopup() {
-      if (sessionStorage.getItem('aira-welcomed')) return;
-      const overlay = document.getElementById('aira-welcome-popup');
-      if (!overlay) return;
-      overlay.querySelectorAll('[data-welcome-mode]').forEach(function(btn) {
-        btn.addEventListener('click', function() {
-          const mode = btn.getAttribute('data-welcome-mode');
-          sessionStorage.setItem('aira-welcomed', '1');
-          overlay.classList.add('aira-welcome-overlay--exit');
-          overlay.addEventListener('animationend', function() { overlay.remove(); }, { once: true });
-          setMode(mode);
-          setOpen(true);
-        });
-      });
-    }
-    initWelcomePopup();
   }
 
   initAiraChatbox();

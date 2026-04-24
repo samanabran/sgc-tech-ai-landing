@@ -758,6 +758,11 @@ section {
   flex-shrink: 0;
 }
 
+/* Ensure hidden attribute wins over display flex/grid on chatbox elements */
+.aira-voice-panel[hidden],
+.aira-chat-form[hidden],
+.aira-alert-links[hidden] { display: none !important; }
+
 /* ---- Voice Panel ---- */
 .aira-voice-panel {
   display: flex;
@@ -2648,109 +2653,7 @@ footer {
   box-shadow: 0 20px 40px rgba(0, 217, 255, 0.15);
 }
 
-/* ---- Welcome greeting bubble (anchored above chatbox launcher) ---- */
-.aira-welcome-overlay {
-  position: fixed;
-  right: clamp(0.9rem, 2vw, 1.4rem);
-  bottom: calc(clamp(0.9rem, 2vw, 1.4rem) + 3.8rem);
-  z-index: 121;
-  width: min(300px, calc(100vw - 2rem));
-  pointer-events: auto;
-  animation: airaOverlayIn 0.42s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-.aira-welcome-overlay--exit {
-  animation: airaOverlayOut 0.22s ease forwards;
-}
-
-@keyframes airaOverlayIn {
-  from { transform: translateY(18px) scale(0.94); opacity: 0; }
-  to   { transform: translateY(0) scale(1);        opacity: 1; }
-}
-
-@keyframes airaOverlayOut {
-  from { transform: translateY(0) scale(1);        opacity: 1; }
-  to   { transform: translateY(12px) scale(0.95);  opacity: 0; }
-}
-
-.aira-welcome-card {
-  background: #0d1130;
-  border: 1px solid rgba(0, 217, 255, 0.3);
-  border-radius: 14px;
-  padding: 16px 16px 14px;
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(0, 217, 255, 0.08);
-  position: relative;
-  animation: airaCardPulse 3s ease-in-out 0.6s infinite alternate;
-}
-
-/* downward arrow pointing at the launcher */
-.aira-welcome-card::before {
-  content: '';
-  position: absolute;
-  bottom: -9px;
-  right: 18px;
-  border-left: 9px solid transparent;
-  border-right: 9px solid transparent;
-  border-top: 9px solid rgba(0, 217, 255, 0.3);
-}
-
-.aira-welcome-card::after {
-  content: '';
-  position: absolute;
-  bottom: -7px;
-  right: 19px;
-  border-left: 8px solid transparent;
-  border-right: 8px solid transparent;
-  border-top: 8px solid #0d1130;
-}
-
-@keyframes airaCardPulse {
-  from { box-shadow: 0 8px 28px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(0, 217, 255, 0.08); }
-  to   { box-shadow: 0 8px 28px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(0, 217, 255, 0.4), 0 0 22px rgba(0, 217, 255, 0.18); }
-}
-
-.aira-welcome-title {
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--white);
-  margin-bottom: 0.4rem;
-}
-
-.aira-welcome-body {
-  font-size: 0.82rem;
-  color: var(--gray-300);
-  line-height: 1.55;
-  margin-bottom: 1rem;
-}
-
-.aira-welcome-actions {
-  display: flex;
-  gap: 0.45rem;
-}
-
-.aira-welcome-btn {
-  flex: 1;
-  padding: 0.55rem 0.6rem;
-  border-radius: 9px;
-  font-size: 0.86rem;
-  font-weight: 600;
-  cursor: pointer;
-  border: none;
-  transition: opacity 0.15s, transform 0.15s;
-}
-
-.aira-welcome-btn:hover { opacity: 0.88; transform: translateY(-1px); }
-
-.aira-welcome-chat {
-  background: var(--cyan);
-  color: #0a1628;
-}
-
-.aira-welcome-voice {
-  background: rgba(255, 255, 255, 0.06);
-  color: var(--gray-100);
-  border: 1px solid rgba(255, 255, 255, 0.14) !important;
-}
+/* Welcome overlay removed — chatbox is self-evident with new UI */
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {

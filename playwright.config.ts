@@ -9,7 +9,7 @@ export default defineConfig({
   workers: 1,
   reporter: 'list',
   use: {
-    baseURL: 'http://localhost:5174',
+    baseURL: 'http://localhost:3000',
     trace: 'on-first-retry',
     actionTimeout: 15000,
   },

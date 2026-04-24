@@ -1111,18 +1111,6 @@ app.get('/', (c) => {
         </section>
       </main>
 
-      {/* Welcome popup — shown once per session, dismissed by picking Chat or Voice */}
-      <div id="aira-welcome-popup" class="aira-welcome-overlay" aria-modal="true" role="dialog" aria-label="Welcome to SGC TECH AI">
-        <div class="aira-welcome-card">
-          <p class="aira-welcome-title">Welcome to SGC TECH AI</p>
-          <p class="aira-welcome-body">We help B2B teams cut operational cost, automate workflows, and deploy production AI in as little as 30 days.</p>
-          <div class="aira-welcome-actions">
-            <button type="button" class="aira-welcome-btn aira-welcome-chat" data-welcome-mode="chat">Chat</button>
-            <button type="button" class="aira-welcome-btn aira-welcome-voice" data-welcome-mode="voice">Voice</button>
-          </div>
-        </div>
-      </div>
-
       {/* ===== AIRA CHATBOX ===== */}
       <div
         class="aira-chatbox"
