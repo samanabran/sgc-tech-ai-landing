@@ -1,0 +1,221 @@
+{
+  "version": "1.0.0",
+  "lastScanned": 1777864656622,
+  "projectRoot": "c:\\Users\\branm\\sgc-tech-ai-landing",
+  "techStack": {
+    "languages": [
+      {
+        "name": "JavaScript/TypeScript",
+        "version": null,
+        "confidence": "high",
+        "markers": [
+          "package.json"
+        ]
+      },
+      {
+        "name": "TypeScript",
+        "version": null,
+        "confidence": "high",
+        "markers": [
+          "tsconfig.json"
+        ]
+      }
+    ],
+    "frameworks": [
+      {
+        "name": "@playwright/test",
+        "version": "1.59.1",
+        "category": "testing"
+      },
+      {
+        "name": "vite",
+        "version": "6.3.5",
+        "category": "build"
+      },
+      {
+        "name": "vitest",
+        "version": "4.1.5",
+        "category": "testing"
+      }
+    ],
+    "packageManager": "npm",
+    "runtime": null
+  },
+  "build": {
+    "buildCommand": "npm run build",
+    "testCommand": "npm test",
+    "lintCommand": null,
+    "devCommand": "npm run dev",
+    "scripts": {
+      "dev": "vite",
+      "build": "vite build",
+      "test": "vitest run",
+      "test:watch": "vitest",
+      "test:e2e": "cross-env PLAYWRIGHT_BROWSERS_PATH=.playwright-browsers playwright test",
+      "preview": "wrangler pages dev",
+      "deploy": "npm run build && wrangler pages deploy",
+      "cf-typegen": "wrangler types --env-interface CloudflareBindings"
+    }
+  },
+  "conventions": {
+    "namingStyle": null,
+    "importStyle": null,
+    "testPattern": null,
+    "fileOrganization": "type-based"
+  },
+  "structure": {
+    "isMonorepo": false,
+    "workspaces": [],
+    "mainDirectories": [
+      "docs",
+      "public",
+      "scripts",
+      "src",
+      "tests"
+    ],
+    "gitBranches": {
+      "defaultBranch": "main",
+      "branchingStrategy": null
+    }
+  },
+  "customNotes": [],
+  "directoryMap": {
+    "dist": {
+      "path": "dist",
+      "purpose": "Distribution/build output",
+      "fileCount": 20,
+      "lastAccessed": 1777864656555,
+      "keyFiles": [
+        "robots.txt",
+        "sgcclaw-act4-preview.png",
+        "sgcclaw-final-visual.mp4",
+        "sgcclaw-FINAL.mp4",
+        "sgcclaw-promo-final.mp4"
+      ]
+    },
+    "docs": {
+      "path": "docs",
+      "purpose": "Documentation",
+      "fileCount": 2,
+      "lastAccessed": 1777864656569,
+      "keyFiles": [
+        "aira-kv-setup.md",
+        "sgcclaw-voiceover-script.txt"
+      ]
+    },
+    "public": {
+      "path": "public",
+      "purpose": "Public files",
+      "fileCount": 18,
+      "lastAccessed": 1777864656570,
+      "keyFiles": [
+        "robots.txt",
+        "sgcclaw-act4-preview.png",
+        "sgcclaw-final-visual.mp4",
+        "sgcclaw-FINAL.mp4",
+        "sgcclaw-promo-final.mp4"
+      ]
+    },
+    "scripts": {
+      "path": "scripts",
+      "purpose": "Build/utility scripts",
+      "fileCount": 4,
+      "lastAccessed": 1777864656572,
+      "keyFiles": [
+        "apply-word-timing.cjs",
+        "build-template.cjs",
+        "fix-timing.cjs",
+        "fix-vo-sync.cjs"
+      ]
+    },
+    "src": {
+      "path": "src",
+      "purpose": "Source code",
+      "fileCount": 2,
+      "lastAccessed": 1777864656573,
+      "keyFiles": [
+        "index.tsx",
+        "renderer.tsx"
+      ]
+    },
+    "test-results": {
+      "path": "test-results",
+      "purpose": null,
+      "fileCount": 1,
+      "lastAccessed": 1777864656573,
+      "keyFiles": []
+    },
+    "tests": {
+      "path": "tests",
+      "purpose": "Test files",
+      "fileCount": 0,
+      "lastAccessed": 1777864656574,
+      "keyFiles": []
+    },
+    "dist\\assets": {
+      "path": "dist\\assets",
+      "purpose": "Static assets",
+      "fileCount": 3,
+      "lastAccessed": 1777864656578,
+      "keyFiles": [
+        "aira-voice-agent-data.json",
+        "voiceover-transcript.json",
+        "voiceover.wav"
+      ]
+    },
+    "public\\assets": {
+      "path": "public\\assets",
+      "purpose": "Static assets",
+      "fileCount": 3,
+      "lastAccessed": 1777864656584,
+      "keyFiles": [
+        "aira-voice-agent-data.json",
+        "voiceover-transcript.json",
+        "voiceover.wav"
+      ]
+    },
+    "src\\components": {
+      "path": "src\\components",
+      "purpose": "UI components",
+      "fileCount": 5,
+      "lastAccessed": 1777864656588,
+      "keyFiles": [
+        "AwardBadges.tsx",
+        "Badges.tsx",
+        "CircuitBg.tsx"
+      ]
+    },
+    "src\\data": {
+      "path": "src\\data",
+      "purpose": "Data files",
+      "fileCount": 1,
+      "lastAccessed": 1777864656591,
+      "keyFiles": [
+        "quote-data.ts"
+      ]
+    },
+    "src\\routes": {
+      "path": "src\\routes",
+      "purpose": "Route handlers",
+      "fileCount": 2,
+      "lastAccessed": 1777864656594,
+      "keyFiles": [
+        "api.ts",
+        "quote-builder.tsx"
+      ]
+    },
+    "src\\utils": {
+      "path": "src\\utils",
+      "purpose": "Utility functions",
+      "fileCount": 5,
+      "lastAccessed": 1777864656598,
+      "keyFiles": [
+        "email-templates.ts",
+        "email-validator.ts",
+        "odoo.ts"
+      ]
+    }
+  },
+  "hotPaths": [],
+  "userDirectives": []
+}

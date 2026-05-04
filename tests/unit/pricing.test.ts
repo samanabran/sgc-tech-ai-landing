@@ -208,8 +208,8 @@ describe('calculateQuote — error handling', () => {
 // ── Data integrity ─────────────────────────────────────────────────────────
 
 describe('data integrity — INDUSTRIES', () => {
-  it('has exactly 10 industries', () => {
-    expect(INDUSTRIES).toHaveLength(10)
+  it('has exactly 12 industries (10 standard + 2 special)', () => {
+    expect(INDUSTRIES).toHaveLength(12)
   })
 
   it('all industry IDs are unique', () => {
@@ -235,8 +235,8 @@ describe('data integrity — INDUSTRIES', () => {
     }
   })
 
-  it('all baseCosts are positive numbers', () => {
-    for (const ind of INDUSTRIES) {
+  it('all standard (non-special) industries have positive baseCosts', () => {
+    for (const ind of INDUSTRIES.filter(i => !i.isSpecial)) {
       expect(ind.baseCost).toBeGreaterThan(0)
     }
   })
